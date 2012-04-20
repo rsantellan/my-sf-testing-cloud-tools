@@ -18,5 +18,21 @@
 
 .tr_datos_container{
   min-height: 150px;
+  width: 48%;
+  float: left;
+  margin-right: 5px;
 }
 
+div.tr_contenido{
+  float: left;
+  width: 50%;
+}
+
+div.tr_contenido div{
+/*  margin-left: 5px;*/
+}
+
+div.tr_active{
+  border: thin dotted;
+  color: blue;
+}

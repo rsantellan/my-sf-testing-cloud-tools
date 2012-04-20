@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="EN" target-language="es" datatype="plaintext" original="messages" date="2012-04-19T22:17:53Z" product-name="messages">
+  <file source-language="EN" target-language="es" datatype="plaintext" original="messages" date="2012-04-20T16:08:30Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1">
         <source>basico_titulo</source>
-        <target/>
+        <target>hola soy una prueba &lt;font size="4"&gt;jajaja&lt;/font&gt; :) nananana ñ k á {a}{+a'[" "@&lt;br&gt;&lt;ol&gt;&lt;li&gt;numero 1&lt;/li&gt;&lt;li&gt;&lt;b&gt;numero 2&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;numero 3&lt;/i&gt;&lt;/li&gt;&lt;li&gt;&lt;u&gt;j&lt;span style="font-style: italic;"&gt;jijijiji&lt;/span&gt;&lt;/u&gt;&lt;i&gt;&lt;br&gt;&lt;/i&gt;&lt;/li&gt;&lt;/ol&gt;</target>
+        <note>es</note>
       </trans-unit>
     </body>
   </file>
