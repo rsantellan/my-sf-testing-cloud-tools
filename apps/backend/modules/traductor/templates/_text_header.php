@@ -17,7 +17,7 @@ foreach ($header_text as $key => $value):
         <?php $file_content = strip_tags(html_entity_decode($value[0])); ?>
         <span class="translation_text"><?php echo truncate_text($file_content, 100); ?></span>
     </div>
-	<a href="javascript:void(0)" onclick="return myTranslator.getInstance().loadTexts('<?php echo $name ?>', '<?php echo $full_keys[$index] ?>')">Editar</a>
+	<a href="javascript:void(0)" onclick="return myTranslator.getInstance().loadTexts(this, '<?php echo $name ?>', '<?php echo $full_keys[$index] ?>')">Editar</a>
     
 </div>
 <div class="accordion-body <?php echo $name ?>"></div>

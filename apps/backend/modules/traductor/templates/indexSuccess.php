@@ -41,7 +41,7 @@ use_javascript("jquery.cleditor.js", "last");
 
 <hr/>
 <div id="datos" class="tr_datos_container"></div>
-<div id="contenido"></div>
+<div id="contenido" class="tr_contenido"></div>
 <h2><?php echo $error?></h2>
 
 
