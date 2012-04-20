@@ -36,3 +36,16 @@ div.tr_active{
   border: thin dotted;
   color: blue;
 }
+
+a.show_reference{
+  color: gray; 
+  font-size:10px!important; 
+/*  float: right;*/
+}
+
+div.reference_text{
+  display:none; 
+  padding:10px; 
+  font-style: italic;
+  background-color: #EfEfEf;
+}
