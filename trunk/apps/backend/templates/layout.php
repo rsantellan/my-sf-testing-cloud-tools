@@ -18,12 +18,8 @@
     <h1 id="head">Administrador</h1>
 	<!--	Menu-->
 	<ul id="navigation">
-	  <?php if (true): ?>
-	  <li><span class="active"><a href="<?php echo url_for("@homepage");?>">Dashboard</a></span></li>
-	  <?php else: ?>
-  	  <li><a href="<?php //echo site_url('admin/index'); ?>">Dashboard</a></li>
-	  <?php endif; ?>
-	  <li><span><a href="<?php echo 'hola';?>">Textos</a></span></li>
+	  <li><span class="<?php if(has_slot('home')){ echo 'active'; } ?>"><a href="<?php echo url_for("@homepage");?>">Dashboard</a></span></li>
+	  <li><span class="<?php if(has_slot('traductor')){ echo 'active'; } ?>"><a href="<?php echo url_for("@traductor");?>">Textos</a></span></li>
 	</ul>
 
 	<div id="content" class="container_16 clearfix">

@@ -1,4 +1,7 @@
 <?php
+//Ingreso el slot
+slot('traductor', 'traductor');
+
 // Aca pongo todos los js que correspondan
 use_javascript("jquery-1.7.1.min.js", "first");
 use_javascript("myTranslator.js", "last");

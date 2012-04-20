@@ -20,7 +20,10 @@ traductor_getlangs:
 traductor_getpages:
   url: /traductor_pages.html
   param: { module: traductor, action: getApplicationPagesAjax }
-
+traductor:
+  url: /traductor.html
+  param: { module: traductor, action: index }
+  
 # default rules
 homepage:
   url:   /

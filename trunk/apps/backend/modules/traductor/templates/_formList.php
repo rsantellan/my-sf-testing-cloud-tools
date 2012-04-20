@@ -3,8 +3,8 @@
 <div id="<?php echo $page ?>">
   <div style="margin-top:10px;" id="translate_form_<?php echo $index ?>">
         <?php if ($showText): ?>
-          <a href="#" style="color: gray; font-size:10px!important; float: right;" onclick="return mdTranslator.getInstance().showReference($(this));"><?php echo __('mdTranslator_mostrar referencia') ?></a>
-          <div style="display:none; padding:10px; font-style: italic;background-color: #EfEfEf;"><?php echo ($showText ? $form['translation_base_' . $index]->getValue() : ""); ?></div>
+          <a href="javascript:void(0)" class="show_reference" onclick="return myTranslator.getInstance().showReference($(this));"><?php echo __('traductor_mostrar referencia') ?></a>
+          <div class="reference_text"><?php echo ($showText ? $form['translation_base_' . $index]->getValue() : ""); ?></div>
           <div class="clear"></div>
           <br>
         <?php endif; ?>
