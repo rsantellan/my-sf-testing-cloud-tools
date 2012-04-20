@@ -1,0 +1,22 @@
+/* 
+    Document   : traductor
+    Created on : 19/04/2012, 07:01:59 PM
+    Author     : Rodrigo Santellan
+    Description:
+        Estilos para el traductor
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.tr_checkbox_label{
+  padding-right:3px;
+  display:block;
+}
+
+.tr_datos_container{
+  min-height: 150px;
+}
+

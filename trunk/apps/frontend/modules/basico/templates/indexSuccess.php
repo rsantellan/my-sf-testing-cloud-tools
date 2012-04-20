@@ -1,0 +1,1 @@
+<?php echo __("basico_titulo"); ?>
