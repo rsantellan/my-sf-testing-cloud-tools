@@ -1,0 +1,32 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+traductor_gettext_content:
+  url: /traductor_text_content.html
+  param: { module: traductor, action: getContentToEdit }
+
+traductor_gettexts:
+  url: /traductor_texts.html
+  param: { module: traductor, action: getTranslationsFormsHeader }
+
+traductor_getlangs:
+  url: /traductor_langs.html
+  param: { module: traductor, action: getLangsAjax }
+
+traductor_getpages:
+  url: /traductor_pages.html
+  param: { module: traductor, action: getApplicationPagesAjax }
+
+# default rules
+homepage:
+  url:   /
+  param: { module: default, action: index }
+
+# generic rules
+# please, remove them by adding more specific rules
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*
