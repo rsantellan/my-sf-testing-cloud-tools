@@ -34,7 +34,7 @@
             </table>
         </div>
 
-        <p id="statsrow"><?php echo str_replace("{archivos}", "<span id='stats'></span>", __('uploader_text_addMoreText'));?> <a id="addmore" href="#action"><?php echo __('uploader_text_addMore');?></a></p>
+        <p id="statsrow"><span id='stats'></span><?php echo str_replace("{archivos}", "<span id='stats'></span>", __('uploader_text_addMoreText'));?> <a id="addmore" href="#action"><?php echo __('uploader_text_addMore');?></a></p>
 
         <p><a id="uploadstart" href="#action"><?php echo __('uploader_text_startUpload');?></a></p>
 
@@ -57,5 +57,5 @@ var __MD_UPLOAD_FILE_TEMPLATE = "<tr id=\"{id}\">" +
         "<td class=\"status\"><a href=\"#action\" class=\"remove\"><?php echo __("uploader_text_remove"); ?></a>" +
     "</tr>";
 
-    var __MD_OBJECT_CATEGORY     = "<?php echo $category; ?>";
+    var __MD_OBJECT_CATEGORY     = "<?php //echo $category; ?>";
 </script>

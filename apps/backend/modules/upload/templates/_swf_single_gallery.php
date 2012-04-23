@@ -23,5 +23,5 @@
 
 </div>
 <script>
-    var __MD_OBJECT_CATEGORY     = "<?php echo $category; ?>";
+    var __MD_OBJECT_CATEGORY     = "<?php //echo $category; ?>";
 </script>

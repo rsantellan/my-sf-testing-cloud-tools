@@ -21,5 +21,20 @@
 &nbsp;
 <a href="<?php echo url_for('mTest/index') ?>">List</a>
 
+<hr />
+<?php $albums = myAlbumHandler::retrieveAlbumsOfObject($my_test->getId(), $my_test->getObjectClass()); ?>
+<?php foreach($albums as $album): ?>
 
-<a href="<?php echo url_for("upload/upload?a=".$my_test->getId()."&c=myTest");?>">upload</a>
+  <h3><?php echo $album->getTitle();?></h3>
+  <a href="<?php echo url_for("upload/upload?i=".$album->getId()."&c=".$my_test->getObjectClass());?>">upload</a>
+  <br/>
+  <span>Muestro las imagenes</span>
+  <?php
+    $uploades = $album->getMyUploaded();
+    foreach($uploades as $upload):
+      
+      echo $upload->getUrl(array(myImageCodes::CODE => 1, myImageCodes::WIDTH => 200, myImageCodes::HEIGHT => 200));
+      
+    endforeach;
+  ?>
+<?php endforeach;?>

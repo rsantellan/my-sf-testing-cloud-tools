@@ -15,6 +15,9 @@ class mTestActions extends sfActions
     $this->my_tests = Doctrine_Core::getTable('myTest')
       ->createQuery('a')
       ->execute();
+    //myAlbumHandler::retrieveLastAlbumPriority(1);
+    //myAlbumHandler::createAlbum(1, "test");
+    
   }
 
   public function executeShow(sfWebRequest $request)
