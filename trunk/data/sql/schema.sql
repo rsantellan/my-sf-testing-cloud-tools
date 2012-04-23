@@ -1,5 +1,7 @@
+CREATE TABLE my_album (id INT AUTO_INCREMENT, title VARCHAR(64) NOT NULL, description VARCHAR(255), type VARCHAR(255) DEFAULT 'Mixed', deleteallowed bool NOT NULL, my_file_id INT, object_class_name VARCHAR(128) NOT NULL, object_id INT NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE my_test_translation (id INT, title VARCHAR(255) NOT NULL, body TEXT NOT NULL, lang CHAR(2), slug VARCHAR(255), UNIQUE INDEX my_test_translation_sluggable_idx (slug, lang, title), PRIMARY KEY(id, lang)) ENGINE = INNODB;
 CREATE TABLE my_test (id INT AUTO_INCREMENT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE my_uploaded (id INT AUTO_INCREMENT, my_album_id INT, name VARCHAR(64) NOT NULL, filename VARCHAR(64) NOT NULL, description VARCHAR(255), path VARCHAR(255), filetype VARCHAR(64) NOT NULL, priority INT DEFAULT 0, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id, my_album_id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_forgot_password (id BIGINT AUTO_INCREMENT, user_id BIGINT NOT NULL, unique_key VARCHAR(255), expires_at DATETIME NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX user_id_idx (user_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_group (id BIGINT AUTO_INCREMENT, name VARCHAR(255) UNIQUE, description TEXT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_group_permission (group_id BIGINT, permission_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(group_id, permission_id)) ENGINE = INNODB;
@@ -9,6 +11,7 @@ CREATE TABLE sf_guard_user (id BIGINT AUTO_INCREMENT, first_name VARCHAR(255), l
 CREATE TABLE sf_guard_user_group (user_id BIGINT, group_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(user_id, group_id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_user_permission (user_id BIGINT, permission_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(user_id, permission_id)) ENGINE = INNODB;
 ALTER TABLE my_test_translation ADD CONSTRAINT my_test_translation_id_my_test_id FOREIGN KEY (id) REFERENCES my_test(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE my_uploaded ADD CONSTRAINT my_uploaded_my_album_id_my_album_id FOREIGN KEY (my_album_id) REFERENCES my_album(id);
 ALTER TABLE sf_guard_forgot_password ADD CONSTRAINT sf_guard_forgot_password_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id) ON DELETE CASCADE;
 ALTER TABLE sf_guard_group_permission ADD CONSTRAINT sf_guard_group_permission_permission_id_sf_guard_permission_id FOREIGN KEY (permission_id) REFERENCES sf_guard_permission(id) ON DELETE CASCADE;
 ALTER TABLE sf_guard_group_permission ADD CONSTRAINT sf_guard_group_permission_group_id_sf_guard_group_id FOREIGN KEY (group_id) REFERENCES sf_guard_group(id) ON DELETE CASCADE;

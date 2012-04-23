@@ -13,4 +13,20 @@
 class myTest extends BasemyTest
 {
 
+  public function postSave($event) {
+    parent::postSave($event);
+    myAlbumHandler::createAlbum($this->getId(), $this->getObjectClass(), "Default", "Este es el album default");
+    myAlbumHandler::createAlbum($this->getId(), $this->getObjectClass(), "Galeria", "Este es el album de las galerias");
+  }
+
+  /**
+    * Return the class of this object
+    *
+    * @return String
+    * @author Rodrigo Santellan
+    */
+  public function getObjectClass() 
+  {
+      return get_class($this);
+  }  
 }
