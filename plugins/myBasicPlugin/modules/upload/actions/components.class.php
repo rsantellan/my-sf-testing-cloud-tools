@@ -18,4 +18,8 @@ class uploadComponents extends sfComponents
 
     }
     
+    public function executeAlbums(sfWebRequest $request)
+    {
+      $this->albums = myAlbumHandler::retrieveAlbumsOfObject($this->objectId, $this->objectClass);
+    }
 }

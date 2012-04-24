@@ -19,6 +19,15 @@ class uploadActions extends sfActions {
     $this->forward('default', 'module');
   }
 
+  public function executeReloadAlbum(sfWebRequest $request) {
+    $id = $request->getPostParameter("id");
+    
+    $images = myAlbumHandler::retrieveAlbumContent($id);
+    $partial = $this->getPartial("upload/albumImages", array("uploades" => $images));
+    return $this->renderText(myBasicHandler::JsonResponse(true, array("body" => $partial)));
+  }
+  
+  
   public function executeUpload(sfWebRequest $request) {
     //$this->objectId = $request->getParameter('a', 0);
     $this->objectClass = $request->getParameter('c', '');
