@@ -75,14 +75,14 @@ class sfWidgetFormInputSWFUpload extends sfWidgetFormInputFile
     $this->addOption('swfupload_file_upload_limit', $this->options_data['widget']['file_upload_limit']);
     $this->addOption('swfupload_file_queue_limit', $this->options_data['widget']['file_queue_limit']);
 
-    $this->addOption('swfupload_flash_url',     public_path('/js/vendor/swfupload/swfupload/swfupload.swf'));
+    $this->addOption('swfupload_flash_url',     public_path('myBasicPlugin/js/vendor/swfupload/swfupload/swfupload.swf'));
 
-    $this->addOption('swfupload_css_path',      public_path('/css/swfupload.css'));
-    $this->addOption('swfupload_js_lib',        public_path('/js/jquery-1.7.1.min.js'));
-    $this->addOption('swfupload_js_path',       public_path('/js/vendor/swfupload/swfupload/swfupload.js'));
-    $this->addOption('swfupload_progress_path', public_path('/js/'.$this->options_data['widget']['progress_style'].'.js'));
-    $this->addOption('swfupload_handler_path',  public_path('/js/swfupload-widget-handler.js'));
-    $this->addOption('swfupload_plugins_dir',   public_path('/js/vendor/swfupload/plugins'));
+    $this->addOption('swfupload_css_path',      public_path('myBasicPlugin/css/swfupload.css'));
+    $this->addOption('swfupload_js_lib',        public_path('myBasicPlugin/js/jquery-1.7.1.min.js'));
+    $this->addOption('swfupload_js_path',       public_path('myBasicPlugin/js/vendor/swfupload/swfupload/swfupload.js'));
+    $this->addOption('swfupload_progress_path', public_path('myBasicPlugin/js/'.$this->options_data['widget']['progress_style'].'.js'));
+    $this->addOption('swfupload_handler_path',  public_path('myBasicPlugin/js/swfupload-widget-handler.js'));
+    $this->addOption('swfupload_plugins_dir',   public_path('myBasicPlugin/js/vendor/swfupload/plugins'));
     $this->addOption('swfupload_button_image_url', null);
 
     $this->addOption('swfupload_button_width', 100);

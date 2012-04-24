@@ -35,7 +35,7 @@ all:
     use_database:           true
 
     # Helpers
-    standard_helpers: [Partial, Cache, I18N, Date]
+    standard_helpers: [Partial, Cache, I18N, Date, myAsset]
     
     #Culture
     i18n:                   on
@@ -43,3 +43,6 @@ all:
     # Aplicaciones a traducir
     myI18nTranslator:
       translate_apps: [frontend, backend]    
+      
+    #Modules enabled 
+    enabled_modules:        [default, upload, webImage, traductor]      
