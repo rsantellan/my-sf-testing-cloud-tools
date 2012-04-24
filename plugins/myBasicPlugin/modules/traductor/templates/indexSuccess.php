@@ -3,11 +3,11 @@
 slot('traductor', 'traductor');
 
 // Aca pongo todos los js que correspondan
-use_javascript("jquery-1.7.1.min.js", "first");
-use_javascript("myTranslator.js", "last");
-use_stylesheet("traductor.css");
-use_stylesheet("jquery.cleditor.css");
-use_javascript("jquery.cleditor.js", "last");
+use_plugin_javascript("myBasicPlugin","jquery-1.7.1.min.js", "first");
+use_plugin_javascript("myBasicPlugin","myTranslator.js", "last");
+use_plugin_stylesheet("myBasicPlugin","traductor.css");
+use_plugin_stylesheet("myBasicPlugin","jquery.cleditor.css");
+use_plugin_javascript("myBasicPlugin", "jquery.cleditor.js", "last");
 ?>
 
 <?php echo __("traductor_titulo"); ?>

@@ -3,9 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>upload</title>
-<?php use_stylesheet("upload.css"); ?>
+<?php 
+  use_plugin_stylesheet("myBasicPlugin", "upload.css");
+  use_plugin_javascript("myBasicPlugin", "FeatureDoctrine.js")
+?>
 <!--<link rel="stylesheet" type="text/css" href="/mdMediaManagerPlugin/css/upload.css" />-->
-<script type="text/javascript" src="/js/FeatureDoctrine.js"></script>
+<!--<script type="text/javascript" src="/js/FeatureDoctrine.js"></script>-->
 <?php use_stylesheets_for_form($form)?>
 <?php use_javascripts_for_form($form)?>
 </head> 

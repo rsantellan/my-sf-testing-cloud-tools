@@ -6,9 +6,9 @@
 	<?php include_title() ?>
     <link rel="shortcut icon" href="/favicon.ico" />
 	<?php
-	use_stylesheet("admin/960.css");
-	use_stylesheet("admin/template.css");
-	use_stylesheet("admin/colour.css");
+	use_plugin_stylesheet("myBasicPlugin", "admin/960.css");
+	use_plugin_stylesheet("myBasicPlugin", "admin/template.css");
+	use_plugin_stylesheet("myBasicPlugin", "admin/colour.css");
 	?>
 	<?php include_stylesheets() ?>
 	<?php include_javascripts() ?>
