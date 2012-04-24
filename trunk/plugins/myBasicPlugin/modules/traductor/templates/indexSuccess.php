@@ -3,10 +3,10 @@
 slot('traductor', 'traductor');
 
 // Aca pongo todos los js que correspondan
-use_plugin_javascript("myBasicPlugin","jquery-1.7.1.min.js", "first");
-use_plugin_javascript("myBasicPlugin","myTranslator.js", "last");
-use_plugin_stylesheet("myBasicPlugin","traductor.css");
-use_plugin_stylesheet("myBasicPlugin","jquery.cleditor.css");
+use_plugin_javascript("myBasicPlugin", "jquery-1.7.1.min.js", "first");
+use_plugin_javascript("myBasicPlugin", "myTranslator.js", "last");
+use_plugin_stylesheet("myBasicPlugin", "traductor.css");
+use_plugin_stylesheet("myBasicPlugin", "jquery.cleditor.css");
 use_plugin_javascript("myBasicPlugin", "jquery.cleditor.js", "last");
 ?>
 
@@ -21,19 +21,19 @@ use_plugin_javascript("myBasicPlugin", "jquery.cleditor.js", "last");
   </div>
   <div class="grid_3">
   <p>
-	<?php echo $selectionForm['catalogue']->renderLabel() ?>
+	<?php //echo $selectionForm['catalogue']->renderLabel() ?>
 	<?php echo $selectionForm['catalogue']->render() ?>
   </p>
   </div>
   <div class="grid_3">
   <p>
-	<?php echo $selectionForm['base_language']->renderLabel() ?>
+	<?php //echo $selectionForm['base_language']->renderLabel() ?>
 	<?php echo $selectionForm['base_language']->render() ?>
   </p>
   </div>
   <div class="grid_3">
   <p>
-	<?php echo $selectionForm['language']->renderLabel() ?>
+	<?php //echo $selectionForm['language']->renderLabel() ?>
 	<?php echo $selectionForm['language']->render() ?>
   </p>
   </div>

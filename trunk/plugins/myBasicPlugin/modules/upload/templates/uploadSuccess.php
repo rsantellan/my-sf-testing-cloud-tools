@@ -9,7 +9,7 @@ $max_size = ini_get('upload_max_filesize');
       'file_queue_limit'  => 0,                           //
       'progress_style'    => sfConfig::get( 'sf_plugins_upload_javascript_type_' . $objectClass, 'swfupload-progressFile' ), //     //javascript que dibuja el contenedor de imagenes subidas y thumbnails
       'post_params'       => '"h": 70,"w":70, "album_id":'.$album_id.',"objClass":"' . $objectClass . '"',            //altura y ancho que queremos mostrar el thumb de cada imagen
-      'upload_browse'     => '<div id="image-browse" class="addbutton">' . __('mdMediaDoctrine_text_uploadFile').'</div>',  //diseño que mostramos el boton de subir, debe mantenerse el id default
+      'upload_browse'     => '<div id="image-browse" class="addbutton">' . __('upload_uploadFile').'</div>',  //diseño que mostramos el boton de subir, debe mantenerse el id default
       'album_id'          => $album_id
     ))
 ?>
