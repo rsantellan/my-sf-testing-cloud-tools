@@ -1,0 +1,4 @@
+all:
+  .image:
+    image_library: 'myImagickConvertor'
+      

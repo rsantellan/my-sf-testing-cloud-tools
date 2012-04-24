@@ -32,9 +32,10 @@
   <?php
     $uploades = $album->getMyUploaded();
     foreach($uploades as $upload):
-      
-      echo $upload->getUrl(array(myImageCodes::CODE => 1, myImageCodes::WIDTH => 200, myImageCodes::HEIGHT => 200));
-      
+      ?>
+  <img src="<?php echo $upload->getUrl(array(myImageCodes::CODE => 1, myImageCodes::WIDTH => 200, myImageCodes::HEIGHT => 200));?>" />
+  <a href="">a</a>
+  <?php    
     endforeach;
   ?>
 <?php endforeach;?>

@@ -13,8 +13,24 @@
 class myUploaded extends BasemyUploaded
 {
   
-  public function getUrl($options = array(), $original = false)
+  public function getUrl($options = array())
   {
-    myCacheHandler::createCacheImage(sfConfig::get('sf_upload_dir').$this->getPath().DIRECTORY_SEPARATOR.$this->getFilename(), $options);
+    //Tengo que preguntar de que tipo es. Dependiendo del tipo la imagen que renderizo
+    //Primero solo imagenes.
+    $image_cache =  myCacheHandler::createCacheImage(sfConfig::get('sf_upload_dir').$this->getPath().DIRECTORY_SEPARATOR.$this->getFilename(), $options);
+    $cachePath = sfConfig::get('sf_cache_dir') . '/images/web';
+    $image = str_replace($cachePath, "", $image_cache);
+    sfProjectConfiguration::getActive()->loadHelpers(array('Url'));
+    $url = "";
+    $absolute_path = false;
+    if(!is_null($options))
+    {
+      if(isset($options['absolute_path']))
+      {
+        $absolute_path = true;
+        
+      }
+    }
+    return url_for('@webImage' . '?p=' . base64_encode($image), $absolute_path);
   }
 }
