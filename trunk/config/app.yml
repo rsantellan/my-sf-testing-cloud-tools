@@ -1,4 +1,6 @@
 all:
   .image:
     image_library: 'myImagickConvertor'
-      
+
+  sf_guard_plugin:
+    algorithm_callable: md5      

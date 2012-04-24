@@ -180,6 +180,8 @@ function endUpload(){
     document.getElementById('uploadForm_0').upload.value = "";
     document.getElementById('upload_container_overlay').style.display = 'none';
     document.getElementById('upload_container').style.display = 'none';
+    console.log(arguments[0]);
+    console.log(arguments[1]);
     if(parent.MdAvatarAdmin !== undefined)
     {
         parent.MdAvatarAdmin.getInstance().updateContentAlbums(arguments[0], arguments[1]);

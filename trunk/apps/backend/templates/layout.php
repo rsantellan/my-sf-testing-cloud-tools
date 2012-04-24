@@ -6,14 +6,23 @@
 	<?php include_title() ?>
     <link rel="shortcut icon" href="/favicon.ico" />
 	<?php
+    
+    if(!$sf_user->isAnonymous()):
+    
 	use_plugin_stylesheet("myBasicPlugin", "admin/960.css");
 	use_plugin_stylesheet("myBasicPlugin", "admin/template.css");
 	use_plugin_stylesheet("myBasicPlugin", "admin/colour.css");
+    
+    endif;
 	?>
 	<?php include_stylesheets() ?>
 	<?php include_javascripts() ?>
   </head>
   <body>
+<?php
+    if(!$sf_user->isAnonymous()):    
+?>      
+
 	<!--	Titulo-->
     <h1 id="head">Administrador</h1>
 	<!--	Menu-->
@@ -25,14 +34,21 @@
 	<div id="content" class="container_16 clearfix">
 	  
 	  <div class="<?php if(has_slot('main_grid_16')){ echo 'grid_16'; } else { echo ''; } ?>">
-	
+<?php
+    endif;
+?>   	
 		<?php echo $sf_content ?>
-	  
+<?php
+    if(!$sf_user->isAnonymous()):    
+?>  	  
 	  </div>
 	</div>
 
 	<div id="foot">
 	  <a href="#">Contact Me</a>
 	</div>
+<?php
+    endif;
+?>  
   </body>
 </html>

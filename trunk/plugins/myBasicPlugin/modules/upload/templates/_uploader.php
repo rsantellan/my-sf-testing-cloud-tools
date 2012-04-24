@@ -45,6 +45,9 @@
     <div class="progressWindow"><?php echo __('uploader_text_uploading');?>...</div>
 </div>
 
+<input type="hidden" id="upload_album_id" value="<?php echo $album_id;?>" />
+
+
 </body>
 
 </html>

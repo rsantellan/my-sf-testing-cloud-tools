@@ -45,4 +45,11 @@ all:
       translate_apps: [frontend, backend]    
       
     #Modules enabled 
-    enabled_modules:        [default, upload, webImage, traductor]      
+    enabled_modules:        [default, upload, webImage, traductor, sfGuardAuth]      
+    
+    
+    login_module:           sfGuardAuth
+    login_action:           signin
+
+    secure_module:          sfGuardAuth
+    secure_action:          secure    
