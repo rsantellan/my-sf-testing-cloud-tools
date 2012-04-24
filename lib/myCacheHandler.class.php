@@ -16,7 +16,13 @@ class myCacheHandler
     $cache_path = self::getCacheFile($route, $options);
     sfContext::getInstance()->getLogger()->info('>>>>>>> cache path >>>>>>>>>>' . $cache_path);
     //Aca tendria que ir probando los distintos handlers de imagenes para crearlas.
-    
+    if(!file_exists($cache_path))
+    {
+      
+      $handler = myImageFactory::returnImageLibrary();
+      $handler->generateThumbnail($route, $cache_path, $options[myImageCodes::WIDTH], $options[myImageCodes::HEIGHT], $options[myImageCodes::CODE]);
+    }
+    return $cache_path;
   }
   
   /**

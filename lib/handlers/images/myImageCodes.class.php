@@ -41,6 +41,30 @@ class myImageCodes {
     const PERSPECTIVE       = 'perspective';
 
     const CROP              = 'crop';    
+    
+    const NORMAL            = 'normal';
+    
+    const FIT               = 'fit';
+    
+    const FIXED             = 'fixed';
+    
+    const PINK              = 'pink';
+    
+    const BLACK             = 'black';
+    
+    const WHITE             = 'white';
+    
+    const BLUE              = 'blue';
+    
+    const RED               = 'red';
+    
+    const LIGHTBLUE         = 'light blue';
+    
+    const JPG               = 'jpg';
+    
+    const PNG               = 'png';
+
+    
 }
 
 
