@@ -31,24 +31,9 @@
     <div id="content">
 
         <div id="uploadarea">
-            <?php if(isset($manager)): ?>
+          <?php include_partial('upload/swf_single_gallery', array('album_id' => $album_id)); ?>
 
-                <?php include_partial('uploader/swf_single', array('manager' => $manager, 'album_id' => $album_id)); ?>
-
-                <?php include_partial('uploader/swf_multiple', array('form' => $form, 'manager' => $manager, 'album_id' => $album_id)); ?>
-                
-                <script type="text/javascript">
-                    var __MD_OBJECT_ID = <?php echo $manager->getMdObject()->getId(); ?>;
-                    var __MD_OBJECT_CLASS = "<?php echo $manager->getMdObject()->getObjectClass(); ?>";
-                </script>
-
-            <?php else: ?>
-
-                <?php include_partial('upload/swf_single_gallery', array('album_id' => $album_id)); ?>
-
-                <?php include_partial('upload/swf_multiple_gallery', array('form' => $form, 'album_id' => $album_id)); ?>
-
-            <?php endif; ?>
+          <?php include_partial('upload/swf_multiple_gallery', array('form' => $form, 'album_id' => $album_id)); ?>
         </div>
 
     </div>
