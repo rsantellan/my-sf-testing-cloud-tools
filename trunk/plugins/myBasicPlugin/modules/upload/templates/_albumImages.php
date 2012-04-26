@@ -8,11 +8,21 @@
         Editar
       </a>
     </div>
-  <img src="<?php echo $upload->getUrl(array(myImageCodes::CODE => 1, myImageCodes::WIDTH => 200, myImageCodes::HEIGHT => 200));?>" />
+  <img width="200" height="200" src="<?php echo $upload->getUrl(array(myImageCodes::CODE => 1, myImageCodes::WIDTH => 200, myImageCodes::HEIGHT => 200));?>" />
+  
+  <div class="img_avatar">
+	<?php if($firstImage): ?>
+	  <?php echo __('upload_avatar'); ?>
+	<?php endif;?>
+  </div>
+  
   <div class="img_delete">
-    <a onclick="return deleteFile('<?php //echo site_url('upload/deleteFile/'.$image->id);?>', <?php //echo $image->id;?>)" href="javascript:void(0)" class="">
-      <!-- <img src="<?php //echo base_url().'assets/upload/images/delete.png'?>" /> -->
-      <?php echo plugin_image_tag("myBasicPlugin", "trash.png", array('alt' => __('upload_delete'))); ?>
+    <a onclick="return deleteFile('<?php echo url_for("@deleteFile");?>', '<?php echo __("upload_esta seguro de querer eliminar la imagen?");?>', <?php echo $upload->getId(); ?>, <?php echo $upload->getMyAlbumId(); ?>)" href="javascript:void(0)" class="">
+      <?php 
+		$options = array();
+		$options["alt"] = __('upload_delete');
+	  ?>
+      <?php echo plugin_image_tag("myBasicPlugin", "trash.png", $options); ?>
     </a>
   </div>
 </div>  

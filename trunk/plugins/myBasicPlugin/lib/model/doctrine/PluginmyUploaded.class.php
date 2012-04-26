@@ -17,7 +17,7 @@ abstract class PluginmyUploaded extends BasemyUploaded
     //Tengo que preguntar de que tipo es. Dependiendo del tipo la imagen que renderizo
     //Primero solo imagenes.
     $image_cache =  myCacheHandler::createCacheImage(sfConfig::get('sf_upload_dir').$this->getPath().DIRECTORY_SEPARATOR.$this->getFilename(), $options);
-    $cachePath = sfConfig::get('sf_cache_dir') . '/images/web';
+    $cachePath = sfConfig::get('sf_cache_dir') .DIRECTORY_SEPARATOR. 'images'.DIRECTORY_SEPARATOR.'web';
     $image = str_replace($cachePath, "", $image_cache);
     sfProjectConfiguration::getActive()->loadHelpers(array('Url'));
     $absolute_path = false;
@@ -29,6 +29,16 @@ abstract class PluginmyUploaded extends BasemyUploaded
         
       }
     }
-    return url_for('@webImage' . '?p=' . base64_encode($image), $absolute_path);
+	$url = url_for('@webImage' . '?p=' . base64_encode($image), $absolute_path);
+	sfContext::getInstance()->getLogger()->info('>>>>>>> url de la imagen. >>>>>>>>>>' . $url);
+    return $url;
   }
+  
+  public function preDelete($event) {
+	//Borro la imagen fisica, esto tb borra el cache.
+	$real_path = sfConfig::get('sf_upload_dir').$this->getPath().DIRECTORY_SEPARATOR;
+	myFileHandler::delete($this->getFilename(), $real_path);
+	parent::preDelete($event);
+  }
+
 }

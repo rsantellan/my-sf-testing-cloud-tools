@@ -8,23 +8,20 @@
  *
  * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
  */
-class myCacheHandler 
-{
+class myCacheHandler {
 
-  public static function createCacheImage($route, $options = array())
-  {
-    $cache_path = self::getCacheFile($route, $options);
-    sfContext::getInstance()->getLogger()->info('>>>>>>> cache path >>>>>>>>>>' . $cache_path);
-    //Aca tendria que ir probando los distintos handlers de imagenes para crearlas.
-    if(!file_exists($cache_path))
-    {
-      
-      $handler = myImageFactory::returnImageLibrary();
-      $handler->generateThumbnail($route, $cache_path, $options[myImageCodes::WIDTH], $options[myImageCodes::HEIGHT], $options[myImageCodes::CODE]);
-    }
-    return $cache_path;
+  public static function createCacheImage($route, $options = array()) {
+	$cache_path = self::getCacheFile($route, $options);
+	sfContext::getInstance()->getLogger()->info('>>>>>>> cache path >>>>>>>>>>' . $cache_path);
+	//Aca tendria que ir probando los distintos handlers de imagenes para crearlas.
+	if (!file_exists($cache_path)) {
+
+	  $handler = myImageFactory::returnImageLibrary();
+	  $handler->generateThumbnail($route, $cache_path, $options[myImageCodes::WIDTH], $options[myImageCodes::HEIGHT], $options[myImageCodes::CODE]);
+	}
+	return $cache_path;
   }
-  
+
   /**
    *
    * @param type $route
@@ -34,23 +31,60 @@ class myCacheHandler
    *            - height: El alto de la imagen.
    * @return type 
    */
-  public static function getCacheFile($route, $options)
-  {
-    $cacheFileName = basename($route);
+  public static function getCacheFile($route, $options) {
+	$cacheFileName = basename($route);
 
-    $cachePath = sfConfig::get('sf_cache_dir') . '/images/web';
+	$cachePath = sfConfig::get('sf_cache_dir') . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'web';
 
-    $dirName = dirname($route);
+	$dirName = dirname($route);
 
-    $cacheDir = str_replace(sfConfig::get ( 'sf_web_dir' ), $cachePath, $dirName);
+	$cacheDir = str_replace(sfConfig::get('sf_web_dir'), $cachePath, $dirName);
 
-    $codeName = '/' . $options[myImageCodes::CODE] . '_' . (isset($options[myImageCodes::WIDTH]) ? $options[myImageCodes::WIDTH] : '') . 'X' . (isset($options[myImageCodes::HEIGHT]) ? $options[myImageCodes::HEIGHT] : '');
+	$codeName = DIRECTORY_SEPARATOR . $options[myImageCodes::CODE] . '_' . (isset($options[myImageCodes::WIDTH]) ? $options[myImageCodes::WIDTH] : '') . 'X' . (isset($options[myImageCodes::HEIGHT]) ? $options[myImageCodes::HEIGHT] : '');
 
-    $cacheDir = myFileHandler::checkDirectory($cacheDir . $codeName);
-    //$cacheDir = MdFileHandler::checkDirectory($cacheDir . $codeName);
+	$cacheDir = myFileHandler::checkDirectory($cacheDir . $codeName);
+	//$cacheDir = MdFileHandler::checkDirectory($cacheDir . $codeName);
 
-    return $cacheDir . $cacheFileName;
-  }  
+	return $cacheDir . $cacheFileName;
+  }
+
+  public static function removeCacheOfFile($route) {
+	$cacheFileName = basename($route);
+
+	$root = sfConfig::get('sf_cache_dir') . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'web';
+
+	$dirName = dirname($route);
+
+	$cacheDir = str_replace(sfConfig::get('sf_root_dir'), $root, $dirName);
+
+	$path = $cacheDir;
+
+	self::findAndRemoveFile($path, $cacheFileName);
+  }
+
+  private static function findAndRemoveFile($path, $fileName) {
+	if (is_dir($path)) {
+	  //using the opendir function
+	  $dir_handle = @opendir($path) or die("Unable to open " . $path);
+
+	  //running the while loop
+	  while (false !== ($file = readdir($dir_handle))) {
+		if ($file != "." && $file != "..") {
+		  if (is_dir($path . DIRECTORY_SEPARATOR . $file)) {
+			self::findAndRemoveFile($path . DIRECTORY_SEPARATOR . $file, $fileName);
+		  } else {
+			if ($file == $fileName) {
+			  if (!unlink($path . DIRECTORY_SEPARATOR . $fileName)) {
+				throw new Exception('image not deleted of cache', 150);
+			  }
+			}
+		  }
+		}
+	  }
+	  //closing the directory
+	  closedir($dir_handle);
+	}
+  }
+
 }
-
 

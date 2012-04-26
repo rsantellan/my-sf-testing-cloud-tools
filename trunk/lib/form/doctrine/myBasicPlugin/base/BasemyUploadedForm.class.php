@@ -16,7 +16,7 @@ abstract class BasemyUploadedForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
-      'my_album_id' => new sfWidgetFormInputHidden(),
+      'my_album_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('myAlbum'), 'add_empty' => true)),
       'name'        => new sfWidgetFormInputText(),
       'filename'    => new sfWidgetFormInputText(),
       'description' => new sfWidgetFormInputText(),
@@ -29,7 +29,7 @@ abstract class BasemyUploadedForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'my_album_id' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('my_album_id')), 'empty_value' => $this->getObject()->get('my_album_id'), 'required' => false)),
+      'my_album_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('myAlbum'), 'required' => false)),
       'name'        => new sfValidatorString(array('max_length' => 64)),
       'filename'    => new sfValidatorString(array('max_length' => 64)),
       'description' => new sfValidatorString(array('max_length' => 255, 'required' => false)),

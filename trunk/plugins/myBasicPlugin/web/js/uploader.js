@@ -48,7 +48,14 @@ function initializaseAllAlbums()
 
 function restartSlider(id)
 {
-  listOfAlbumSliders[parseInt(id)].slider( "destroy" );
+  try
+  {
+	listOfAlbumSliders[parseInt(id)].slider( "destroy" );
+  }catch(e)
+  {
+	console.log(e);
+  }
+  
   startAlbumSlider(id);
 }
 
@@ -59,8 +66,13 @@ function startAlbumSlider(id)
   var conveyor = $("#album_images_container_"+id), item = $(".album_image", $("#album_images_container_"+id));
   //console.log(conveyor);
   //console.log(item);
-  //set length of conveyor
+  //Si la cantidad de items es cero entonces no lo inicializo.
+  if(item.length == 0)
+  {
+	return false;
+  }
   
+  //set length of conveyor
   conveyor.css("width", item.length * parseInt(item.css("width")));
   //config
   var myMax = parseInt((item.length * parseInt(item.css("width"))) - parseInt($("#view_album_images_"+id).css("width")));
@@ -99,14 +111,18 @@ function deleteFile(mUrl, text, itemId, albumId)
     $.ajax({
       url: mUrl,
       data: {
-          'id': id
+          'id': itemId
       },
       type: 'post',
       dataType: 'json',
       complete: function(json)
       {
+		console.log(json);
+		console.log(json.response);
+		console.log(json.response);
         if(json.response == "OK")
         {
+		  console.log('estoy aca');
           $('#album_image_' + itemId).fadeOut(500, function() {$(this).remove();});
           restartSlider(albumId);
           hoversImages();

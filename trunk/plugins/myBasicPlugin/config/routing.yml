@@ -1,6 +1,10 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
+deleteFile:
+  url: /album/deleteFile.html
+  param: { module: upload, action: deleteFile }
+
 reloadAlbum:
  url: /album/reload.html
  param: { module: upload, action: reloadAlbum }
@@ -8,6 +12,8 @@ reloadAlbum:
 webImage:
  url: /images/:p.*
  param: { module: webImage, action: index }
+
+#Imagenes
 
 traductor_savetext:
   url: /traductor_text_save.html
