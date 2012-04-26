@@ -13,6 +13,7 @@ abstract class BasemyUploadedFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
+      'my_album_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('myAlbum'), 'add_empty' => true)),
       'name'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'filename'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'description' => new sfWidgetFormFilterInput(),
@@ -24,6 +25,7 @@ abstract class BasemyUploadedFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
+      'my_album_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('myAlbum'), 'column' => 'id')),
       'name'        => new sfValidatorPass(array('required' => false)),
       'filename'    => new sfValidatorPass(array('required' => false)),
       'description' => new sfValidatorPass(array('required' => false)),
@@ -52,7 +54,7 @@ abstract class BasemyUploadedFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'          => 'Number',
-      'my_album_id' => 'Number',
+      'my_album_id' => 'ForeignKey',
       'name'        => 'Text',
       'filename'    => 'Text',
       'description' => 'Text',

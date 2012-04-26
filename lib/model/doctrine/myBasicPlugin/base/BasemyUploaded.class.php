@@ -52,7 +52,6 @@ abstract class BasemyUploaded extends sfDoctrineRecord
              ));
         $this->hasColumn('my_album_id', 'integer', 4, array(
              'type' => 'integer',
-             'primary' => true,
              'length' => 4,
              ));
         $this->hasColumn('name', 'string', 64, array(

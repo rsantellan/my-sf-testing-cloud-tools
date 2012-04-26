@@ -22,8 +22,9 @@ class webImageActions extends sfActions
         $param = $request->getParameter ( 'p' );
         $response = $this->getResponse();
         $ruta = base64_decode($param, true);
-        $cachePath = sfConfig::get('sf_cache_dir') . '/images/web';
+        $cachePath = sfConfig::get('sf_cache_dir') . DIRECTORY_SEPARATOR. 'images'.DIRECTORY_SEPARATOR.'web';
         $filePath = $cachePath.$ruta;
+		sfContext::getInstance()->getLogger()->info('>>>>>>> ruta de la imagen en el modulo webImage. >>>>>>>>>>' . $filePath);
         if (file_exists($filePath))
         {
           $response->setContentType('image/jpeg'); 

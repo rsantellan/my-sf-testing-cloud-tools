@@ -64,10 +64,19 @@ div.album_image .img_delete{
   text-align: center;
 /*  border-style: solid;
   border-width: 1px; */
+  width: 20%;
   margin: 0px 0px 0px 200px; 
   display: none;  
 }
 
 div.album_image .img_delete a{
   padding: 0 !important;
+}
+
+div.album_image div.img_avatar{
+  color: blue;
+  float: left;
+  font-weight: bolder;
+  margin-left: 50px;
+  width: 60%;
 }

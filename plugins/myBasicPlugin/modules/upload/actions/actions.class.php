@@ -32,33 +32,27 @@ class uploadActions extends sfActions {
     //$this->objectId = $request->getParameter('a', 0);
     $this->objectClass = $request->getParameter('c', '');
     $this->album_id = $request->getParameter('i', '');
-
-//	$type = $request->getParameter('t', mdMediaManager::MIXED);
-//	try {
-//	  $mdObject = Doctrine::getTable($this->objectClass)->find($this->objectId);
-//	  mdMediaManager::$LOAD_ON_DEMAND_CONTENT = true;
-//	  $this->manager = mdMediaManager::getInstance($type, $mdObject)->load();
-//
-//	  if ($this->album_id == '') {
-//		if ($this->manager->getCountAlbums() > 1) {
-//		  $albums = $this->manager->getAlbums();
-//		  $album = array_shift($albums);
-//		  $this->album_id = $album->id;
-//		}
-//	  }
-//	} catch (Exception $e) {
-//	  print_r($e->getMessage());
-//	}
     $this->setLayout(ProjectConfiguration::getActive()->getTemplateDir('upload', 'clean.php') . DIRECTORY_SEPARATOR . "clean");
     //$this->setLayout(ProjectConfiguration::getActive()->getTemplateDir('mdMediaContentAdmin', 'clean.php').'/clean');
   }
 
+  public function executeDeleteFile(sfWebRequest $request) {
+	$is_ok = true;
+	$id = $request->getPostParameter("id", null);
+	if(!is_null($id))
+	{
+	  $file = Doctrine::getTable("myUploaded")->find($id);
+	  $file->delete();
+	}
+	return $this->renderText(myBasicHandler::JsonResponse($is_ok, array("id" => $id)));
+  }
+  
   public function executeUploadContent(sfWebRequest $request) {
-    /*
+    
       if (!$this->getUser()->isAuthenticated()) {
       throw new Exception('No esta autentificado', 100);
       }
-     */
+     
     try {
       $uploaded = $this->upload($_FILES, $request->getParameter('objClass'), $request->getParameter('album_id'), $request->getParameter('filename'));
       $this->setLayout(false);

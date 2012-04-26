@@ -115,7 +115,7 @@ class myFileHandler {
         if (!@unlink($path . $filename)){
         	throw new Exception('image not deleted');
         }else{
-        	mdFileCacheHandler::removeCacheOfFile($path . $filename);
+		  myCacheHandler::removeCacheOfFile($path.$filename);
         }
     }
 

@@ -37,7 +37,6 @@ myUploaded:
       autoincrement: true
     my_album_id:
       type: integer(4)
-      primary: true      
     name:
       type: string(64)
       notnull: true
