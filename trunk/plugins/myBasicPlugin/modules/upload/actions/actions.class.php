@@ -27,15 +27,6 @@ class uploadActions extends sfActions {
     return $this->renderText(myBasicHandler::JsonResponse(true, array("body" => $partial)));
   }
   
-  
-  public function executeUpload(sfWebRequest $request) {
-    //$this->objectId = $request->getParameter('a', 0);
-    $this->objectClass = $request->getParameter('c', '');
-    $this->album_id = $request->getParameter('i', '');
-    $this->setLayout(ProjectConfiguration::getActive()->getTemplateDir('upload', 'clean.php') . DIRECTORY_SEPARATOR . "clean");
-    //$this->setLayout(ProjectConfiguration::getActive()->getTemplateDir('mdMediaContentAdmin', 'clean.php').'/clean');
-  }
-
   public function executeDeleteFile(sfWebRequest $request) {
 	$is_ok = true;
 	$id = $request->getPostParameter("id", null);
@@ -46,6 +37,50 @@ class uploadActions extends sfActions {
 	}
 	return $this->renderText(myBasicHandler::JsonResponse($is_ok, array("id" => $id)));
   }
+  
+  public function executeOrdenarAlbum(sfWebRequest $request) 
+  {
+    $this->albumId = $request->getParameter('i', 0);
+    $this->images = myAlbumHandler::retrieveAlbumContent($this->albumId);
+    
+    $this->setLayout(ProjectConfiguration::getActive()->getTemplateDir('upload', 'clean.php') . DIRECTORY_SEPARATOR . "clean");
+  }
+  
+  public function executeOrdenarAlbumProcesado(sfWebRequest $request)
+  {
+    $albumId = $request->getPostParameter("album_id");
+    $lista = $request->getPostParameter("listItem");
+    //$cantidad = count($lista) - 1;
+    
+    $maximo = count($lista) - 1;
+    $cantidad = 0;
+    while($cantidad <= $maximo)
+    {
+      myAlbumHandler::updateOrfinalOfUploaded($lista[$maximo - $cantidad], $cantidad);
+      //$obj->updateInteresesOrder($lista[$maximo - $cantidad], $cantidad);
+      $cantidad ++;
+    }
+    
+    return $this->renderText(myBasicHandler::JsonResponse(true, array()));
+    /*  
+    while($cantidad >= 0)
+    {
+      //echo $lista[$cantidad] . " - ".$cantidad;
+      //$this->images->updateOrder($lista[$cantidad], $cantidad);
+      $cantidad --;
+    }
+    */
+  }
+  
+  public function executeUpload(sfWebRequest $request) {
+    //$this->objectId = $request->getParameter('a', 0);
+    $this->objectClass = $request->getParameter('c', '');
+    $this->album_id = $request->getParameter('i', '');
+    $this->setLayout(ProjectConfiguration::getActive()->getTemplateDir('upload', 'clean.php') . DIRECTORY_SEPARATOR . "clean");
+    //$this->setLayout(ProjectConfiguration::getActive()->getTemplateDir('mdMediaContentAdmin', 'clean.php').'/clean');
+  }
+
+
   
   public function executeUploadContent(sfWebRequest $request) {
     

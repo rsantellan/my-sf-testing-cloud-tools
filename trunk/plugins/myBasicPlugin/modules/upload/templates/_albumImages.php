@@ -8,7 +8,8 @@
         Editar
       </a>
     </div>
-  <img width="200" height="200" src="<?php echo $upload->getUrl(array(myImageCodes::CODE => 1, myImageCodes::WIDTH => 200, myImageCodes::HEIGHT => 200));?>" />
+  <!-- width="200" height="200" -->
+  <img src="<?php echo $upload->getUrl(array(myImageCodes::CODE => 1, myImageCodes::WIDTH => 200, myImageCodes::HEIGHT => 200));?>" />
   
   <div class="img_avatar">
 	<?php if($firstImage): ?>

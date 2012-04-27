@@ -1,6 +1,18 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
+ordenarAlbumProcesado:
+ url: /album/ordenando.html
+ param: { module: upload, action: ordenarAlbumProcesado }
+
+ordenarAlbum:
+ url: /album/ordenar/:i.html
+ param: { module: upload, action: ordenarAlbum }
+
+upload:
+ url: /album/upload/:i/:c
+ param: { module: upload, action: upload }
+
 deleteFile:
   url: /album/deleteFile.html
   param: { module: upload, action: deleteFile }

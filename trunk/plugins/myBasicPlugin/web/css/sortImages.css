@@ -1,0 +1,28 @@
+/* 
+    Document   : sortImages
+    Created on : Apr 27, 2012, 3:32:48 PM
+    Author     : Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#sortable { 
+  list-style-type: none; 
+  margin: 0; 
+  padding: 0; 
+}
+#sortable li {
+  margin: 3px 3px 3px 0; 
+  padding: 1px; 
+  float: left; 
+  width: 125px; 
+  height: 125px; 
+  font-size: 4em; 
+  text-align: center; 
+}
+
+h1{
+  margin-left: auto;
+  margin-right: auto;
+  width: 35%;
+}
