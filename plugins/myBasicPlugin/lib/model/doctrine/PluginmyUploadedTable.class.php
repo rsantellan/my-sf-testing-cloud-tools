@@ -37,11 +37,22 @@ class PluginmyUploadedTable extends Doctrine_Table
       return 0;
     }
     
-    public function retrieveAlbumContent($albumId, $hydrationMode = Doctrine_Core::HYDRATE_RECORD)
+    public function retrieveAlbumContent($albumId, $order = "DESC", $hydrationMode = Doctrine_Core::HYDRATE_RECORD)
     {
       $query = $this->createQuery("myUploaded")
-              ->addWhere("myUploaded.my_album_id = ?", $albumId);
+              ->addWhere("myUploaded.my_album_id = ?", $albumId)
+              ->orderBy("myUploaded.priority ". $order);
+      
       $query->setHydrationMode($hydrationMode);
       return $query->execute();
+    }
+    
+    public function updateOrfinalOfUploaded($uploadedId, $priority)
+    {
+      return Doctrine_Query::create()
+              ->update('myUploaded myU')
+              ->set('myU.priority', '?', $priority)
+              ->where('myU.id = ?', $uploadedId)
+              ->execute();
     }
 }

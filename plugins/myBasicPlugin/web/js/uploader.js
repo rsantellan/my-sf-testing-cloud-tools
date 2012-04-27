@@ -71,12 +71,17 @@ function startAlbumSlider(id)
   {
 	return false;
   }
-  
+
   //set length of conveyor
   conveyor.css("width", item.length * parseInt(item.css("width")));
   //config
   var myMax = parseInt((item.length * parseInt(item.css("width"))) - parseInt($("#view_album_images_"+id).css("width")));
-  
+  if(myMax < 0)
+  {
+    //La cantidad de items no pasa el ancho del contenedor
+    return false;
+  }
+  //console.log(myMax);
   var sliderOpts = {
     max: myMax,
     slide: function(event, ui) {
@@ -117,12 +122,9 @@ function deleteFile(mUrl, text, itemId, albumId)
       dataType: 'json',
       complete: function(json)
       {
-		console.log(json);
-		console.log(json.response);
-		console.log(json.response);
-        if(json.response == "OK")
+        aux = $.parseJSON(json.responseText);
+        if(aux.response == "OK")
         {
-		  console.log('estoy aca');
           $('#album_image_' + itemId).fadeOut(500, function() {$(this).remove();});
           restartSlider(albumId);
           hoversImages();

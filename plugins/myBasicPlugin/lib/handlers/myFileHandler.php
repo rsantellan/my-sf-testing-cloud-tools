@@ -112,10 +112,11 @@ class myFileHandler {
     }
 
     public static function delete($filename,$path = LOCAL_PATH){
+        sfContext::getInstance()->getLogger()->info('>>>>>>> myFileHandler delete >>>>>>>>>> ---- filename' . $filename. ' ---- path: ' . $path);
         if (!@unlink($path . $filename)){
         	throw new Exception('image not deleted');
         }else{
-		  myCacheHandler::removeCacheOfFile($path.$filename);
+          myCacheHandler::removeCacheOfFile($path.$filename);
         }
     }
 

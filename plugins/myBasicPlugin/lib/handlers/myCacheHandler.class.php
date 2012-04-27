@@ -49,41 +49,54 @@ class myCacheHandler {
   }
 
   public static function removeCacheOfFile($route) {
-	$cacheFileName = basename($route);
+    sfContext::getInstance()->getLogger()->info('>>>>>>> myCacheHandler removeCacheOfFile >>>>>>>>>> ---- route' . $route);
+    $cacheFileName = basename($route);
+    sfContext::getInstance()->getLogger()->info('>>>>>>> myCacheHandler removeCacheOfFile >>>>>>>>>> ---- cacheFileName' . $cacheFileName);
+    $root = sfConfig::get('sf_cache_dir') . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'web';
+    sfContext::getInstance()->getLogger()->info('>>>>>>> myCacheHandler removeCacheOfFile >>>>>>>>>> ---- root' . $root);
+    $dirName = dirname($route);
+    sfContext::getInstance()->getLogger()->info('>>>>>>> myCacheHandler removeCacheOfFile >>>>>>>>>> ---- dirName' . $dirName);
+    $cacheDir = str_replace(sfConfig::get('sf_web_dir'), $root, $dirName);
 
-	$root = sfConfig::get('sf_cache_dir') . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'web';
-
-	$dirName = dirname($route);
-
-	$cacheDir = str_replace(sfConfig::get('sf_root_dir'), $root, $dirName);
-
-	$path = $cacheDir;
-
-	self::findAndRemoveFile($path, $cacheFileName);
+    $path = $cacheDir;
+    
+    sfContext::getInstance()->getLogger()->info('>>>>>>> myFileHandler delete >>>>>>>>>> ---- path: ' . $path);
+    
+    self::findAndRemoveFile($path, $cacheFileName);
   }
 
   private static function findAndRemoveFile($path, $fileName) {
-	if (is_dir($path)) {
-	  //using the opendir function
-	  $dir_handle = @opendir($path) or die("Unable to open " . $path);
-
-	  //running the while loop
-	  while (false !== ($file = readdir($dir_handle))) {
-		if ($file != "." && $file != "..") {
-		  if (is_dir($path . DIRECTORY_SEPARATOR . $file)) {
-			self::findAndRemoveFile($path . DIRECTORY_SEPARATOR . $file, $fileName);
-		  } else {
-			if ($file == $fileName) {
-			  if (!unlink($path . DIRECTORY_SEPARATOR . $fileName)) {
-				throw new Exception('image not deleted of cache', 150);
-			  }
-			}
-		  }
-		}
-	  }
-	  //closing the directory
-	  closedir($dir_handle);
-	}
+    sfContext::getInstance()->getLogger()->info('>>>>>>> findAndRemoveFile >>>>>>>>>>' . $path);
+    if (is_dir($path)) {
+      //using the opendir function
+      $dir_handle = @opendir($path);// or die("Unable to open " . $path);
+      if($dir_handle === FALSE)
+      {
+        sfContext::getInstance()->getLogger()->error('>>>>>>> Unable to open >>>>>>>>>>' . $path);
+        throw new Exception("Unable to open directory myCacheHandler::findAndRemoveFile", 190);
+      }
+      sfContext::getInstance()->getLogger()->info('>>>>>>> findAndRemoveFile >>>>>>>>>>' . $path);
+      //running the while loop
+      while (false !== ($file = readdir($dir_handle))) {
+      if ($file != "." && $file != "..") {
+        if (is_dir($path . DIRECTORY_SEPARATOR . $file)) {
+        self::findAndRemoveFile($path . DIRECTORY_SEPARATOR . $file, $fileName);
+        } else {
+        if ($file == $fileName) {
+          if (!unlink($path . DIRECTORY_SEPARATOR . $fileName)) {
+          throw new Exception('image not deleted of cache', 150);
+          }
+        }
+        }
+      }
+      }
+      //closing the directory
+      closedir($dir_handle);
+    }
+    else
+    {
+      sfContext::getInstance()->getLogger()->info('>>>>>>> findAndRemoveFile: esto no es un path. >>>>>>>>>>' . $path);
+    }
   }
 
 }

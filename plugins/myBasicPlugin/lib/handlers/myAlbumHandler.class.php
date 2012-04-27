@@ -69,9 +69,14 @@ class myAlbumHandler {
     return (Doctrine::getTable("myUploaded")->selectMaxPriority($albumId) + 1);
   }
   
-  public static function retrieveAlbumContent($albumId, $hydrationMode = Doctrine_Core::HYDRATE_RECORD)
+  public static function retrieveAlbumContent($albumId, $order = "DESC", $hydrationMode = Doctrine_Core::HYDRATE_RECORD)
   {
-    return Doctrine::getTable("myUploaded")->retrieveAlbumContent($albumId, $hydrationMode);
+    return Doctrine::getTable("myUploaded")->retrieveAlbumContent($albumId, $order, $hydrationMode);
+  }
+  
+  public static function updateOrfinalOfUploaded($uploadedId, $priority)
+  {
+    return Doctrine::getTable("myUploaded")->updateOrfinalOfUploaded($uploadedId, $priority);
   }
 }
 
