@@ -1,6 +1,23 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
+
+# Usuarios
+editUsers:
+  url:   /usuarios/editar/:id
+  param: { module: myUsers, action: edit }
+
+addUsers:
+  url:   /usuarios/agregar.html
+  param: { module: myUsers, action: new }
+
+manageUsers:
+  url:   /usuarios.html
+  param: { module: myUsers, action: index }
+
+
+#Albumes
+
 ordenarAlbumProcesado:
  url: /album/ordenando.html
  param: { module: upload, action: ordenarAlbumProcesado }
