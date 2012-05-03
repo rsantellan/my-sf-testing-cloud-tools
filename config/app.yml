@@ -4,4 +4,8 @@ all:
     image_library: 'myImagickConvertor'
 
   sf_guard_plugin:
-    algorithm_callable: md5      
+    algorithm_callable: md5
+# 
+# En caso de querer usar los permisos y grupos poner esto en true
+#  my_sf_guard_plugin:
+#    use_permission_and_groups: true

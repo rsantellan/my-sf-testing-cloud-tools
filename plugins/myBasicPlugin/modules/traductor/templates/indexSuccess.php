@@ -3,7 +3,8 @@
 slot('traductor', 'traductor');
 
 // Aca pongo todos los js que correspondan
-use_plugin_javascript("myBasicPlugin", "jquery-1.7.1.min.js", "first");
+// Suponemos que jquery va a estar a nivel global.
+//use_plugin_javascript("myBasicPlugin", "jquery-1.7.1.min.js", "first");
 use_plugin_javascript("myBasicPlugin", "myTranslator.js", "last");
 use_plugin_stylesheet("myBasicPlugin", "traductor.css");
 use_plugin_stylesheet("myBasicPlugin", "jquery.cleditor.css");
