@@ -36,4 +36,16 @@ class myDefaultActions extends sfActions
       
       return $this->renderText(myBasicHandler::JsonResponse(true, array()));
   }
+  
+  public function executeChangeLanguage(sfWebRequest $request)
+  {
+	$culture = $request->getParameter("idioma");
+	$culturas_aceptadas = array("es" => "es", "en" => "en");
+	if(!in_array($culture, $culturas_aceptadas))
+	{
+	  $this->forward404("Cultura no aceptada");
+	}
+	$this->getUser()->setCulture($culture);
+	$this->redirect('localized_homepage');
+  }
 }
