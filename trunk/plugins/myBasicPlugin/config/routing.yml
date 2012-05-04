@@ -4,15 +4,15 @@
 
 # Usuarios
 editUsers:
-  url:   /usuarios/editar/:id
+  url:   /:sf_culture/usuarios/editar/:id
   param: { module: myUsers, action: edit }
 
 addUsers:
-  url:   /usuarios/agregar.html
+  url:   /:sf_culture/usuarios/agregar.html
   param: { module: myUsers, action: new }
 
 manageUsers:
-  url:   /usuarios.html
+  url:   /:sf_culture/usuarios.html
   param: { module: myUsers, action: index }
 
 
@@ -45,24 +45,25 @@ webImage:
 #Imagenes
 
 traductor_savetext:
-  url: /traductor_text_save.html
+  url: /:sf_culture/traductor_text_save.html
   param: { module: traductor, action: changeTextAjax }
 
 traductor_gettext_content:
-  url: /traductor_text_content.html
+  url: /:sf_culture/traductor_text_content.html
   param: { module: traductor, action: getContentToEdit }
 
 traductor_gettexts:
-  url: /traductor_texts.html
+  url: /:sf_culture/traductor_texts.html
   param: { module: traductor, action: getTranslationsFormsHeader }
 
 traductor_getlangs:
-  url: /traductor_langs.html
+  url: /:sf_culture/traductor_langs.html
   param: { module: traductor, action: getLangsAjax }
 
 traductor_getpages:
-  url: /traductor_pages.html
+  url: /:sf_culture/traductor_pages.html
   param: { module: traductor, action: getApplicationPagesAjax }
+
 traductor:
-  url: /traductor.html
+  url: /:sf_culture/traductor.html
   param: { module: traductor, action: index }
