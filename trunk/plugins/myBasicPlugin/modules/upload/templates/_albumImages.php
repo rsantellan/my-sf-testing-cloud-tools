@@ -9,7 +9,7 @@
       </a>
     </div>
   <!-- width="200" height="200" -->
-  <img src="<?php echo $upload->getUrl(array(myImageCodes::CODE => 1, myImageCodes::WIDTH => 200, myImageCodes::HEIGHT => 200));?>" />
+  <img src="<?php echo $upload->getUrl(array(myImageCodes::CODE => myImageCodes::CROPRESIZE, myImageCodes::WIDTH => 200, myImageCodes::HEIGHT => 200));?>" />
   
   <div class="img_avatar">
 	<?php if($firstImage): ?>
