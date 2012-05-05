@@ -12,7 +12,8 @@ class mTestActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->my_tests = Doctrine_Core::getTable('myTest')
+	
+	$this->my_tests = Doctrine_Core::getTable('myTest')
       ->createQuery('a')
       ->execute();
     //myAlbumHandler::retrieveLastAlbumPriority(1);

@@ -64,7 +64,7 @@ class myImageCodes {
     
     const PNG               = 'png';
 
-    
+    const FILE_CACHE_PATH   = 'file_cache_path';
 }
 
 
