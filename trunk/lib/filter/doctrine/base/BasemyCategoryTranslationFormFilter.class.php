@@ -13,13 +13,15 @@ abstract class BasemyCategoryTranslationFormFilter extends BaseFormFilterDoctrin
   public function setup()
   {
     $this->setWidgets(array(
-      'name' => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'slug' => new sfWidgetFormFilterInput(),
+      'name'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'description' => new sfWidgetFormFilterInput(),
+      'slug'        => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'name' => new sfValidatorPass(array('required' => false)),
-      'slug' => new sfValidatorPass(array('required' => false)),
+      'name'        => new sfValidatorPass(array('required' => false)),
+      'description' => new sfValidatorPass(array('required' => false)),
+      'slug'        => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('my_category_translation_filters[%s]');
@@ -39,10 +41,11 @@ abstract class BasemyCategoryTranslationFormFilter extends BaseFormFilterDoctrin
   public function getFields()
   {
     return array(
-      'id'   => 'Number',
-      'name' => 'Text',
-      'lang' => 'Text',
-      'slug' => 'Text',
+      'id'          => 'Number',
+      'name'        => 'Text',
+      'description' => 'Text',
+      'lang'        => 'Text',
+      'slug'        => 'Text',
     );
   }
 }

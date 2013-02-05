@@ -3,6 +3,14 @@
 
 #Rutas de categorias
 
+saveCategory:
+  url: /:sf_culture/saveCategory.html
+  param: { module: myCategory, action: save }
+
+editCategory:
+  url: /:sf_culture/editCategory/:id
+  param: { module: myCategory, action: edit }
+
 retrieve_categories_of_class:
   url: /:sf_culture/retrieveCategoriesOfClass.html
   param: { module: myCategory, action: retrieveCategoriesOfClass }

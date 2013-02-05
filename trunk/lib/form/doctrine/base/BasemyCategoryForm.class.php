@@ -26,8 +26,8 @@ abstract class BasemyCategoryForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'                    => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'label'                 => new sfValidatorString(array('max_length' => 255)),
-      'object_class_name'     => new sfValidatorString(array('max_length' => 250)),
+      'label'                 => new sfValidatorString(array('max_length' => 100)),
+      'object_class_name'     => new sfValidatorString(array('max_length' => 100)),
       'my_category_parent_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('myCategory'), 'required' => false)),
       'priority'              => new sfValidatorInteger(array('required' => false)),
       'created_at'            => new sfValidatorDateTime(),
