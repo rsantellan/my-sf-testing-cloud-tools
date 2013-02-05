@@ -21,6 +21,8 @@
   width: 48%;
   float: left;
   margin-right: 5px;
+  height: 450px;
+  overflow: scroll;
 }
 
 div.tr_contenido{
