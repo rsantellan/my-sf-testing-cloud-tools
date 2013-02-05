@@ -46,7 +46,7 @@ all:
       translate_apps: [frontend, backend]    
       
     #Modules enabled 
-    enabled_modules:        [default, upload, webImage, traductor, sfGuardAuth, sfGuardForgotPassword, myUsers, sfGuardGroup, sfGuardUser, sfGuardPermission]      
+    enabled_modules:        [default, upload, webImage, traductor, sfGuardAuth, sfGuardForgotPassword, myUsers, sfGuardGroup, sfGuardUser, sfGuardPermission, mTest]      
     
     
     login_module:           sfGuardAuth
