@@ -8,6 +8,7 @@
  * @property integer $id
  * @property string $label
  * @property string $name
+ * @property string $description
  * @property string $object_class_name
  * @property integer $my_category_parent_id
  * @property integer $priority
@@ -17,6 +18,7 @@
  * @method integer             getId()                    Returns the current record's "id" value
  * @method string              getLabel()                 Returns the current record's "label" value
  * @method string              getName()                  Returns the current record's "name" value
+ * @method string              getDescription()           Returns the current record's "description" value
  * @method string              getObjectClassName()       Returns the current record's "object_class_name" value
  * @method integer             getMyCategoryParentId()    Returns the current record's "my_category_parent_id" value
  * @method integer             getPriority()              Returns the current record's "priority" value
@@ -25,6 +27,7 @@
  * @method myCategory          setId()                    Sets the current record's "id" value
  * @method myCategory          setLabel()                 Sets the current record's "label" value
  * @method myCategory          setName()                  Sets the current record's "name" value
+ * @method myCategory          setDescription()           Sets the current record's "description" value
  * @method myCategory          setObjectClassName()       Sets the current record's "object_class_name" value
  * @method myCategory          setMyCategoryParentId()    Sets the current record's "my_category_parent_id" value
  * @method myCategory          setPriority()              Sets the current record's "priority" value
@@ -47,21 +50,25 @@ abstract class BasemyCategory extends sfDoctrineRecord
              'autoincrement' => true,
              'length' => 4,
              ));
-        $this->hasColumn('label', 'string', 255, array(
+        $this->hasColumn('label', 'string', 100, array(
              'type' => 'string',
              'notnull' => true,
              'unique' => true,
-             'length' => 255,
+             'length' => 100,
              ));
-        $this->hasColumn('name', 'string', 255, array(
+        $this->hasColumn('name', 'string', 100, array(
              'type' => 'string',
              'notnull' => true,
+             'length' => 100,
+             ));
+        $this->hasColumn('description', 'string', 255, array(
+             'type' => 'string',
              'length' => 255,
              ));
-        $this->hasColumn('object_class_name', 'string', 250, array(
+        $this->hasColumn('object_class_name', 'string', 100, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 250,
+             'length' => 100,
              ));
         $this->hasColumn('my_category_parent_id', 'integer', 4, array(
              'type' => 'integer',
@@ -91,6 +98,7 @@ abstract class BasemyCategory extends sfDoctrineRecord
              'fields' => 
              array(
               0 => 'name',
+              1 => 'description',
              ),
              ));
         $sluggable1 = new Doctrine_Template_Sluggable(array(

@@ -14,9 +14,6 @@ class myCategoryActions extends sfActions
   {
     $this->my_categories_classes = Doctrine::getTable("myCategory")->retrieveCategoriesObjectClasses();
     
-    $this->my_categorys = Doctrine_Core::getTable('myCategory')
-      ->createQuery('a')
-      ->execute();
   }
 
   public function executeRetrieveCategoriesOfClass(sfWebRequest $request)
@@ -26,8 +23,53 @@ class myCategoryActions extends sfActions
     $this->results = Doctrine::getTable("myCategory")->retrieveAllTreeOfObjectClass($objectClass);
     $partial = $this->getPartial("categoryTree", array('results' => $this->results, "class" => "menu"));
     
-    echo myBasicHandler::JsonResponse(true, array('body' => $partial));
+    return $this->renderText(myBasicHandler::JsonResponse(true, array('body' => $partial)));
     die;
+  }
+  
+  public function executeEdit(sfWebRequest $request)
+  {
+    $this->forward404Unless($my_category = Doctrine_Core::getTable('myCategory')->find(array($request->getParameter('id'))), sprintf('Object my_category does not exist (%s).', $request->getParameter('id')));
+    $this->form = new myCategoryForm($my_category);
+    $partial = $this->getPartial('form', array('form' => $this->form));
+    return $this->renderText(myBasicHandler::JsonResponse(true, array('body' => $partial)));
+  }
+  
+  public function executeSave(sfWebRequest $request)
+  {
+      $parameters = $request->getPostParameters();
+      
+      $auxForm = new myCategoryForm();
+      $parameters = $request->getParameter($auxForm->getName());
+      $id = $parameters["id"];
+      $isNew = true;
+      if($id)
+      {
+        $myCategoria = Doctrine::getTable('myCategory')->find($id);
+        $this->forward404Unless($myCategoria);
+        $form = new myCategoryForm($myCategoria); 
+        $isNew = false;
+      }
+      else
+      {
+        
+        $form = new myCategoryForm(); 
+      }
+      $form->bind($parameters);
+      if ($form->isValid())
+      {
+        $myCategoria = $form->save();
+        $form = new myCategoryForm($myCategoria);
+        $body = $this->getPartial('form', array('form'=>$form));
+        return $this->renderText(myBasicHandler::JsonResponse(true, array('body' => $body)));
+        //return $this->renderText(mdBasicFunction::basic_json_response(true, array('isnew'=>$isNew, 'id'=>$donante->getId(), 'identificador'=>$donante->getIdentificador(), 'body' => $body)));
+      }
+      else
+      {
+        $body = $this->getPartial('form', array('form'=>$form));
+        return $this->renderText(myBasicHandler::JsonResponse(false, array('body' => $body)));
+        //return $this->renderText(mdBasicFunction::basic_json_response(false, array('body' => $body)));
+      }
   }
   
   public function executeNew(sfWebRequest $request)
@@ -46,12 +88,7 @@ class myCategoryActions extends sfActions
     $this->setTemplate('new');
   }
 
-  public function executeEdit(sfWebRequest $request)
-  {
-    $this->forward404Unless($my_category = Doctrine_Core::getTable('myCategory')->find(array($request->getParameter('id'))), sprintf('Object my_category does not exist (%s).', $request->getParameter('id')));
-    $this->form = new myCategoryForm($my_category);
-  }
-
+  
   public function executeUpdate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));

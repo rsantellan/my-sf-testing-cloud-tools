@@ -15,6 +15,7 @@ class myCategoryForm extends BasemyCategoryForm
     unset ($this ['created_at'], $this ['updated_at'], $this['priority'], $this['label']);
     
     $this->widgetSchema['object_class_name'] = new sfWidgetFormInputHidden();
+    $this->widgetSchema['my_category_parent_id'] = new sfWidgetFormInputHidden();
     
     $culture = $this->getOption('culture');
 	if(is_null($culture))
@@ -32,10 +33,10 @@ class myCategoryForm extends BasemyCategoryForm
   public function save($con = null) {
     
     $myCategory = parent::save($con);
-    $myCategory->setSlug(mdBasicFunction::slugify($myCategory->getName()));
+    $myCategory->setSlug(myBasicHandler::slugify($myCategory->getName()));
     if(!$myCategory->getLabel())
     {
-      $myCategory->setLabel(mdBasicFunction::slugify($myCategory->getName()));
+      $myCategory->setLabel(myBasicHandler::slugify($myCategory->getName()));
     }
     try
     {
@@ -43,9 +44,9 @@ class myCategoryForm extends BasemyCategoryForm
     }
     catch(Exception $e)
     {
-      $myCategory->setSlug(mdBasicFunction::slugify($myCategory->getName().time()));
+      $myCategory->setSlug(myBasicHandler::slugify($myCategory->getName().time()));
       
-      $myCategory->setLabel(mdBasicFunction::slugify($myCategory->getName().time()));
+      $myCategory->setLabel(myBasicHandler::slugify($myCategory->getName().time()));
       $myCategory->save();
     }
     return $myCategory;

@@ -2,7 +2,7 @@ myCategory:
   actAs:
     Timestampable: ~
     I18n:
-      fields: [name]
+      fields: [name, description]
       actAs:
         Sluggable: { fields: [name], uniqueBy: [lang, name, id] }
   columns:
@@ -11,14 +11,16 @@ myCategory:
       primary: true
       autoincrement: true
     label:
-      type: string(255)
+      type: string(100)
       notnull: true
       unique: true
     name:
-      type: string(255)
+      type: string(100)
       notnull: true
+    description:
+      type: string(255)
     object_class_name:
-      type: string(250)
+      type: string(100)
       notnull: true
     my_category_parent_id:
       type: integer(4)
