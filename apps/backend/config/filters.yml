@@ -4,6 +4,8 @@
 rendering: ~
 security:  ~
 
+default_lang:
+  class: myDefaultCultureFilter
 # insert your own filters here
 
 cache:     ~

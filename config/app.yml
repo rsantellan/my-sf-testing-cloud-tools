@@ -2,15 +2,15 @@ all:
 
 #Imagenes
 #-------------------------
-  #path que va ir a buscar el ejecutable de image magick
-  myImageMagick_path: '"C:\Program Files\ImageMagick-6.7.6-Q16\"'
-  
   #clase que va a usar el factory
   .image:
     #image_library: 'myCopyConvertor'
     #image_library: 'myImagickConvertor'
     image_library: 'myCliImagickConvertor'
 
+    #path que va ir a buscar el ejecutable de image magick
+    myImageMagick_path: '/usr/bin/'
+    
 #Segurida
 #-------------------------
   sf_guard_plugin:

@@ -17,7 +17,7 @@ class myMagick_resize
         $cmd .= ' "' . $p->getSource() .'" "'. $p->getDestination().'"';
         if( sfConfig::get( 'sf_myimagick_debug', false ) )
         {
-            sfContext::getInstance()->getLogger()->err($cmd);
+            sfContext::getInstance()->getLogger()->info($cmd);
         }
         $p->execute($cmd);
         $p->setSource($p->getDestination());

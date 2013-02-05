@@ -1,4 +1,8 @@
 all:
+  .backend:
+    
+    show_multiple_language: false
+  
   #myimagick_debug: true
   .plugins:
     #Imagenes

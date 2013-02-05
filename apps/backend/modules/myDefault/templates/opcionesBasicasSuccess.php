@@ -1,5 +1,6 @@
 <div style="height: 250px; width: 250px">
   
+  <?php if( sfConfig::get( 'sf_show_multiple_language', true ) ):  ?>
   <div style="text-align: center;">
 	<span><?php echo __("opciones_cambiar de idioma"); ?></span>
 	<br/>
@@ -9,9 +10,9 @@
 	<a href="<?php echo url_for("@cambiarIdioma?idioma=en");?>">
 	  <?php echo plugin_image_tag("myBasicPlugin", "usa_flag.png", array("alt" => __("opciones_ingles")));?>
 	</a>
-	
   </div>
   <div class="clear"></div>
+  <?php endif; ?>
   <div style="text-align: center; margin-top: 16px;">
 	<span><?php echo __("opciones_limpiar el cache"); ?></span>
 	<br/>

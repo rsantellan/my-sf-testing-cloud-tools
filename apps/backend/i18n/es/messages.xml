@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="EN" target-language="es" datatype="plaintext" original="messages" date="2012-05-03T14:34:45Z" product-name="messages">
+  <file source-language="EN" target-language="es" datatype="plaintext" original="messages" date="2013-02-05T11:02:53Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1">
@@ -117,6 +117,46 @@
       <trans-unit id="24">
         <source>usuarios_titulo menu</source>
         <target>Usuarios</target>
+        <note>es</note>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>opciones_mostrar</source>
+        <target>Mostrar</target>
+        <note>es</note>
+      </trans-unit>
+      <trans-unit id="26">
+        <source>opciones_cambiar de idioma</source>
+        <target>Cambiar de idioma&lt;br&gt;</target>
+        <note>es</note>
+      </trans-unit>
+      <trans-unit id="27">
+        <source>opciones_español</source>
+        <target>Español</target>
+        <note>es</note>
+      </trans-unit>
+      <trans-unit id="28">
+        <source>opciones_ingles</source>
+        <target>Ingles</target>
+        <note>es</note>
+      </trans-unit>
+      <trans-unit id="29">
+        <source>opciones_limpiar el cache</source>
+        <target>Limpiar el cache&lt;br&gt;</target>
+        <note>es</note>
+      </trans-unit>
+      <trans-unit id="30">
+        <source>opciones_limpiar cache</source>
+        <target>Limpiar cache&lt;br&gt;</target>
+        <note>es</note>
+      </trans-unit>
+      <trans-unit id="31">
+        <source>opciones_salir</source>
+        <target>Salir</target>
+        <note>es</note>
+      </trans-unit>
+      <trans-unit id="32">
+        <source>opciones_logout</source>
+        <target>Desloguearse</target>
         <note>es</note>
       </trans-unit>
     </body>

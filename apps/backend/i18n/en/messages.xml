@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="EN" target-language="en" datatype="plaintext" original="messages" date="2012-05-03T14:33:57Z" product-name="messages">
+  <file source-language="EN" target-language="en" datatype="plaintext" original="messages" date="2013-02-05T11:01:11Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1">
@@ -18,27 +18,33 @@
       </trans-unit>
       <trans-unit id="5">
         <source>usuarios_titulo de los usuarios</source>
-        <target/>
+        <target>Listado de usuarios&lt;br&gt;</target>
+        <note>en</note>
       </trans-unit>
       <trans-unit id="6">
         <source>usuarios_First name</source>
-        <target/>
+        <target>Nombre</target>
+        <note>en</note>
       </trans-unit>
       <trans-unit id="7">
         <source>usuarios_Last name</source>
-        <target/>
+        <target>Apellido</target>
+        <note>en</note>
       </trans-unit>
       <trans-unit id="8">
         <source>usuarios_Email address</source>
-        <target/>
+        <target>Email</target>
+        <note>en</note>
       </trans-unit>
       <trans-unit id="9">
         <source>usuarios_Username</source>
-        <target/>
+        <target>Usuario</target>
+        <note>en</note>
       </trans-unit>
       <trans-unit id="10">
         <source>usuarios_Is active</source>
-        <target/>
+        <target>Esta activo&lt;br&gt;</target>
+        <note>en</note>
       </trans-unit>
       <trans-unit id="11">
         <source>usuarios_Is super admin</source>
@@ -94,6 +100,38 @@
       </trans-unit>
       <trans-unit id="24">
         <source>usuarios_titulo menu</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>opciones_mostrar</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="26">
+        <source>opciones_cambiar de idioma</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="27">
+        <source>opciones_español</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="28">
+        <source>opciones_ingles</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="29">
+        <source>opciones_limpiar el cache</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="30">
+        <source>opciones_limpiar cache</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="31">
+        <source>opciones_salir</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="32">
+        <source>opciones_logout</source>
         <target/>
       </trans-unit>
     </body>
