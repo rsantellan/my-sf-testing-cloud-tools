@@ -1,7 +1,7 @@
 all:
   .backend:
     
-    show_multiple_language: false
+    show_multiple_language: true
   
   #myimagick_debug: true
   .plugins:

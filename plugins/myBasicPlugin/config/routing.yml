@@ -42,7 +42,7 @@ webImage:
  url: /images/:p.*
  param: { module: webImage, action: index }
 
-#Imagenes
+#traductor
 
 traductor_savetext:
   url: /:sf_culture/traductor_text_save.html

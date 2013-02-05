@@ -11,6 +11,13 @@ all:
     #path que va ir a buscar el ejecutable de image magick
     myImageMagick_path: '/usr/bin/'
     
+# para extraer la info de los plugins.
+
+#  i18n-extract-additional:
+#    enabled: true
+#    paths: 
+#      - '<?php echo sfConfig::get('sf_plugins_dir') . '/myBasicPlugin'; ?>'
+
 #Segurida
 #-------------------------
   sf_guard_plugin:

@@ -1,0 +1,48 @@
+lib/widget/sfWidgetFormTextareaTinyMCE.class.php:139:    $texto = __("tinymce_agregar formato");
+lib/widget/sfWidgetFormTextareaTinyMCE.class.php:142:    $texto = __("tinymce_sacar formato");
+modules/upload/templates/_uploader.php:21:            <h2><?php echo __('uploader_text_titleUpload');?></h2>
+modules/upload/templates/_uploader.php:23:            <p class="description"><?php echo __('uploader_text_descriptionUpload');?></p>
+modules/upload/templates/_uploader.php:28:        <?php echo __('uploader_text_validExtensions'); ?> <?php echo sfConfig::get('sf_plugins_upload_content_type_'.$manager->getMdObject()->getObjectClass(), '*.jpg;*.jpeg;*.gif;*.png') ?><br /><!--<?php echo __('uploader_text_maxUpload'); ?> 10 MB<br />-->
+modules/upload/templates/_uploader.php:45:    <div class="progressWindow"><?php echo __('uploader_text_uploading');?>...</div>
+modules/upload/templates/_albumImages.php:16:	  <?php echo __('upload_avatar'); ?>
+modules/upload/templates/_albumImages.php:21:    <a onclick="return deleteFile('<?php echo url_for("@deleteFile");?>', '<?php echo __("upload_esta seguro de querer eliminar la imagen?");?>', <?php echo $upload->getId(); ?>, <?php echo $upload->getMyAlbumId(); ?>)" href="javascript:void(0)" class="">
+modules/upload/templates/_albumImages.php:24:		$options["alt"] = __('upload_delete');
+modules/upload/templates/ordenarAlbumSuccess.php:9:<h1><?php echo __("upload_ordenar titulo");?></h1>
+modules/upload/templates/uploadSuccess.php:12:      'upload_browse'     => '<div id="image-browse" class="addbutton">' . __('upload_uploadFile').'</div>',  //diseño que mostramos el boton de subir, debe mantenerse el id default
+modules/upload/templates/_swf_multiple_gallery.php:8:        <div class="uploadtype"><?php echo html_entity_decode(str_replace(array('{a}','{/a}'), array('<a href="#basic" id="singleupload" onclick="basicUpload();">','</a>'), __('uploader_text_basicUpload')));?><!-- Gets filled by upload.js --></div>
+modules/upload/templates/_swf_multiple_gallery.php:15:                    <td width="260"><?php echo __('uploader_text_file');?></td>
+modules/upload/templates/_swf_multiple_gallery.php:16:                    <td width="60"><?php echo __('uploader_text_size');?></td>
+modules/upload/templates/_swf_multiple_gallery.php:17:                    <td width="60"><?php echo __('uploader_text_status');?></td>
+modules/upload/templates/_swf_multiple_gallery.php:37:        <p id="statsrow"><span id='stats'></span><?php echo str_replace("{archivos}", "<span id='stats'></span>", __('uploader_text_addMoreText'));?> <a id="addmore" href="#action"><?php echo __('uploader_text_addMore');?></a></p>
+modules/upload/templates/_swf_multiple_gallery.php:39:        <p><a id="uploadstart" href="#action"><?php echo __('uploader_text_startUpload');?></a></p>
+modules/upload/templates/_swf_multiple_gallery.php:57:        "<td class=\"status\"><a href=\"#action\" class=\"remove\"><?php echo __("uploader_text_remove"); ?></a>" +
+modules/upload/templates/_swf_single_gallery.php:10:                        <td><label for="file0"><?php echo __('uploader_text_selectFile');?></label></td>
+modules/upload/templates/_swf_single_gallery.php:16:            <input type="submit" name="uploadSubmit" value="<?php echo __('uploader_text_upload'); ?>" class="button" onclick="startUpload(); return false;" />
+modules/upload/templates/_swf_single_gallery.php:17:            <input type="button" id="cancel" name="cancel" value="<?php echo __('uploader_text_cancel'); ?>" class="button" onclick="swfUpload();" />
+modules/traductor/templates/indexSuccess.php:14:<?php echo __("traductor_titulo"); ?>
+modules/traductor/templates/indexSuccess.php:42:  <span><?php echo __("traductor_secciones");?></span>
+modules/traductor/templates/_formList.php:6:          <a href="javascript:void(0)" class="show_reference" onclick="return myTranslator.getInstance().showReference($(this));"><?php echo __('traductor_mostrar referencia') ?></a>
+modules/myUsers/templates/newSuccess.php:7:  <h2><?php echo __("usuarios_agregar titulo") ?></h2>
+modules/myUsers/templates/indexSuccess.php:6:<h1><?php echo __("usuarios_titulo de los usuarios") ?></h1>
+modules/myUsers/templates/indexSuccess.php:11:      <th><?php echo __("usuarios_First name") ?></th>
+modules/myUsers/templates/indexSuccess.php:12:      <th><?php echo __("usuarios_Last name") ?></th>
+modules/myUsers/templates/indexSuccess.php:13:      <th><?php echo __("usuarios_Email address") ?></th>
+modules/myUsers/templates/indexSuccess.php:14:      <th><?php echo __("usuarios_Username") ?></th>
+modules/myUsers/templates/indexSuccess.php:15:      <th><?php echo __("usuarios_Is active") ?></th>
+modules/myUsers/templates/indexSuccess.php:16:      <th><?php echo __("usuarios_Is super admin") ?></th>
+modules/myUsers/templates/indexSuccess.php:17:      <th><?php echo __("usuarios_Last login") ?></th>
+modules/myUsers/templates/indexSuccess.php:18:      <th><?php echo __("usuarios_opciones") ?></th>
+modules/myUsers/templates/indexSuccess.php:29:        <?php echo ($sf_guard_user->getIsActive())? __("usuarios_si") : __("usuarios_no"); ?>
+modules/myUsers/templates/indexSuccess.php:32:        <?php echo ($sf_guard_user->getIsSuperAdmin())? __("usuarios_si") : __("usuarios_no"); ?>
+modules/myUsers/templates/indexSuccess.php:36:        <a href="<?php echo url_for('@editUsers?id='.$sf_guard_user->getId()) ?>"><?php echo __("usuarios_editar") ?></a>
+modules/myUsers/templates/indexSuccess.php:43:  <a href="<?php echo url_for('@addUsers') ?>"><?php echo __("usuarios_agregar") ?></a>
+modules/myUsers/templates/_form.php:12:    <label for="<?php echo $form['first_name']->renderId (); ?>"><?php echo __("usuarios_First name") ?></label>
+modules/myUsers/templates/_form.php:18:    <label for="<?php echo $form['last_name']->renderId (); ?>"><?php echo __("usuarios_Last name") ?></label>
+modules/myUsers/templates/_form.php:25:    <label for="<?php echo $form['email_address']->renderId (); ?>"><?php echo __("usuarios_Email address") ?> <small>* <?php echo $form['email_address']->getError() ?></small></label>
+modules/myUsers/templates/_form.php:38:    <label for="<?php echo $form['username']->renderId (); ?>"><?php echo __("usuarios_Username") ?><small>* <?php echo $form['username']->getError() ?></small></label>
+modules/myUsers/templates/_form.php:49:    <label for="<?php echo $form['password']->renderId (); ?>"><?php echo __("usuarios_contraseña") ?><small>* <?php echo $form['password']->getError() ?></small></label>
+modules/myUsers/templates/_form.php:60:    <label for="<?php echo $form['password_confirmation']->renderId (); ?>"><?php echo __("usuarios_confirmacion de contraseña") ?> <small>* <?php echo $form['password_confirmation']->getError() ?></small></label>
+modules/myUsers/templates/_form.php:73:    <label for="<?php echo $form['is_active']->renderId (); ?>"><?php echo __("usuarios_Is active") ?> </label>
+modules/myUsers/templates/_form.php:79:    <label for="<?php echo $form['is_super_admin']->renderId (); ?>"><?php echo __("usuarios_Is super admin") ?> </label>
+modules/myUsers/templates/_form.php:104:  <input type="submit" value="<?php echo __("formulario_guardar") ?>" />
+modules/myUsers/templates/editSuccess.php:7:  <h2><?php echo __("usuarios_editar titulo") ?></h2>

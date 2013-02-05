@@ -8,10 +8,11 @@
  * @author     Your name here
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class myTestForm extends BasemyTestForm
+class PluginmyTestForm extends BasemyTestForm
 {
-  public function configure()
+  public function setup()
   {
+    parent::setup();
 	$culture = $this->getOption('culture');
 	if(is_null($culture))
 	{

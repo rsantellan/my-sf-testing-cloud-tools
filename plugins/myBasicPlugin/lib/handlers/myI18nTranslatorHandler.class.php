@@ -128,7 +128,7 @@ class myI18nTranslatorHandler
       }
 
       $this->filter_target = (isset($arguments['search_target']) && $arguments['search_target'] == 'true');        
-
+      
       $this->loadPlugins();
       
       $this->loadCatalogues();
