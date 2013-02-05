@@ -1,0 +1,56 @@
+myCategory:
+  actAs:
+    Timestampable: ~
+    I18n:
+      fields: [name]
+      actAs:
+        Sluggable: { fields: [name], uniqueBy: [lang, name, id] }
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    label:
+      type: string(255)
+      notnull: true
+      unique: true
+    name:
+      type: string(255)
+      notnull: true
+    object_class_name:
+      type: string(250)
+      notnull: true
+    my_category_parent_id:
+      type: integer(4)
+      notnull: false
+    priority:
+      type: integer(2)
+      default: 0
+  relations:
+    myCategory:
+      local: my_category_parent_id
+      foreign: id
+      type: one
+
+myCategoryObject:
+  options:
+    symfony:
+      form:   false
+      filter: false
+  actAs: [Timestampable]
+  columns:
+    object_id:
+      type: integer(4)
+      primary: true
+    my_category_id:
+      type: integer(4)
+      primary: true
+    object_class_name:
+      type: string(250)
+    priority:
+      type: integer(2)
+      default: 0
+  relations:
+    myCategory:
+      local: my_category_id
+      onDelete: CASCADE

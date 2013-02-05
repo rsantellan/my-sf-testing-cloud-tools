@@ -49,7 +49,6 @@ myTranslator.prototype = {
   changePages: function(){
 	var self = this;
 	//mdShowLoading();
-	// __MD_CONTROLLER_SYMFONY + '/mdTranslator/getApplicationPagesAjax'
 	$.ajax({
 	  url: $("#application_page_ajax_url").val(),
 	  type: 'post',
