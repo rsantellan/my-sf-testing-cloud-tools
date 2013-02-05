@@ -1,15 +1,11 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
-#Configuraciones
+#Rutas de categorias
 
-cambiarIdioma:
-  url: /idioma/:idioma
-  param: { module: myDefault, action: changeLanguage }
-
-symfonycc:
-  url: /sClearCache.html
-  param: { module: myDefault, action: symfonyClearCache }
+retrieve_categories_of_class:
+  url: /:sf_culture/retrieveCategoriesOfClass.html
+  param: { module: myCategory, action: retrieveCategoriesOfClass }
 
 #Rutas del  sf guard
 
@@ -24,13 +20,6 @@ sf_guard_signout:
 sf_guard_password:
   url:   /request_password
   param: { module: sfGuardAuth, action: password }
-
-#Rutas del i18n
-localized_homepage:
-  url:   /:sf_culture/
-  param: { module: default, action: index }
-  requirements:
-    sf_culture: (?:es|en)
 
 # default rules
 homepage:
