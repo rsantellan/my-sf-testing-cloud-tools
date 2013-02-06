@@ -1,4 +1,8 @@
 <?php use_javascript("myCategoryManager.js"); ?>
+<?php
+//Ingreso el slot
+slot('categories', 'categories');
+?>
 
 <h3><?php echo __("categorias_titulo admin"); ?></h3>
 <div class="clear"></div>
@@ -14,7 +18,9 @@
 
 <input type="button" value="<?php echo __("categorias_buscar de clase");?>" onclick="myCategoryManager.getInstance().retrieveObjectsOfClass();"/>
 <div class="clear"></div>
-<a href="javascript:void(0)" onclick="return myCategoryManager.getInstance().addCategory('<?php echo url_for("@addCategory");?>', null);">Agregar Hijo</a>
+<a href="javascript:void(0)" onclick="return myCategoryManager.getInstance().addCategory('<?php echo url_for("@addCategory");?>', null);">
+  <?php echo image_tag("add.png", array("title" => __("categorias_agregar hijo"))); ?>
+</a>
 <div class="clear"></div>
 
 <div id="tree_container">

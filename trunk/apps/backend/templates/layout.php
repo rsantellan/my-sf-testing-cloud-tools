@@ -38,6 +38,7 @@
 <!--	  <li><span class="<?php if(has_slot('home')){ echo 'active'; } ?>"><a href="<?php echo url_for("@homepage");?>">Dashboard</a></span></li>-->
 	  <li><span class="<?php if(has_slot('traductor')){ echo 'active'; } ?>"><a href="<?php echo url_for("@traductor");?>"><?php echo __("traductor_titulo menu");?></a></span></li>
       <li><span class="<?php if(has_slot('usuarios')){ echo 'active'; } ?>"><a href="<?php echo url_for("@manageUsers");?>"><?php echo __("usuarios_titulo menu");?></a></span></li>
+      <li><span class="<?php if(has_slot('categories')){ echo 'active'; } ?>"><a href="<?php echo url_for("@show_categories");?>"><?php echo __("categorias_titulo menu");?></a></span></li>
       <li class="right_aligned">
         <a id="fancy_link_gear" href="<?php echo url_for("myDefault/opcionesBasicas")?>">
           <?php echo plugin_image_tag("myBasicPlugin", "gear.png", array("alt" => __("opciones_mostrar"))); ?>

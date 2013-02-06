@@ -16,4 +16,12 @@ class myCategoryObjectTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('myCategoryObject');
     }
+    
+    public function getObjectCategoriesId($object_id, $object_class)
+    {
+      $sql = "select my_category_id from my_category_object where object_id = ? and object_class_name = ?";
+      $conn = Doctrine_Manager::getInstance()->getCurrentConnection();
+      //$conn->fetchA
+      return $conn->fetchArray($sql, array($object_id, $object_class));
+    }
 }

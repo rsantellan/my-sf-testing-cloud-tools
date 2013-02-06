@@ -30,3 +30,4 @@
 <?php include_component("upload", "albums", array('objectId' => $my_test->getId(), 'objectClass' => $my_test->getObjectClass())); ?>
 <?php //$albums = myAlbumHandler::retrieveAlbumsOfObject($my_test->getId(), $my_test->getObjectClass()); ?>
 
+<?php include_component("myCategoryObject", "categories", array('objectId' => $my_test->getId(), 'objectClass' => $my_test->getObjectClass())); ?>

@@ -39,6 +39,10 @@ retrieve_categories_of_class:
   url: /:sf_culture/retrieveCategoriesOfClass.html
   param: { module: myCategory, action: retrieveCategoriesOfClass }
 
+show_categories:
+  url: /:sf_culture/showCategories.html
+  param: { module: myCategory, action: index }
+  
 #Rutas del  sf guard
 
 sf_guard_signin:
