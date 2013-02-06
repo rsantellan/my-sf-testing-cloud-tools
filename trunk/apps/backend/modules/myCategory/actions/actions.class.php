@@ -142,4 +142,54 @@ class myCategoryActions extends sfActions
     //die;
   }
   
+  public function executeMovePosition(sfWebRequest $request)
+  {
+    $parameters = $request->getPostParameters();
+    $delta = (int) $parameters["delta"];
+    
+    $this->forward404Unless($my_category = Doctrine_Core::getTable('myCategory')->find(array($request->getParameter('categoryId'))), sprintf('Object my_category does not exist (%s).', $request->getParameter('id')));
+    $categories = Doctrine::getTable("myCategory")->retrieveSiblings($my_category->getMyCategoryParentId(), $my_category->getObjectClassName(), $my_category->getId(), false);
+    $index = 0;
+    $category_previously = null;
+    $is_finished = false;
+    $finish_on_next = false;
+    while($index < count($categories) && !$is_finished)
+    {
+      $category = $categories->get($index);
+      if($finish_on_next)
+      {
+        $aux_priority = $category->getPriority();
+        $category->setPriority($category_previously->getPriority());
+        $category_previously->setPriority($aux_priority);
+        $category->save();
+        $category_previously->save();
+        $is_finished = true;
+        //var_dump('saving');
+      }
+      if($category->getId() == $my_category->getId())
+      {
+        if($delta < 0)
+        {
+          if(!is_null($category_previously))
+          {
+            $aux_priority = $category->getPriority();
+            $category->setPriority($category_previously->getPriority());
+            $category_previously->setPriority($aux_priority);
+            $category->save();
+            $category_previously->save();
+            //var_dump('saving');
+          }
+          $is_finished = true;
+        }
+        else
+        {
+          $finish_on_next = true;
+        }
+      }
+      
+      $category_previously = $category;
+      $index++;
+    }
+    return $this->renderText(myBasicHandler::JsonResponse(true, array()));
+  }
 }
