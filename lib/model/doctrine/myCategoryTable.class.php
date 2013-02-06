@@ -96,4 +96,11 @@ class myCategoryTable extends Doctrine_Table
       $q->addOrderBy("myC.priority");
       return $q->execute();
     }
+    
+    public function retrieveAllCategoriesOfIds($id_list)
+    {
+      $q = $this->createQuery("myC");
+      $q->whereIn("myC.id", $id_list);
+      return $q->execute();
+    }
 }
