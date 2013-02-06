@@ -14,7 +14,7 @@ CREATE TABLE sf_guard_user (id BIGINT AUTO_INCREMENT, first_name VARCHAR(255), l
 CREATE TABLE sf_guard_user_group (user_id BIGINT, group_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(user_id, group_id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_user_permission (user_id BIGINT, permission_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(user_id, permission_id)) ENGINE = INNODB;
 ALTER TABLE my_category_translation ADD CONSTRAINT my_category_translation_id_my_category_id FOREIGN KEY (id) REFERENCES my_category(id) ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE my_category ADD CONSTRAINT my_category_my_category_parent_id_my_category_id FOREIGN KEY (my_category_parent_id) REFERENCES my_category(id);
+ALTER TABLE my_category ADD CONSTRAINT my_category_my_category_parent_id_my_category_id FOREIGN KEY (my_category_parent_id) REFERENCES my_category(id) ON DELETE CASCADE;
 ALTER TABLE my_category_object ADD CONSTRAINT my_category_object_my_category_id_my_category_id FOREIGN KEY (my_category_id) REFERENCES my_category(id) ON DELETE CASCADE;
 ALTER TABLE my_test_translation ADD CONSTRAINT my_test_translation_id_my_test_id FOREIGN KEY (id) REFERENCES my_test(id) ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE my_uploaded ADD CONSTRAINT my_uploaded_my_album_id_my_album_id FOREIGN KEY (my_album_id) REFERENCES my_album(id);

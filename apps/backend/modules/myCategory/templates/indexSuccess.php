@@ -12,7 +12,10 @@
   ?>
 </select>
 
-<input type="button" value="<?php echo __("categorias_buscar de clase");?>" onclick="myCategoryManager.getInstance().retrieveObjectsOfClass('<?php echo url_for("@retrieve_categories_of_class");?>');"/>
+<input type="button" value="<?php echo __("categorias_buscar de clase");?>" onclick="myCategoryManager.getInstance().retrieveObjectsOfClass();"/>
+<div class="clear"></div>
+<a href="javascript:void(0)" onclick="return myCategoryManager.getInstance().addCategory('<?php echo url_for("@addCategory");?>', null);">Agregar Hijo</a>
+<div class="clear"></div>
 
 <div id="tree_container">
   
@@ -21,3 +24,5 @@
 <div id="form_container">
   
 </div>
+
+<input type="hidden" value="<?php echo url_for("@retrieve_categories_of_class");?>" id="retrieve_categories_of_class_url" />

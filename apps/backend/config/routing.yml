@@ -3,13 +3,33 @@
 
 #Rutas de categorias
 
+moveDownCategory:
+  url: /:sf_culture/moveDownCategory.html
+  param: { module: myCategory, action: moveDown }
+
+bringSiblingsCategory:
+  url: /:sf_culture/bringSiblingsCategory/:id
+  param: { module: myCategory, action: bringSiblings }
+  
+moveUpCategory:
+  url: /:sf_culture/moveUpCategory/:id
+  param: { module: myCategory, action: moveUp }
+
 saveCategory:
   url: /:sf_culture/saveCategory.html
   param: { module: myCategory, action: save }
 
+deleteCategory:
+  url: /:sf_culture/deleteCategory/:id
+  param: { module: myCategory, action: delete }
+
 editCategory:
   url: /:sf_culture/editCategory/:id
   param: { module: myCategory, action: edit }
+
+addCategory:
+  url: /:sf_culture/addCategory,html
+  param: { module: myCategory, action: add }
 
 retrieve_categories_of_class:
   url: /:sf_culture/retrieveCategoriesOfClass.html

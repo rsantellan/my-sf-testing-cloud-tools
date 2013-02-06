@@ -24,6 +24,23 @@ class myCategoryTable extends Doctrine_Table
       return $q->execute();
     }
     
+    public function retrieveLastPriorityNumber($objectClass, $parent_id = null)
+    {
+        $q = $this->createQuery("myC")->select("MAX(myC.priority) as prior");
+        
+        if(is_null($parent_id))
+        {
+          $q->addWhere("myC.object_class_name = ?", $objectClass);
+          $q->addWhere("myC.my_category_parent_id IS NULL"); 
+        }
+        else 
+        {
+          $q->addWhere("myC.my_category_parent_id = ?", $parent_id);
+        }
+        
+        return $q->fetchOne(array(), Doctrine_Core::HYDRATE_SCALAR);
+    }
+    
     public function retrieveAllTreeOfObjectClass($objectClass, $parent_id = null)
     {
       $resultado = array();
@@ -37,6 +54,7 @@ class myCategoryTable extends Doctrine_Table
       {
         $q->addWhere("myC.my_category_parent_id = ?", $parent_id);
       }
+      $q->addOrderBy("myC.priority");
       foreach($q->execute() as $result)
       {
         $aux = array('category' => $result);
@@ -45,6 +63,35 @@ class myCategoryTable extends Doctrine_Table
         $resultado[] = $aux;
       }
       return $resultado;
+    }
+    
+    public function updateToNullParent($object_class, $categoryId)
+    {
+      $conn = Doctrine_Manager::getInstance()->getCurrentConnection(); 
       
+      $sqlMax = "select max(priority) + 1 as prioridad from my_category where object_class_name = ? and my_category_parent_id is NULL";
+      
+      $r = $conn->fetchOne($sqlMax, array($object_class));
+      
+      $sql = "UPDATE my_category SET my_category_parent_id = NULL, priority = ? WHERE id = ?";
+      $conn->exec($sql, array($r, $categoryId));
+    }
+    
+    public function retrieveSiblings($parent_id, $objectClass, $categoryId)
+    {
+      $q = $this->createQuery("myC");
+      if(is_null($parent_id))
+      {
+        $q->addWhere("myC.object_class_name = ?", $objectClass);
+        $q->addWhere("myC.my_category_parent_id IS NULL"); 
+      }
+      else 
+      {
+        $q->addWhere("myC.my_category_parent_id = ?", $parent_id);
+      }
+      $q->addWhere("myC.id <> ?", $categoryId);
+      
+      $q->addOrderBy("myC.priority");
+      return $q->execute();
     }
 }

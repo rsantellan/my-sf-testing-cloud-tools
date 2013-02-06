@@ -19,7 +19,7 @@ class myCategoryActions extends sfActions
   public function executeRetrieveCategoriesOfClass(sfWebRequest $request)
   {
     $objectClass = $request->getPostParameter("objectClass", null);
-    $this->forward404Unless($objectClass != null);
+    $this->forward404Unless($objectClass);
     $this->results = Doctrine::getTable("myCategory")->retrieveAllTreeOfObjectClass($objectClass);
     $partial = $this->getPartial("categoryTree", array('results' => $this->results, "class" => "menu"));
     
@@ -27,6 +27,24 @@ class myCategoryActions extends sfActions
     die;
   }
   
+  public function executeAdd(sfWebRequest $request)
+  {
+    $objectClass = $request->getPostParameter("objectClass", null);
+    $this->forward404Unless($objectClass);
+    $parentId = $request->getPostParameter("parentId", null);
+    $this->forward404Unless($parentId);
+    $my_category = new myCategory();
+    $my_category->setObjectClassName($objectClass);
+    if(is_null($parentId) || $parentId == "null")
+    {
+      $parentId = null;
+    }
+    $my_category->setMyCategoryParentId($parentId);
+    $this->form = new myCategoryForm($my_category);
+    $partial = $this->getPartial('form', array('form' => $this->form));
+    return $this->renderText(myBasicHandler::JsonResponse(true, array('body' => $partial)));
+  }
+ 
   public function executeEdit(sfWebRequest $request)
   {
     $this->forward404Unless($my_category = Doctrine_Core::getTable('myCategory')->find(array($request->getParameter('id'))), sprintf('Object my_category does not exist (%s).', $request->getParameter('id')));
@@ -72,52 +90,56 @@ class myCategoryActions extends sfActions
       }
   }
   
-  public function executeNew(sfWebRequest $request)
-  {
-    $this->form = new myCategoryForm();
-  }
-
-  public function executeCreate(sfWebRequest $request)
-  {
-    $this->forward404Unless($request->isMethod(sfRequest::POST));
-
-    $this->form = new myCategoryForm();
-
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('new');
-  }
-
-  
-  public function executeUpdate(sfWebRequest $request)
-  {
-    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($my_category = Doctrine_Core::getTable('myCategory')->find(array($request->getParameter('id'))), sprintf('Object my_category does not exist (%s).', $request->getParameter('id')));
-    $this->form = new myCategoryForm($my_category);
-
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('edit');
-  }
-
   public function executeDelete(sfWebRequest $request)
   {
-    $request->checkCSRFProtection();
-
     $this->forward404Unless($my_category = Doctrine_Core::getTable('myCategory')->find(array($request->getParameter('id'))), sprintf('Object my_category does not exist (%s).', $request->getParameter('id')));
-    $my_category->delete();
-
-    $this->redirect('myCategory/index');
-  }
-
-  protected function processForm(sfWebRequest $request, sfForm $form)
-  {
-    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-    if ($form->isValid())
+    try
     {
-      $my_category = $form->save();
-
-      $this->redirect('myCategory/edit?id='.$my_category->getId());
+      $my_category->delete();
+      return $this->renderText(myBasicHandler::JsonResponse(true, array()));
+    }
+    catch(Exception $e)
+    {
+      return $this->renderText(myBasicHandler::JsonResponse(false, array('error_code' => $e->getCode(), 'error_message' => $e->getMessage())));
     }
   }
+  
+  public function executeMoveUp(sfWebRequest $request)
+  {
+    $this->forward404Unless($my_category = Doctrine_Core::getTable('myCategory')->find(array($request->getParameter('id'))), sprintf('Object my_category does not exist (%s).', $request->getParameter('id')));
+    if($my_category->getMyCategory())
+    {
+      $parentId = $my_category->getMyCategory()->getMyCategoryParentId();
+      if(empty($parentId) || is_null($parentId))
+      {
+        Doctrine::getTable("myCategory")->updateToNullParent($my_category->getObjectClassName(), $my_category->getId());
+      }
+      else
+      {
+        $my_category->setMyCategoryParentId($parentId);
+        $my_category->save();
+      }
+    }
+    return $this->renderText(myBasicHandler::JsonResponse(true, array()));
+  }
+  
+  public function executeBringSiblings(sfWebRequest $request)
+  {
+    $this->forward404Unless($my_category = Doctrine_Core::getTable('myCategory')->find(array($request->getParameter('id'))), sprintf('Object my_category does not exist (%s).', $request->getParameter('id')));
+    $categories = Doctrine::getTable("myCategory")->retrieveSiblings($my_category->getMyCategoryParentId(), $my_category->getObjectClassName(), $my_category->getId());
+    $body = $this->getPartial('siblings', array('categories' => $categories, 'categoryId' => $my_category->getId()));
+    return $this->renderText(myBasicHandler::JsonResponse(true, array('body' => $body)));
+  }
+  
+  public function executeMoveDown(sfWebRequest $request)
+  {
+    $parameters = $request->getPostParameters();
+    $this->forward404Unless($my_category = Doctrine_Core::getTable('myCategory')->find(array($parameters["categoryId"])), sprintf('Object my_category does not exist (%s).', $request->getParameter('id')));
+    //var_dump($parameters);
+    $my_category->setMyCategoryParentId($parameters["category_parent_id"]);
+    $my_category->recalculatePriorityAndSave();
+    return $this->renderText(myBasicHandler::JsonResponse(true, array()));
+    //die;
+  }
+  
 }
