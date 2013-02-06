@@ -8,16 +8,17 @@ if(!isset($class))
     <div class="category">
         <?php echo $category['category']->getName(); ?>
         <?php if(!is_null($category['category']->getMyCategoryParentId())): ?> 
-            <a href="javascript:void(0)" onclick="">Subir</a>
+            <a href="javascript:void(0)" onclick="return myCategoryManager.getInstance().moveUpCategory('<?php echo url_for("@moveUpCategory?id=".$category['category']->getId());?>');"><?php echo __("categorias_subir")?></a>
         <?php endif; ?>
         <?php if(count($results) > 1): ?>
-            <a href="javascript:void(0)" onclick="">Bajar</a>
+            <a href="javascript:void(0)" onclick="return myCategoryManager.getInstance().bringSiblingsCategory('<?php echo url_for("@bringSiblingsCategory?id=".$category['category']->getId());?>');"><?php echo __("categorias_bajar")?></a>
         <?php endif; ?>
         <?php if(count($results) > 1): ?>
             <a href="javascript:void(0)" onclick="">Ordenar Nivel</a>
         <?php endif; ?>
-        <a href="javascript:void(0)" onclick="myCategoryManager.getInstance().editCategory('<?php echo url_for("@editCategory?id=".$category['category']->getId());?>', '<?php echo $category['category']->getId();?>');">Editar</a>
-        <a href="javascript:void(0)" onclick="">Eliminar</a>
+        <a href="javascript:void(0)" onclick="myCategoryManager.getInstance().editCategory('<?php echo url_for("@editCategory?id=".$category['category']->getId());?>', '<?php echo $category['category']->getId();?>');"><?php echo __("categorias_editar")?></a>
+        <a href="javascript:void(0)" onclick="myCategoryManager.getInstance().deleteCategory('<?php echo url_for("@deleteCategory?id=".$category['category']->getId());?>', '<?php echo __("categorias_eliminar_confirmacion")?>');"><?php echo __("categorias_eliminar")?></a>
+        <a href="javascript:void(0)" onclick="return myCategoryManager.getInstance().addCategory('<?php echo url_for("@addCategory");?>', <?php echo $category['category']->getId();?>);"><?php echo __("categorias_agregar hijo")?></a>
     </div>
     <?php
       if(count($category['childs']) > 0):

@@ -19,7 +19,7 @@ myCategory:
         
   mTestCategory1:
     label: 'M test1'
-    object_class_name: 'mTest1'
+    object_class_name: 'mTest'
     myCategory: mTestCategory
     Translation:
       es:
@@ -29,7 +29,7 @@ myCategory:
         
   mTestCategory2:
     label: 'M test2'
-    object_class_name: 'mTest2'
+    object_class_name: 'mTest'
     myCategory: mTestCategory
     Translation:
       es:
@@ -39,7 +39,7 @@ myCategory:
 
   mTestCategory3:
     label: 'M test3'
-    object_class_name: 'mTest3'
+    object_class_name: 'mTest'
     myCategory: mTestCategory1
     Translation:
       es:
@@ -49,7 +49,7 @@ myCategory:
         
   mTestCategory4:
     label: 'M test4'
-    object_class_name: 'mTest4'
+    object_class_name: 'mTest'
     myCategory: mTestCategory2
     Translation:
       es:

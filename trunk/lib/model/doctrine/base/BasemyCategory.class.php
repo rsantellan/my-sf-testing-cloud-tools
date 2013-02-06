@@ -87,7 +87,8 @@ abstract class BasemyCategory extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('myCategory', array(
              'local' => 'my_category_parent_id',
-             'foreign' => 'id'));
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
 
         $this->hasMany('myCategoryObject', array(
              'local' => 'id',

@@ -33,6 +33,7 @@ myCategory:
       local: my_category_parent_id
       foreign: id
       type: one
+      onDelete: CASCADE
 
 myCategoryObject:
   options:

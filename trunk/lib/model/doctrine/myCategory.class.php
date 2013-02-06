@@ -12,4 +12,22 @@
  */
 class myCategory extends BasemyCategory
 {
+  
+  public function save(Doctrine_Connection $conn = null)
+  {
+    if($this->getId() == 0)
+    {
+      $aux = Doctrine::getTable("myCategory")->retrieveLastPriorityNumber($this->getObjectClassName(), $this->getMyCategoryParentId());
+      $this->setPriority( ((int) $aux["myC_prior"]) + 1);
+    }
+    
+    return parent::save($conn);
+  }
+  
+  public function recalculatePriorityAndSave()
+  {
+    $aux = Doctrine::getTable("myCategory")->retrieveLastPriorityNumber($this->getObjectClassName(), $this->getMyCategoryParentId());
+    $this->setPriority( ((int) $aux["myC_prior"]) + 1);
+    return $this->save();
+  }
 }
