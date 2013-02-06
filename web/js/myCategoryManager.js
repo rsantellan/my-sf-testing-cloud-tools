@@ -165,5 +165,22 @@ myCategoryManager.prototype = {
           });
      
      return false;
+  },
+  
+  movePosition: function(mUrl, delta, categoryId)
+  {
+    var self = this;
+    $.ajax({
+     url: mUrl,
+     type: 'post',
+     data: {'delta': delta, 'categoryId': categoryId },
+     dataType: 'json',
+     success: function(json){
+       if(json.response == "OK")
+       {
+         self.retrieveObjectsOfClass();
+       }
+     }
+   });
   }
 }

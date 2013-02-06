@@ -252,3 +252,21 @@ input[type="submit"], input[type="reset"] {
 .right_aligned{
   float: right;
 }
+
+
+#tree_container ul.menu{
+  list-style: none;
+}
+
+#tree_container ul.menu li ul{
+  list-style: none outside none !important;
+}
+
+#tree_container ul.menu a{
+  text-decoration: none;
+}
+
+span.label_name_category{
+  font-weight: bolder;
+  font-size: 17px;
+}

@@ -77,7 +77,7 @@ class myCategoryTable extends Doctrine_Table
       $conn->exec($sql, array($r, $categoryId));
     }
     
-    public function retrieveSiblings($parent_id, $objectClass, $categoryId)
+    public function retrieveSiblings($parent_id, $objectClass, $categoryId, $exclude_self = true)
     {
       $q = $this->createQuery("myC");
       if(is_null($parent_id))
@@ -89,8 +89,10 @@ class myCategoryTable extends Doctrine_Table
       {
         $q->addWhere("myC.my_category_parent_id = ?", $parent_id);
       }
-      $q->addWhere("myC.id <> ?", $categoryId);
-      
+      if($exclude_self)
+      {
+        $q->addWhere("myC.id <> ?", $categoryId);
+      }
       $q->addOrderBy("myC.priority");
       return $q->execute();
     }
