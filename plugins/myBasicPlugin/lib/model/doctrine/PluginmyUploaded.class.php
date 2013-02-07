@@ -41,4 +41,8 @@ abstract class PluginmyUploaded extends BasemyUploaded
 	parent::preDelete($event);
   }
 
+  public function getDownloadSource()
+  {
+    return $this->getPath(). DIRECTORY_SEPARATOR . $this->getFilename();
+  }
 }

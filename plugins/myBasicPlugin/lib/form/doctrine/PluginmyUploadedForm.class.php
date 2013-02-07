@@ -10,4 +10,12 @@
  */
 abstract class PluginmyUploadedForm extends BasemyUploadedForm
 {
+  public function setup()
+  {
+    parent::setup();
+    unset($this['created_at'], $this['updated_at'], $this['priority'], $this['filetype'], $this['path'], $this['filename'], $this['my_album_id'] ) ;
+    
+    $this->widgetSchema['description'] = new sfWidgetFormTextarea();
+    $this->validatorSchema['description'] = new sfValidatorString(array('max_length' => 64));
+  }
 }
