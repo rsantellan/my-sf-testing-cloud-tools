@@ -3,6 +3,14 @@
 
 #Rutas de categorias
 
+refreshCategoryOfObject:
+  url: /:sf_culture/refreshCategoriesOfObject/:objectId/:objectClass
+  param: { module: myCategoryObject, action: refreshObjectCategory } 
+
+removeCategoryOfObject:
+  url: /:sf_culture/removeCategoryOfObject.html
+  param: { module: myCategoryObject, action: removeOfObject } 
+
 addCategoryToObject:
   url: /:sf_culture/addCategoryToObject.html
   param: { module: myCategoryObject, action: addToObject } 

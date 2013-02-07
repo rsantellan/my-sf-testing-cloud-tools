@@ -30,4 +30,5 @@ class myCategory extends BasemyCategory
     $this->setPriority( ((int) $aux["myC_prior"]) + 1);
     return $this->save();
   }
+
 }

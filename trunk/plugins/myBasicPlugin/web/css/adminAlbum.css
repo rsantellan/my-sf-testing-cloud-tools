@@ -80,3 +80,19 @@ div.album_image div.img_avatar{
   margin-left: 50px;
   width: 60%;
 }
+
+
+
+div.image_edit_container{
+  width: 650px;
+  height: 350px;
+}
+
+div.image_edit_container div{
+  float: left !important;
+}
+
+div.image_edit_container div.image_edit_container_form{
+  padding-left: 20px;
+  
+}

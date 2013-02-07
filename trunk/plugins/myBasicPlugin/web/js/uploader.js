@@ -132,5 +132,20 @@ function deleteFile(mUrl, text, itemId, albumId)
       }        
     });    
   }
+}
 
+function saveImageDataForm(form)
+{
+  $.ajax({
+    url: $(form).attr('action'),
+    data: $(form).serialize(),
+    type: 'post',
+    dataType: 'json',
+    success: function(json){
+        //console.info(json.options.body);
+        //console.info($("#image_edit_container_form").html());
+        $("#image_edit_container_form").html(json.options.body);
+      }
+    });
+    return false;
 }

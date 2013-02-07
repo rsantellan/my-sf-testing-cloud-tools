@@ -37,6 +37,18 @@ manageUsers:
 
 #Albumes
 
+downloadData:
+ url: /album/download/:id
+ param: { module: upload, action: downloadData }  
+
+saveEditImageForm:
+ url: /album/editar/salvar.html
+ param: { module: upload, action: saveImagen }  
+
+editarImagen:
+ url: /album/editar/elemento/:id
+ param: { module: upload, action: editarImagen }  
+
 ordenarAlbumProcesado:
  url: /album/ordenando.html
  param: { module: upload, action: ordenarAlbumProcesado }

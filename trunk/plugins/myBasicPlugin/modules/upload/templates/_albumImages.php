@@ -4,8 +4,8 @@
       ?>
 <div id="album_image_<?php echo $upload->getId();?>" class="album_image">
   <div class="img_edit">
-      <a href="<?php //echo site_url('upload/editFile/' . $image->id); ?>" class="fancy_link">
-        Editar
+      <a href="<?php echo url_for('@editarImagen?id=' . $upload->getId()); ?>" class="fancy_link">
+        <?php echo __('upload_edit');?>
       </a>
     </div>
   <!-- width="200" height="200" -->
