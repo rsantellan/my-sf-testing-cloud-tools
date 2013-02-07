@@ -3,6 +3,10 @@
 
 #Rutas de categorias
 
+addCategoryToObject:
+  url: /:sf_culture/addCategoryToObject.html
+  param: { module: myCategoryObject, action: addToObject } 
+
 movePositionCategory:
   url: /:sf_culture/movePositionCategory.html
   param: { module: myCategory, action: movePosition } 

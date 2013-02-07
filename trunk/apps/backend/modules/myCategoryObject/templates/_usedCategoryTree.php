@@ -9,13 +9,13 @@ if(!isset($class))
         <span class="label_name_category">
           <?php echo $category['category']->getName(); ?>
         </span>
-        <a href="javascript:void(0)" onclick="return myCategoryManager.getInstance().addCategory('<?php echo url_for("@addCategory");?>', <?php echo $category['category']->getId();?>);">
+        <a href="javascript:void(0)" onclick="return myCategoryObjectManager.getInstance().addToObject('<?php echo url_for("@addCategoryToObject");?>', <?php echo $objectId;?>, '<?php echo $objectClass; ?>', <?php echo $category['category']->getId();?>);">
           <?php echo image_tag("add.png", array("title" => __("categorias_agregar"))); ?>
         </a>
     </div>
     <?php
       if(count($category['childs']) > 0):
-        include_partial('myCategoryObject/usedCategoryTree', array('results' => $category['childs'], 'used_categories_id' => $used_categories_id ));
+        include_partial('myCategoryObject/usedCategoryTree', array("objectId" => $objectId, "objectClass" => $objectClass, 'results' => $category['childs'], 'used_categories_id' => $used_categories_id ));
       endif;
     ?>
   </li>

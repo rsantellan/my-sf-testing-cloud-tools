@@ -44,6 +44,7 @@ abstract class BasemyCategoryObject extends sfDoctrineRecord
              ));
         $this->hasColumn('object_class_name', 'string', 250, array(
              'type' => 'string',
+             'primary' => true,
              'length' => 250,
              ));
         $this->hasColumn('priority', 'integer', 2, array(
