@@ -19,4 +19,18 @@ class myCategoryObjectActions extends sfActions
   {
     
   }
+  
+  public function executeAddToObject(sfWebRequest $request)
+  {
+    $categoryId = $request->getPostParameter("categoryId");
+    $objectClass = $request->getPostParameter("objectClass");
+    $objectId = $request->getPostParameter("objectId");
+    $myCategoryObject = new myCategoryObject();
+    $myCategoryObject->setObjectId($objectId);
+    $myCategoryObject->setObjectClassName($objectClass);
+    $myCategoryObject->setMyCategoryId($categoryId);
+    $myCategoryObject->save();
+    
+    die;
+  }
 }

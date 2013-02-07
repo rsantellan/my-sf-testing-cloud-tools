@@ -1,9 +1,6 @@
-<div class="category_object_used">
-  <?php foreach($used_categories as $category):?>
-    <?php var_dump($category->toArray());?>
-  <?php endforeach; ?>
+<div id="global_categories_container"> 
+<?php 
+    include_partial("myCategoryObject/categoriesView", array("objectId" => $objectId, "objectClass" => $objectClass, "used_categories" => $used_categories, "used_categories_id" => $used_categories_id, "categories" => $categories));
+?>
 </div>
-<hr/>
-<div class="category_object_available">
-  <?php include_partial('myCategoryObject/usedCategoryTree', array('results' => $categories, 'used_categories_id' => $used_categories_id ));?>
-</div>
+<?php use_javascript("myCategoryObjectManager.js", "last");?>

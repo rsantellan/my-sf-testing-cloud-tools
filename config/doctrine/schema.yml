@@ -50,6 +50,7 @@ myCategoryObject:
       primary: true
     object_class_name:
       type: string(250)
+      primary: true
     priority:
       type: integer(2)
       default: 0

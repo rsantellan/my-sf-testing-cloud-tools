@@ -34,10 +34,8 @@ class myCategoryForm extends BasemyCategoryForm
     
     $myCategory = parent::save($con);
     $myCategory->setSlug(myBasicHandler::slugify($myCategory->getName()));
-    if(!$myCategory->getLabel())
-    {
-      $myCategory->setLabel(myBasicHandler::slugify($myCategory->getName()));
-    }
+    $myCategory->setLabel(myBasicHandler::slugify($myCategory->getName()));
+    
     try
     {
       $myCategory->save();
