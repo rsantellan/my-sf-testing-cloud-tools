@@ -36,10 +36,12 @@ mSong:
       type: integer(4)
   relations:
     mGroup:
+      class: mGroup 
       local: m_group_id
       foreign: id
       type: one
     mGroupOriginal:
+      class: mGroup
       local: m_group_original_id
       foreign: id
       type: one

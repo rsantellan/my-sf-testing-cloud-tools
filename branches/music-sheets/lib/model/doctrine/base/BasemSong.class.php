@@ -12,6 +12,7 @@
  * @property integer $m_group_id
  * @property integer $m_group_original_id
  * @property mGroup $mGroup
+ * @property mGroup $mGroupOriginal
  * @property Doctrine_Collection $mSheet
  * 
  * @method integer             getId()                  Returns the current record's "id" value
@@ -21,6 +22,7 @@
  * @method integer             getMGroupId()            Returns the current record's "m_group_id" value
  * @method integer             getMGroupOriginalId()    Returns the current record's "m_group_original_id" value
  * @method mGroup              getMGroup()              Returns the current record's "mGroup" value
+ * @method mGroup              getMGroupOriginal()      Returns the current record's "mGroupOriginal" value
  * @method Doctrine_Collection getMSheet()              Returns the current record's "mSheet" collection
  * @method mSong               setId()                  Sets the current record's "id" value
  * @method mSong               setName()                Sets the current record's "name" value
@@ -29,6 +31,7 @@
  * @method mSong               setMGroupId()            Sets the current record's "m_group_id" value
  * @method mSong               setMGroupOriginalId()    Sets the current record's "m_group_original_id" value
  * @method mSong               setMGroup()              Sets the current record's "mGroup" value
+ * @method mSong               setMGroupOriginal()      Sets the current record's "mGroupOriginal" value
  * @method mSong               setMSheet()              Sets the current record's "mSheet" collection
  * 
  * @package    testing
@@ -83,6 +86,10 @@ abstract class BasemSong extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('mGroup', array(
              'local' => 'm_group_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('mGroup as mGroupOriginal', array(
+             'local' => 'm_group_original_id',
              'foreign' => 'id'));
 
         $this->hasMany('mSheet', array(
