@@ -25,8 +25,9 @@ myAlbum:
     object_id:
        type: integer(4)
        notnull: true
-
-       
+    allowed_types:
+       type: string(128)
+      
 myUploaded:
   actAs:
     Timestampable: ~

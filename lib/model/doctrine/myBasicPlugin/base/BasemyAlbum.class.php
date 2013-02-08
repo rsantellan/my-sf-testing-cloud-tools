@@ -13,6 +13,7 @@
  * @property integer $my_file_id
  * @property string $object_class_name
  * @property integer $object_id
+ * @property string $allowed_types
  * @property Doctrine_Collection $myUploaded
  * 
  * @method integer             getId()                Returns the current record's "id" value
@@ -23,6 +24,7 @@
  * @method integer             getMyFileId()          Returns the current record's "my_file_id" value
  * @method string              getObjectClassName()   Returns the current record's "object_class_name" value
  * @method integer             getObjectId()          Returns the current record's "object_id" value
+ * @method string              getAllowedTypes()      Returns the current record's "allowed_types" value
  * @method Doctrine_Collection getMyUploaded()        Returns the current record's "myUploaded" collection
  * @method myAlbum             setId()                Sets the current record's "id" value
  * @method myAlbum             setTitle()             Sets the current record's "title" value
@@ -32,6 +34,7 @@
  * @method myAlbum             setMyFileId()          Sets the current record's "my_file_id" value
  * @method myAlbum             setObjectClassName()   Sets the current record's "object_class_name" value
  * @method myAlbum             setObjectId()          Sets the current record's "object_id" value
+ * @method myAlbum             setAllowedTypes()      Sets the current record's "allowed_types" value
  * @method myAlbum             setMyUploaded()        Sets the current record's "myUploaded" collection
  * 
  * @package    testing
@@ -87,6 +90,10 @@ abstract class BasemyAlbum extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              'length' => 4,
+             ));
+        $this->hasColumn('allowed_types', 'string', 128, array(
+             'type' => 'string',
+             'length' => 128,
              ));
     }
 
