@@ -13,6 +13,6 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('myTestPlugin');
     $this->enablePlugins('myCategoryPlugin');
     $this->enablePlugins('sfTaskExtraPlugin');
-    //$this->enablePlugins('musicSheetsPlugin');
+    $this->enablePlugins('musicSheetsPlugin');
   }
 }
