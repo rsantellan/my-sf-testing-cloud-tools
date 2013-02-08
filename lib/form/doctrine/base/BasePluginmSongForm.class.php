@@ -17,7 +17,7 @@ abstract class BasePluginmSongForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'                  => new sfWidgetFormInputHidden(),
       'name'                => new sfWidgetFormInputText(),
-      'fecha_ingreso_lista' => new sfWidgetFormDate(),
+      'fecha_publicacion'   => new sfWidgetFormDate(),
       'remix'               => new sfWidgetFormChoice(array('choices' => array('si' => 'si', 'no' => 'no', 'no sabe' => 'no sabe'))),
       'm_group_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('mGroup'), 'add_empty' => false)),
       'm_group_original_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('mGroupOriginal'), 'add_empty' => true)),
@@ -26,7 +26,7 @@ abstract class BasePluginmSongForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'                  => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'name'                => new sfValidatorString(array('max_length' => 255)),
-      'fecha_ingreso_lista' => new sfValidatorDate(array('required' => false)),
+      'fecha_publicacion'   => new sfValidatorDate(array('required' => false)),
       'remix'               => new sfValidatorChoice(array('choices' => array(0 => 'si', 1 => 'no', 2 => 'no sabe'))),
       'm_group_id'          => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('mGroup'))),
       'm_group_original_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('mGroupOriginal'), 'required' => false)),

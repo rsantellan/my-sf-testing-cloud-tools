@@ -22,7 +22,7 @@ mSong:
     name:
       type: string(255)
       notnull: true
-    fecha_ingreso_lista:
+    fecha_publicacion:
       type: date(25)
     remix:
       type: enum
