@@ -13,5 +13,17 @@ abstract class PluginmSongForm extends BasemSongForm
   public function setup()
   {
     parent::setup();
+    $this->widgetSchema['m_group_id'] = new sfWidgetFormInputAutocomplete(array('choices' => Doctrine::getTable("mGroup")->findAll()));
+    $this->validatorSchema['m_group_id']        = new sfValidatorString(array('max_length' => 20, 'required' => true));
+    $this->widgetSchema['m_group_original_id'] = new sfWidgetFormInputAutocomplete(array('choices' => Doctrine::getTable("mGroup")->findAll()));
+    $this->validatorSchema['m_group_original_id']        = new sfValidatorString(array('max_length' => 20, 'required' => false));
+    
   }
+  
+  public function save($con = null) {
+    $tainted = $this->getTaintedValues();
+    
+    return parent::save($con);
+  }
+
 }

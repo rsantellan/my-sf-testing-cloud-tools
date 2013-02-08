@@ -27,7 +27,7 @@ abstract class BasemSongForm extends BaseFormDoctrine
       'id'                  => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'name'                => new sfValidatorString(array('max_length' => 255)),
       'fecha_publicacion'   => new sfValidatorDate(array('required' => false)),
-      'remix'               => new sfValidatorChoice(array('choices' => array(0 => 'si', 1 => 'no', 2 => 'no sabe'))),
+      'remix'               => new sfValidatorChoice(array('choices' => array(0 => 'si', 1 => 'no', 2 => 'no sabe'), 'required' => false)),
       'm_group_id'          => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('mGroup'))),
       'm_group_original_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('mGroupOriginal'), 'required' => false)),
     ));
