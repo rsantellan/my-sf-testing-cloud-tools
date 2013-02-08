@@ -7,7 +7,7 @@
  * 
  * @property integer $id
  * @property string $name
- * @property date $fecha_ingreso_lista
+ * @property date $fecha_publicacion
  * @property enum $remix
  * @property integer $m_group_id
  * @property integer $m_group_original_id
@@ -17,7 +17,7 @@
  * 
  * @method integer             getId()                  Returns the current record's "id" value
  * @method string              getName()                Returns the current record's "name" value
- * @method date                getFechaIngresoLista()   Returns the current record's "fecha_ingreso_lista" value
+ * @method date                getFechaPublicacion()    Returns the current record's "fecha_publicacion" value
  * @method enum                getRemix()               Returns the current record's "remix" value
  * @method integer             getMGroupId()            Returns the current record's "m_group_id" value
  * @method integer             getMGroupOriginalId()    Returns the current record's "m_group_original_id" value
@@ -26,7 +26,7 @@
  * @method Doctrine_Collection getMSheet()              Returns the current record's "mSheet" collection
  * @method mSong               setId()                  Sets the current record's "id" value
  * @method mSong               setName()                Sets the current record's "name" value
- * @method mSong               setFechaIngresoLista()   Sets the current record's "fecha_ingreso_lista" value
+ * @method mSong               setFechaPublicacion()    Sets the current record's "fecha_publicacion" value
  * @method mSong               setRemix()               Sets the current record's "remix" value
  * @method mSong               setMGroupId()            Sets the current record's "m_group_id" value
  * @method mSong               setMGroupOriginalId()    Sets the current record's "m_group_original_id" value
@@ -55,7 +55,7 @@ abstract class BasemSong extends sfDoctrineRecord
              'notnull' => true,
              'length' => 255,
              ));
-        $this->hasColumn('fecha_ingreso_lista', 'date', 25, array(
+        $this->hasColumn('fecha_publicacion', 'date', 25, array(
              'type' => 'date',
              'length' => 25,
              ));
