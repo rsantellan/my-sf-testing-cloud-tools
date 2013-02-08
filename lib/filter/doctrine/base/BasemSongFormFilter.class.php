@@ -17,7 +17,7 @@ abstract class BasemSongFormFilter extends BaseFormFilterDoctrine
       'fecha_ingreso_lista' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'remix'               => new sfWidgetFormChoice(array('choices' => array('' => '', 'si' => 'si', 'no' => 'no', 'no sabe' => 'no sabe'))),
       'm_group_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('mGroup'), 'add_empty' => true)),
-      'm_group_original_id' => new sfWidgetFormFilterInput(),
+      'm_group_original_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('mGroupOriginal'), 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
@@ -25,7 +25,7 @@ abstract class BasemSongFormFilter extends BaseFormFilterDoctrine
       'fecha_ingreso_lista' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'remix'               => new sfValidatorChoice(array('required' => false, 'choices' => array('si' => 'si', 'no' => 'no', 'no sabe' => 'no sabe'))),
       'm_group_id'          => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('mGroup'), 'column' => 'id')),
-      'm_group_original_id' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'm_group_original_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('mGroupOriginal'), 'column' => 'id')),
     ));
 
     $this->widgetSchema->setNameFormat('m_song_filters[%s]');
@@ -50,7 +50,7 @@ abstract class BasemSongFormFilter extends BaseFormFilterDoctrine
       'fecha_ingreso_lista' => 'Date',
       'remix'               => 'Enum',
       'm_group_id'          => 'ForeignKey',
-      'm_group_original_id' => 'Number',
+      'm_group_original_id' => 'ForeignKey',
     );
   }
 }
