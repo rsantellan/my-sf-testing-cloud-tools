@@ -1,0 +1,80 @@
+mGroup:
+  tableName: musicgroup
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    name:
+      type: string(255)
+      notnull: true
+    description:
+      type: string(500)
+      notnull: true
+
+mSong:
+  tableName: musicsong
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    name:
+      type: string(255)
+      notnull: true
+    fecha_ingreso_lista:
+      type: date(25)
+    remix:
+      type: enum
+      length: 7
+      values: ['si','no','no sabe']
+      notnull: true
+    m_group_id:
+      type: integer(4)
+      notnull: true
+    m_group_original_id:
+      type: integer(4)
+  relations:
+    mGroup:
+      local: m_group_id
+      foreign: id
+      type: one
+    mGroupOriginal:
+      local: m_group_original_id
+      foreign: id
+      type: one
+      
+mInstrument:
+  tableName: musicinstrument
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    name:
+      type: string(255)
+      notnull: true
+
+mSheet:
+  tableName: musicsheet
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    m_instrument_id:
+      type: integer(4)
+      notnull: true
+    m_song_id:
+      type: integer(4)
+      notnull: true
+  relations:
+    mInstrument:
+      local: m_instrument_id
+      foreign: id
+      type: one
+    mSong:
+      local: m_song_id
+      foreign: id
+      type: one
+      onDelete: CASCADE      
