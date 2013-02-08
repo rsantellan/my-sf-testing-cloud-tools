@@ -29,6 +29,7 @@ mSong:
       length: 7
       values: ['si','no','no sabe']
       notnull: true
+      default: 'no sabe'
     m_group_id:
       type: integer(4)
       notnull: true
