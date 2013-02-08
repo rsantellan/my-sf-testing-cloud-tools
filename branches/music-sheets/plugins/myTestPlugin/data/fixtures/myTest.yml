@@ -1,0 +1,10 @@
+## YAML Template.
+myTest:
+  test_1:
+    Translation:
+      es:
+        title: 'test 1'
+        body: 'test 1 body'
+      en:
+        title: 'test 1'
+        body: 'test 1 body'      

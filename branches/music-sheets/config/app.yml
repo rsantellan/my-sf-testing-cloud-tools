@@ -1,0 +1,28 @@
+all:
+
+#Imagenes
+#-------------------------
+  #clase que va a usar el factory
+  .image:
+    #image_library: 'myCopyConvertor'
+    #image_library: 'myImagickConvertor'
+    image_library: 'myCliImagickConvertor'
+
+    #path que va ir a buscar el ejecutable de image magick
+    myImageMagick_path: '/usr/bin/'
+    
+# para extraer la info de los plugins.
+
+#  i18n-extract-additional:
+#    enabled: true
+#    paths: 
+#      - '<?php echo sfConfig::get('sf_plugins_dir') . '/myBasicPlugin'; ?>'
+
+#Segurida
+#-------------------------
+  sf_guard_plugin:
+    algorithm_callable: md5
+# 
+# En caso de querer usar los permisos y grupos poner esto en true
+#  my_sf_guard_plugin:
+#    use_permission_and_groups: true

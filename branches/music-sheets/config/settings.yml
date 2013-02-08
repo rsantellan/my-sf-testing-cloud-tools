@@ -1,0 +1,17 @@
+all:
+  .backend:
+    
+    show_multiple_language: true
+  
+  #myimagick_debug: true
+  .plugins:
+    #Imagenes
+    #activa el logeo de imagick por linea de comando
+    myimagick_debug: true
+    
+    #Cambia el porcentaje de la calidad de las imagenes, 75% es el default
+    image_quality_change: 75
+    
+    #Desabilita el gravity para image magick viejos
+    imagegick_no_gravity: true
+    

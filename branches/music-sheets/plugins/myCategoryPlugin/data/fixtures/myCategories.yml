@@ -1,0 +1,58 @@
+myCategory:
+  mTestCategory:
+    label: 'M test'
+    object_class_name: 'myTest'
+    Translation:
+      es:
+        name: 'M test'
+      en:
+        name: 'M test'     
+
+  algoCategory:
+    label: 'algo'
+    object_class_name: 'algo'
+    Translation:
+      es:
+        name: 'algo'
+      en:
+        name: 'algo'
+        
+  mTestCategory1:
+    label: 'M test1'
+    object_class_name: 'myTest'
+    myCategory: mTestCategory
+    Translation:
+      es:
+        name: 'M test1'
+      en:
+        name: 'M test1'
+        
+  mTestCategory2:
+    label: 'M test2'
+    object_class_name: 'myTest'
+    myCategory: mTestCategory
+    Translation:
+      es:
+        name: 'M test2'
+      en:
+        name: 'M test2'         
+
+  mTestCategory3:
+    label: 'M test3'
+    object_class_name: 'myTest'
+    myCategory: mTestCategory1
+    Translation:
+      es:
+        name: 'M test3'
+      en:
+        name: 'M test3'
+        
+  mTestCategory4:
+    label: 'M test4'
+    object_class_name: 'myTest'
+    myCategory: mTestCategory2
+    Translation:
+      es:
+        name: 'M test4'
+      en:
+        name: 'M test4'         

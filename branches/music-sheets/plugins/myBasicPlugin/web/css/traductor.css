@@ -1,0 +1,53 @@
+/* 
+    Document   : traductor
+    Created on : 19/04/2012, 07:01:59 PM
+    Author     : Rodrigo Santellan
+    Description:
+        Estilos para el traductor
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.tr_checkbox_label{
+  padding-right:3px;
+  display:block;
+}
+
+.tr_datos_container{
+  min-height: 150px;
+  width: 48%;
+  float: left;
+  margin-right: 5px;
+  height: 450px;
+  overflow: scroll;
+}
+
+div.tr_contenido{
+  float: left;
+  width: 50%;
+}
+
+div.tr_contenido div{
+/*  margin-left: 5px;*/
+}
+
+div.tr_active{
+  border: thin dotted;
+  color: blue;
+}
+
+a.show_reference{
+  color: gray; 
+  font-size:10px!important; 
+/*  float: right;*/
+}
+
+div.reference_text{
+  display:none; 
+  padding:10px; 
+  font-style: italic;
+  background-color: #EfEfEf;
+}
