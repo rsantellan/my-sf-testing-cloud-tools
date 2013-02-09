@@ -19,10 +19,12 @@
     
     //Esto agrega las funcionalidades del layout
     use_plugin_javascript("myBasicPlugin", "layoutOptions.js");
+
+    use_plugin_stylesheet("myBasicPlugin", "backendJqueryUi.css");
     
-	use_plugin_stylesheet("myBasicPlugin", "admin/960.css");
-	use_plugin_stylesheet("myBasicPlugin", "admin/template.css");
-	use_plugin_stylesheet("myBasicPlugin", "admin/colour.css");
+    use_plugin_stylesheet("myBasicPlugin", "admin/960.css");
+    use_plugin_stylesheet("myBasicPlugin", "admin/template.css");
+    use_plugin_stylesheet("myBasicPlugin", "admin/colour.css");
     
     endif;
 	?>

@@ -16,4 +16,12 @@ abstract class PluginmGroupTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('mGroup');
     }
+    
+    public function retrieveMGroupRawArray()
+    {
+      $conn = Doctrine_Manager::getInstance()->getCurrentConnection(); 
+      $sql = "select id, name from musicgroup order by name asc";
+      $r = $conn->fetchAssoc($sql, array());
+      return $r;
+    }
 }
