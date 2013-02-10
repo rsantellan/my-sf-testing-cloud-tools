@@ -21,6 +21,7 @@ abstract class BasemSongForm extends BaseFormDoctrine
       'remix'               => new sfWidgetFormChoice(array('choices' => array('si' => 'si', 'no' => 'no', 'no sabe' => 'no sabe'))),
       'm_group_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('mGroup'), 'add_empty' => false)),
       'm_group_original_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('mGroupOriginal'), 'add_empty' => true)),
+      'user_id'             => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
@@ -30,6 +31,7 @@ abstract class BasemSongForm extends BaseFormDoctrine
       'remix'               => new sfValidatorChoice(array('choices' => array(0 => 'si', 1 => 'no', 2 => 'no sabe'), 'required' => false)),
       'm_group_id'          => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('mGroup'))),
       'm_group_original_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('mGroupOriginal'), 'required' => false)),
+      'user_id'             => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('m_song[%s]');

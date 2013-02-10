@@ -18,6 +18,7 @@ abstract class BasemSongFormFilter extends BaseFormFilterDoctrine
       'remix'               => new sfWidgetFormChoice(array('choices' => array('' => '', 'si' => 'si', 'no' => 'no', 'no sabe' => 'no sabe'))),
       'm_group_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('mGroup'), 'add_empty' => true)),
       'm_group_original_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('mGroupOriginal'), 'add_empty' => true)),
+      'user_id'             => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
@@ -26,6 +27,7 @@ abstract class BasemSongFormFilter extends BaseFormFilterDoctrine
       'remix'               => new sfValidatorChoice(array('required' => false, 'choices' => array('si' => 'si', 'no' => 'no', 'no sabe' => 'no sabe'))),
       'm_group_id'          => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('mGroup'), 'column' => 'id')),
       'm_group_original_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('mGroupOriginal'), 'column' => 'id')),
+      'user_id'             => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('User'), 'column' => 'id')),
     ));
 
     $this->widgetSchema->setNameFormat('m_song_filters[%s]');
@@ -51,6 +53,7 @@ abstract class BasemSongFormFilter extends BaseFormFilterDoctrine
       'remix'               => 'Enum',
       'm_group_id'          => 'ForeignKey',
       'm_group_original_id' => 'ForeignKey',
+      'user_id'             => 'ForeignKey',
     );
   }
 }

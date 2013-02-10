@@ -11,8 +11,10 @@
  * @property enum $remix
  * @property integer $m_group_id
  * @property integer $m_group_original_id
+ * @property integer $user_id
  * @property mGroup $mGroup
  * @property mGroup $mGroupOriginal
+ * @property sfGuardUser $User
  * @property Doctrine_Collection $mSheet
  * 
  * @method integer             getId()                  Returns the current record's "id" value
@@ -21,8 +23,10 @@
  * @method enum                getRemix()               Returns the current record's "remix" value
  * @method integer             getMGroupId()            Returns the current record's "m_group_id" value
  * @method integer             getMGroupOriginalId()    Returns the current record's "m_group_original_id" value
+ * @method integer             getUserId()              Returns the current record's "user_id" value
  * @method mGroup              getMGroup()              Returns the current record's "mGroup" value
  * @method mGroup              getMGroupOriginal()      Returns the current record's "mGroupOriginal" value
+ * @method sfGuardUser         getUser()                Returns the current record's "User" value
  * @method Doctrine_Collection getMSheet()              Returns the current record's "mSheet" collection
  * @method mSong               setId()                  Sets the current record's "id" value
  * @method mSong               setName()                Sets the current record's "name" value
@@ -30,8 +34,10 @@
  * @method mSong               setRemix()               Sets the current record's "remix" value
  * @method mSong               setMGroupId()            Sets the current record's "m_group_id" value
  * @method mSong               setMGroupOriginalId()    Sets the current record's "m_group_original_id" value
+ * @method mSong               setUserId()              Sets the current record's "user_id" value
  * @method mSong               setMGroup()              Sets the current record's "mGroup" value
  * @method mSong               setMGroupOriginal()      Sets the current record's "mGroupOriginal" value
+ * @method mSong               setUser()                Sets the current record's "User" value
  * @method mSong               setMSheet()              Sets the current record's "mSheet" collection
  * 
  * @package    testing
@@ -80,6 +86,9 @@ abstract class BasemSong extends sfDoctrineRecord
              'type' => 'integer',
              'length' => 4,
              ));
+        $this->hasColumn('user_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
     }
 
     public function setUp()
@@ -92,6 +101,11 @@ abstract class BasemSong extends sfDoctrineRecord
         $this->hasOne('mGroup as mGroupOriginal', array(
              'local' => 'm_group_original_id',
              'foreign' => 'id'));
+
+        $this->hasOne('sfGuardUser as User', array(
+             'local' => 'user_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
 
         $this->hasMany('mSheet', array(
              'local' => 'id',

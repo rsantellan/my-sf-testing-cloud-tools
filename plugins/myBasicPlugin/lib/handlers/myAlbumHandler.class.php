@@ -11,6 +11,8 @@
 class myAlbumHandler {
   
   const VIDEOS    = 'Video';
+  
+  const ONLINEVIDEOS     = "onlinevideos";
 
   const IMAGES    = 'Image';
 
@@ -27,7 +29,7 @@ class myAlbumHandler {
     return Doctrine::getTable("myAlbum")->retrieveAllAlbumsOfObject($objectId, $objectClass, $hydrationMode);
   }
   
-  public static function createAlbum($objectId, $objectClass, $title = "default", $description = "default", $type = self::MIXED)
+  public static function createAlbum($objectId, $objectClass, $title = "default", $description = "default", $type = self::MIXED, $allowed_types = null)
   {
     $album = self::retrieveAlbum($objectId, $objectClass, $title);
     if(!$album)
@@ -39,6 +41,7 @@ class myAlbumHandler {
       $album->setType($type);
       $album->setDeleteAllowed(true);
       $album->setDescription($description);
+	  $album->setAllowedTypes($allowed_types);
       $album->save();
     }
     return $album;
