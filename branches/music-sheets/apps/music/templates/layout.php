@@ -5,6 +5,20 @@
     <?php include_metas() ?>
     <?php include_title() ?>
     <link rel="shortcut icon" href="/favicon.ico" />
+	
+	<?php
+    
+    if(!$sf_user->isAnonymous()):
+	  
+	  use_javascript("music/jquery-1.9.0.js", "first");
+	  use_javascript("music/jquery-ui-1.10.0.custom.min.js", "last");
+	  
+	  use_stylesheet("music/jqueryui/humanity/jquery-ui-1.10.0.custom.min.css");
+	  
+	  
+	endif;
+	?>
+	
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
   </head>
