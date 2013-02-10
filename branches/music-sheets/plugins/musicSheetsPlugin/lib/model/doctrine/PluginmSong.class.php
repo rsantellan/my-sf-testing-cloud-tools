@@ -12,4 +12,24 @@
  */
 abstract class PluginmSong extends BasemSong
 {
+    public function postSave($event) 
+    {
+        parent::postSave($event);
+        myAlbumHandler::createAlbum($this->getId(), $this->getObjectClass(), "Cancion Publica", "Album de las canciones publicas", myAlbumHandler::MIXED, "*.mp3");
+        myAlbumHandler::createAlbum($this->getId(), $this->getObjectClass(), "Cancion Publica", "Album de las canciones privadas", myAlbumHandler::MIXED, "*.mp3");
+        myAlbumHandler::createAlbum($this->getId(), $this->getObjectClass(), "Cancion Publica", "Album de los videos online", myAlbumHandler::ONLINEVIDEOS);
+        myAlbumHandler::createAlbum($this->getId(), $this->getObjectClass(), "Cancion Publica", "Album de los archivos de Guitar Pro", myAlbumHandler::MIXED, "*.gp3, *.gp4, *.gp5, *.gp6");
+        
+    }
+    
+    /**
+    * Return the class of this object
+    *
+    * @return String
+    * @author Rodrigo Santellan
+    */
+    public function getObjectClass() 
+    {
+      return get_class($this);
+    }
 }

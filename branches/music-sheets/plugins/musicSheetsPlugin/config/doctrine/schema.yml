@@ -35,6 +35,8 @@ mSong:
       notnull: true
     m_group_original_id:
       type: integer(4)
+    user_id:
+      type: integer
   relations:
     mGroup:
       class: mGroup 
@@ -46,7 +48,11 @@ mSong:
       local: m_group_original_id
       foreign: id
       type: one
-      
+    User:
+      class: sfGuardUser
+      local: user_id
+      onDelete: CASCADE
+            
 mInstrument:
   tableName: musicinstrument
   columns:
