@@ -19,33 +19,18 @@ class songsActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new mSongForm();
+	$auxForm = new mSong();
+	$auxForm->setUserId($this->getUser()->getUserId());
+    $this->form = new mSongForm($auxForm);
   }
 
   public function executeCreate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST));
-    $aux = new mSongForm();
-    
-    $parameters = $request->getParameter($aux->getName());
-    $mGroup = Doctrine::getTable('mGroup')->findOneBy("name", $parameters ["m_group_id"]);
-    if(!$mGroup)
-    {
-      $mGroup = new mGroup();
-      $mGroup->setName($parameters ["m_group_id"]);
-      $mGroup->save();
-      $mGroup = Doctrine::getTable('mGroup')->findOneBy("name", $parameters ["m_group_id"]);
-    }
-    $auxSong = new mSong();
-    $auxSong->setMGroup($mGroup);
-    var_dump($auxSong->toArray());
-    var_dump($parameters ["m_group_id"]);
-    $parameters ["m_group_id"] = $mGroup->getId();
-    var_dump($parameters ["m_group_id"]);
-    //die;
-    $this->form = new mSongForm($auxSong);
 
-    $this->processForm($request, $this->form, $parameters);
+    $this->form = new mSongForm();
+
+    $this->processForm($request, $this->form, $request->getParameter($this->form->getName()));
 
     $this->setTemplate('new');
   }
