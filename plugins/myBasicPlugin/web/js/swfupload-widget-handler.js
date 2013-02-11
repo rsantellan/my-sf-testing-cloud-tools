@@ -357,9 +357,9 @@ var MethodsForEvents = {
         flash_object.css('width', document.getElementById('image-browse').offsetWidth + "px");
         flash_object.css('left', document.getElementById('image-browse').offsetLeft + "px");
         flash_object.css('top', "0px");
-        console.log("estoy aca en : calledOnQueueComplete");
-        console.log($("#upload_album_id"));
-        console.log($("#upload_album_id").val());
+        //console.log("estoy aca en : calledOnQueueComplete");
+        //console.log($("#upload_album_id"));
+        //console.log($("#upload_album_id").val());
         if(parent.reloadAlbum !== undefined)
         {
           parent.reloadAlbum($("#upload_album_id").val());

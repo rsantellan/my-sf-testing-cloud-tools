@@ -37,6 +37,10 @@ manageUsers:
 
 #Albumes
 
+saveOnlineVideo:
+ url: /album/onlineVideo/save.html
+ param: { module: upload, action: saveOnlineVideo }  
+
 downloadData:
  url: /album/download/:id
  param: { module: upload, action: downloadData }  

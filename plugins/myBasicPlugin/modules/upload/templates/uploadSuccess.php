@@ -2,8 +2,8 @@
 $max_size = ini_get('upload_max_filesize');
 
     include_component('upload', 'uploader', array(
-      'upload_url'        => url_for('upload/uploadContent?'. ini_get('session.name') . '=' . session_id() . '&upload=mastodonte'),     //ruta al action que procesa la imagen y la sube
-      'file_types'        => sfConfig::get( 'sf_plugins_upload_content_type_' . $objectClass, '*.jpg;*.jpeg;*.gif;*.png;*.JPG;*.JPEG;*.GIF;*.PNG' ),  //formatos soportados
+      'upload_url'        => url_for('upload/uploadContent?'. ini_get('session.name') . '=' . session_id() . '&upload=framework'),     //ruta al action que procesa la imagen y la sube
+      'file_types'        => $allowed_types,  //formatos soportados
       'upload_max_filesize' => $max_size,       //peso en bites máximo para cada imagen
       'file_upload_limit' => 0,                           //cantidad de archivos máximo que podemos subir
       'file_queue_limit'  => 0,                           //

@@ -88,11 +88,11 @@ class myFileHandler {
         $file_extension = $path_info ["extension"];
         $name = $FILES[$upload_name]['name'];
         //$path_info_file_name = $FILES[$upload_name]['filename'];
+/*
         if(!in_array(strtolower($file_extension), $extension_whitelist)){
-
             throw new Exception('Invalid file extension');
-
         }
+*/        
         $file_name = $name;
         if(!$keep_real_name)
         {

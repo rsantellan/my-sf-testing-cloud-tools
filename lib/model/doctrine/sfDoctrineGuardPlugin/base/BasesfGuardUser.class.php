@@ -21,6 +21,8 @@
  * @property Doctrine_Collection $sfGuardUserGroup
  * @property sfGuardRememberKey $RememberKeys
  * @property sfGuardForgotPassword $ForgotPassword
+ * @property Doctrine_Collection $myUploaded
+ * @property Doctrine_Collection $myAlbumVideo
  * @property Doctrine_Collection $mSong
  * 
  * @method string                getFirstName()             Returns the current record's "first_name" value
@@ -39,6 +41,8 @@
  * @method Doctrine_Collection   getSfGuardUserGroup()      Returns the current record's "sfGuardUserGroup" collection
  * @method sfGuardRememberKey    getRememberKeys()          Returns the current record's "RememberKeys" value
  * @method sfGuardForgotPassword getForgotPassword()        Returns the current record's "ForgotPassword" value
+ * @method Doctrine_Collection   getMyUploaded()            Returns the current record's "myUploaded" collection
+ * @method Doctrine_Collection   getMyAlbumVideo()          Returns the current record's "myAlbumVideo" collection
  * @method Doctrine_Collection   getMSong()                 Returns the current record's "mSong" collection
  * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
@@ -56,6 +60,8 @@
  * @method sfGuardUser           setSfGuardUserGroup()      Sets the current record's "sfGuardUserGroup" collection
  * @method sfGuardUser           setRememberKeys()          Sets the current record's "RememberKeys" value
  * @method sfGuardUser           setForgotPassword()        Sets the current record's "ForgotPassword" value
+ * @method sfGuardUser           setMyUploaded()            Sets the current record's "myUploaded" collection
+ * @method sfGuardUser           setMyAlbumVideo()          Sets the current record's "myAlbumVideo" collection
  * @method sfGuardUser           setMSong()                 Sets the current record's "mSong" collection
  * 
  * @package    testing
@@ -149,6 +155,14 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'foreign' => 'user_id'));
 
         $this->hasOne('sfGuardForgotPassword as ForgotPassword', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
+        $this->hasMany('myUploaded', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
+        $this->hasMany('myAlbumVideo', array(
              'local' => 'id',
              'foreign' => 'user_id'));
 

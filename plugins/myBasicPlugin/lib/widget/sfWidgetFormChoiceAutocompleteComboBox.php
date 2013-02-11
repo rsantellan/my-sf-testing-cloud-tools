@@ -22,8 +22,7 @@ class  sfWidgetFormChoiceAutocompleteComboBox extends sfWidgetFormChoice
     public function render($name, $value = null, $attributes = array(), $errors = array())
     {
         $response = sfContext::getInstance()->getResponse();
-        //$response->addJavascript('/mastodontePlugin/js/jquery-ui-1.8.4/development-bundle/ui/i18n/jquery.ui.datepicker-'.$this->getOption('culture').'.js');
-
+        
         $attributes['class'] = 'autocompleteComboBox';
 
         $js = '

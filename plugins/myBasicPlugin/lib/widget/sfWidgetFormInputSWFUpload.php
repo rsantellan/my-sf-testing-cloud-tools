@@ -215,7 +215,7 @@ class sfWidgetFormInputSWFUpload extends sfWidgetFormInputFile
             requeue_on_error : false,
             assume_success_timeout : 0,
             file_types : "{$extensions}",
-            file_types_description: "Web Image Files",
+            file_types_description: "Files",
             file_size_limit : "{$max_size}",
             file_upload_limit : {$this->getOption('swfupload_file_upload_limit')},
             file_queue_limit : {$this->getOption('swfupload_file_queue_limit')},
