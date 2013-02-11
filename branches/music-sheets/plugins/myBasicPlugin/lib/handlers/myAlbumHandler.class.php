@@ -52,7 +52,7 @@ class myAlbumHandler {
     return Doctrine::getTable("myAlbum")->retrieveAlbumOfObject($objectId, $objectClass, $title, $hydrationMode);
   }
   
-  public static function saveUploadedFileToAlbum($albumId, $options = array())
+  public static function saveUploadedFileToAlbum($albumId, $options = array(), $user_id = null)
   {
     
     $uploader = new myUploaded();
@@ -63,6 +63,7 @@ class myAlbumHandler {
     $uploader->setPath($options["path"]);
     $uploader->setFiletype($options["type"]);
     $uploader->setPriority(self::retrieveLastAlbumPriority($albumId));
+    $uploader->setUserId($user_id);
     $uploader->save();
     return $uploader;
   }

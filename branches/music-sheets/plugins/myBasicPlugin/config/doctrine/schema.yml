@@ -54,8 +54,47 @@ myUploaded:
     priority:
       type: integer(4)
       default: 0
+    user_id:
+      type: integer
   relations:
     myAlbum:
       local: my_album_id
       foreign: id
       type: one
+    User:
+      class: sfGuardUser
+      local: user_id
+
+myAlbumVideo:
+  actAs:
+    Timestampable: ~
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true  
+    my_album_id:
+      type: integer(4)  
+      notnull: true
+    user_id:
+      type: integer
+      notnull: true
+    priority:
+      type: integer(4)
+      default: 0
+    description:
+      type:	string(255)
+    src:
+      type: string(255)
+      notnull: true
+    code:
+      type: string(64)
+      notnull: true      
+  relations:
+    myAlbum:
+      local: my_album_id
+      foreign: id
+      type: one
+    User:
+      class: sfGuardUser
+      local: user_id      

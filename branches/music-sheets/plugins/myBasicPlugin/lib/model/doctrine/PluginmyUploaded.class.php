@@ -15,10 +15,22 @@ abstract class PluginmyUploaded extends BasemyUploaded
   public function getUrl($options = array())
   {
     //Tengo que preguntar de que tipo es. Dependiendo del tipo la imagen que renderizo
-    //Primero solo imagenes.
-    $image_cache =  myCacheHandler::createCacheImage(sfConfig::get('sf_upload_dir').$this->getPath().DIRECTORY_SEPARATOR.$this->getFilename(), $options);
-    $cachePath = sfConfig::get('sf_cache_dir') .DIRECTORY_SEPARATOR. 'images'.DIRECTORY_SEPARATOR.'web';
-    $image = str_replace($cachePath, "", $image_cache);
+    
+    switch ($this->getFiletype()) {
+      case "mp3":
+      case "MP3":
+          $image_cache =  myCacheHandler::createCacheImage(sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR."myBasicPlugin".DIRECTORY_SEPARATOR."images".DIRECTORY_SEPARATOR."mp3.png", $options);
+          $cachePath = sfConfig::get('sf_cache_dir') .DIRECTORY_SEPARATOR. 'images'.DIRECTORY_SEPARATOR.'web';
+          $image = str_replace($cachePath, "", $image_cache);
+        break;
+      default:
+          //Solo imagenes.
+          $image_cache =  myCacheHandler::createCacheImage(sfConfig::get('sf_upload_dir').$this->getPath().DIRECTORY_SEPARATOR.$this->getFilename(), $options);
+          $cachePath = sfConfig::get('sf_cache_dir') .DIRECTORY_SEPARATOR. 'images'.DIRECTORY_SEPARATOR.'web';
+          $image = str_replace($cachePath, "", $image_cache);
+        break;
+    }
+    
     sfProjectConfiguration::getActive()->loadHelpers(array('Url'));
     $absolute_path = false;
     if(!is_null($options))
@@ -44,5 +56,22 @@ abstract class PluginmyUploaded extends BasemyUploaded
   public function getDownloadSource()
   {
     return $this->getPath(). DIRECTORY_SEPARATOR . $this->getFilename();
+  }
+  
+  public function getUrlPathOfBrowser()
+  {
+    return "/uploads".$this->getPath().DIRECTORY_SEPARATOR.$this->getFilename(); 
+  }
+  
+  public function isSound()
+  {
+    if($this->getFiletype() == "mp3" || $this->getFiletype() == "MP3")
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
   }
 }

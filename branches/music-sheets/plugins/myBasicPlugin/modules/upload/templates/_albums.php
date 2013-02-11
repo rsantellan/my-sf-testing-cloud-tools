@@ -19,3 +19,13 @@
 <?php endforeach;?>
 
 <input type="hidden" value="<?php echo url_for("@reloadAlbum")?>" id="place_to_reload_albums" />
+
+<?php 
+    use_plugin_javascript("myBasicPlugin", "fancybox/jquery.fancybox-1.3.1.pack.js");
+    use_plugin_javascript("myBasicPlugin", "fancybox/jquery.mousewheel-3.0.2.pack.js");
+    use_plugin_stylesheet("myBasicPlugin", "../js/fancybox/jquery.fancybox-1.3.1.css");
+    
+    use_plugin_javascript("myBasicPlugin", "uploader.js", "last");
+    use_plugin_stylesheet("myBasicPlugin", "adminAlbum.css");
+?>
+

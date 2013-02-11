@@ -75,7 +75,7 @@ abstract class BasemSong extends sfDoctrineRecord
               2 => 'no sabe',
              ),
              'notnull' => true,
-             'default' => 'no sabe',
+             'default' => 'no',
              ));
         $this->hasColumn('m_group_id', 'integer', 4, array(
              'type' => 'integer',

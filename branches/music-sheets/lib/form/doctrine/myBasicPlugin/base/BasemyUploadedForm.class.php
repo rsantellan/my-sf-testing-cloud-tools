@@ -23,6 +23,7 @@ abstract class BasemyUploadedForm extends BaseFormDoctrine
       'path'        => new sfWidgetFormInputText(),
       'filetype'    => new sfWidgetFormInputText(),
       'priority'    => new sfWidgetFormInputText(),
+      'user_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),
     ));
@@ -36,6 +37,7 @@ abstract class BasemyUploadedForm extends BaseFormDoctrine
       'path'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'filetype'    => new sfValidatorString(array('max_length' => 64)),
       'priority'    => new sfValidatorInteger(array('required' => false)),
+      'user_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'required' => false)),
       'created_at'  => new sfValidatorDateTime(),
       'updated_at'  => new sfValidatorDateTime(),
     ));
