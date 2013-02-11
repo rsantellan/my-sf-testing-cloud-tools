@@ -19,6 +19,11 @@ abstract class PluginmyTest extends BasemyTest
     myAlbumHandler::createAlbum($this->getId(), $this->getObjectClass(), "Galeria", "Este es el album de las galerias");
   }
 
+  public function postDelete($event) {
+      parent::postDelete($event);
+      myAlbumHandler::deleteAllAlbumsOfObject($this->getId(), $this->getObjectClass());
+  }
+    
   /**
     * Return the class of this object
     *

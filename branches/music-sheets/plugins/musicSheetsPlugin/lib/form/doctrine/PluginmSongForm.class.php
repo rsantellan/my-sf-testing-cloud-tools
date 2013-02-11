@@ -20,8 +20,10 @@ abstract class PluginmSongForm extends BasemSongForm
     {
         $choices[$r_choice["id"]] = $r_choice["name"];
     }
-    //var_dump($choices);die;
+    //var_dump($choices);
     $this->widgetSchema['m_group_id'] = new sfWidgetFormChoiceAutocompleteComboBox(array('choices' => $choices));
+    $choices[''] = true;
+    $this->widgetSchema['m_group_original_id'] = new sfWidgetFormChoiceAutocompleteComboBox(array('choices' => $choices));
     $this->widgetSchema['user_id'] = new sfWidgetFormInputHidden();
     //$this->validatorSchema['m_group_id']        = new sfValidatorString(array('max_length' => 20, 'required' => true));
     

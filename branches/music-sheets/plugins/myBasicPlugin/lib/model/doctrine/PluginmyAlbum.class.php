@@ -13,4 +13,11 @@
 abstract class PluginmyAlbum extends BasemyAlbum
 {
 
+  public function preDelete($event) {
+    foreach($this->getMyUploaded() as $uploaded)
+    {
+      $uploaded->delete();
+    }
+    parent::preDelete($event);
+  }
 }

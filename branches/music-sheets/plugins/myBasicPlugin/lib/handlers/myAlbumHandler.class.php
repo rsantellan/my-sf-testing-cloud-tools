@@ -81,6 +81,15 @@ class myAlbumHandler {
   {
     return Doctrine::getTable("myUploaded")->updateOrfinalOfUploaded($uploadedId, $priority);
   }
+  
+  public static function deleteAllAlbumsOfObject($objectId, $objectClass)
+  {
+    $albums = self::retrieveAlbumsOfObject($objectId, $objectClass);
+    foreach($albums as $album)
+    {
+      $album->delete();
+    }
+  }
 }
 
 

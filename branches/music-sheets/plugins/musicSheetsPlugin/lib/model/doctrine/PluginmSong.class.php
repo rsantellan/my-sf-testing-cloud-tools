@@ -16,10 +16,16 @@ abstract class PluginmSong extends BasemSong
     {
         parent::postSave($event);
         myAlbumHandler::createAlbum($this->getId(), $this->getObjectClass(), "Cancion Publica", "Album de las canciones publicas", myAlbumHandler::MIXED, "*.mp3");
-        myAlbumHandler::createAlbum($this->getId(), $this->getObjectClass(), "Cancion Publica", "Album de las canciones privadas", myAlbumHandler::MIXED, "*.mp3");
-        myAlbumHandler::createAlbum($this->getId(), $this->getObjectClass(), "Cancion Publica", "Album de los videos online", myAlbumHandler::ONLINEVIDEOS);
-        myAlbumHandler::createAlbum($this->getId(), $this->getObjectClass(), "Cancion Publica", "Album de los archivos de Guitar Pro", myAlbumHandler::MIXED, "*.gp3, *.gp4, *.gp5, *.gp6");
+        myAlbumHandler::createAlbum($this->getId(), $this->getObjectClass(), "Cancion Privada", "Album de las canciones privadas", myAlbumHandler::MIXED, "*.mp3");
+        myAlbumHandler::createAlbum($this->getId(), $this->getObjectClass(), "Videos", "Album de los videos online", myAlbumHandler::ONLINEVIDEOS);
+        myAlbumHandler::createAlbum($this->getId(), $this->getObjectClass(), "Guitar Pro", "Album de los archivos de Guitar Pro", myAlbumHandler::MIXED, "*.gp3, *.gp4, *.gp5, *.gp6");
         
+    }
+    
+    
+    public function postDelete($event) {
+      parent::postDelete($event);
+      myAlbumHandler::deleteAllAlbumsOfObject($this->getId(), $this->getObjectClass());
     }
     
     /**

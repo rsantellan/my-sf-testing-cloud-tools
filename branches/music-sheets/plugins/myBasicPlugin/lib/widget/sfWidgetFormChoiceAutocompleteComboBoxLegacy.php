@@ -5,11 +5,11 @@
  */
 
 /**
- * Description of sfWidgetDatepicker
+ * This is for using with Jquery UI prior 1.10
  *
  * @author Rodrigo Santellan
  */
-class  sfWidgetFormChoiceAutocompleteComboBox extends sfWidgetFormChoice
+class  sfWidgetFormChoiceAutocompleteComboBoxLegacy extends sfWidgetFormChoice
 {
     public function configure($options = array(), $attributes = array())
     {
@@ -92,7 +92,7 @@ class  sfWidgetFormChoiceAutocompleteComboBox extends sfWidgetFormChoice
 					})
 					.addClass( "ui-widget ui-widget-content ui-corner-left" );
 
-				input.data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+				input.data( "autocomplete" )._renderItem = function( ul, item ) {
 					return $( "<li></li>" )
 						.data( "item.autocomplete", item )
 						.append( "<a>" + item.label + "</a>" )
