@@ -92,6 +92,8 @@ abstract class BasemyAlbumVideo extends sfDoctrineRecord
              'foreign' => 'id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
+        $mymediacontentbehavior0 = new myMediaContentBehavior();
         $this->actAs($timestampable0);
+        $this->actAs($mymediacontentbehavior0);
     }
 }

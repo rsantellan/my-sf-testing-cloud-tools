@@ -6,6 +6,7 @@
     <br/>
     <a  class="fancy_link iframe" href="<?php echo url_for("upload/ordenarAlbum?i=".$album->getId());?>">Ordenar</a>
   </div>
+  <?php ?>
   <?php $uploades = myAlbumHandler::retrieveAlbumContent($album->getId());; ?>
   <div id="view_album_images_<?php echo $album->getId();?>">
     <div id="album_images_<?php echo $album->getId();?>" class="album_images">

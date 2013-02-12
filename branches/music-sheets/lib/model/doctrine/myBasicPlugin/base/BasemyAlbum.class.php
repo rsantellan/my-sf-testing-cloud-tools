@@ -14,6 +14,7 @@
  * @property string $object_class_name
  * @property integer $object_id
  * @property string $allowed_types
+ * @property Doctrine_Collection $myMediaContent
  * @property Doctrine_Collection $myUploaded
  * @property Doctrine_Collection $myAlbumVideo
  * 
@@ -26,6 +27,7 @@
  * @method string              getObjectClassName()   Returns the current record's "object_class_name" value
  * @method integer             getObjectId()          Returns the current record's "object_id" value
  * @method string              getAllowedTypes()      Returns the current record's "allowed_types" value
+ * @method Doctrine_Collection getMyMediaContent()    Returns the current record's "myMediaContent" collection
  * @method Doctrine_Collection getMyUploaded()        Returns the current record's "myUploaded" collection
  * @method Doctrine_Collection getMyAlbumVideo()      Returns the current record's "myAlbumVideo" collection
  * @method myAlbum             setId()                Sets the current record's "id" value
@@ -37,6 +39,7 @@
  * @method myAlbum             setObjectClassName()   Sets the current record's "object_class_name" value
  * @method myAlbum             setObjectId()          Sets the current record's "object_id" value
  * @method myAlbum             setAllowedTypes()      Sets the current record's "allowed_types" value
+ * @method myAlbum             setMyMediaContent()    Sets the current record's "myMediaContent" collection
  * @method myAlbum             setMyUploaded()        Sets the current record's "myUploaded" collection
  * @method myAlbum             setMyAlbumVideo()      Sets the current record's "myAlbumVideo" collection
  * 
@@ -103,6 +106,10 @@ abstract class BasemyAlbum extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasMany('myMediaContent', array(
+             'local' => 'id',
+             'foreign' => 'my_album_id'));
+
         $this->hasMany('myUploaded', array(
              'local' => 'id',
              'foreign' => 'my_album_id'));

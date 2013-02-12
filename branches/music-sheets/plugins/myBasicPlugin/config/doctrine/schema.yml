@@ -27,10 +27,41 @@ myAlbum:
        notnull: true
     allowed_types:
        type: string(128)
+
+myMediaContent:
+  actAs:
+    Timestampable: ~
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    object_class_name:
+       type: string(128)
+       notnull: true
+    object_id:
+       type: integer(4)
+       notnull: true
+    priority:
+      type: integer(4)
+      default: 0
+    my_album_id:
+      type: integer(4)      
+  indexes:
+    md_media_content_index:
+      fields: [object_class_name, object_id]
+      type: unique
+  relations:
+    myAlbum:
+      local: my_album_id
+      foreign: id
+      type: one
+      
       
 myUploaded:
   actAs:
     Timestampable: ~
+    myMediaContentBehavior: ~
   columns:
     id:
       type: integer(4)
@@ -68,6 +99,7 @@ myUploaded:
 myAlbumVideo:
   actAs:
     Timestampable: ~
+    myMediaContentBehavior: ~
   columns:
     id:
       type: integer(4)

@@ -47,6 +47,19 @@ abstract class PluginmyAlbumVideo extends BasemyAlbumVideo
     
   }
   
+  
+  /**
+    * Return the class of this object
+    *
+    * @return String
+    * @author Rodrigo Santellan
+    */
+  public function getObjectClass() 
+  {
+      return get_class($this);
+  }  
+  
+  
   public function getVideoType()
   {
     if (strpos($this->getSrc(), 'youtube') > 0) {
