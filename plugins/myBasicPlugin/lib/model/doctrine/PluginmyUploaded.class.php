@@ -12,6 +12,19 @@
  */
 abstract class PluginmyUploaded extends BasemyUploaded
 {
+  
+  /**
+    * Return the class of this object
+    *
+    * @return String
+    * @author Rodrigo Santellan
+    */
+  public function getObjectClass() 
+  {
+      return get_class($this);
+  }  
+  
+  
   public function getUrl($options = array())
   {
     //Tengo que preguntar de que tipo es. Dependiendo del tipo la imagen que renderizo
