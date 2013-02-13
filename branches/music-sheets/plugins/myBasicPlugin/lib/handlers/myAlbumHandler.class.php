@@ -75,7 +75,45 @@ class myAlbumHandler {
   
   public static function retrieveAlbumContent($albumId, $order = "DESC", $hydrationMode = Doctrine_Core::HYDRATE_RECORD)
   {
-    return Doctrine::getTable("myUploaded")->retrieveAlbumContent($albumId, $order, $hydrationMode);
+    $contents_meta = Doctrine::getTable("myMediaContent")->retrieveByAlbum($albumId, $order, $hydrationMode);
+    $uploaded_data = Doctrine::getTable("myUploaded")->retrieveAlbumContent($albumId, $order, $hydrationMode);
+    $videos_data = Doctrine::getTable("myAlbumVideo")->retrieveAlbumContent($albumId, $order, $hydrationMode);
+    
+    $return = array();
+    foreach($contents_meta as $content)
+    {
+      switch ($content->getObjectClassName()) {
+        case "myAlbumVideo":
+            $aux = self::retrieveWithIdFromArray($videos_data, $content->getObjectId());
+            if(!is_null($aux))
+            {
+              $return[$content->getObjectId()] = $aux;
+            }
+          break;
+        case "myUploaded":
+            $aux = self::retrieveWithIdFromArray($uploaded_data, $content->getObjectId());
+            if(!is_null($aux))
+            {
+              $return[$content->getObjectId()] = $aux;
+            }
+          break;
+        default:
+          break;
+      }
+    }
+    return $return;
+  }
+  
+  private static function retrieveWithIdFromArray($data, $id)
+  {
+    foreach($data as $obj)
+    {
+      if($obj->getId() == $id)
+      {
+        return $obj;
+      }
+    }
+    return null;
   }
   
   public static function updateOrfinalOfUploaded($uploadedId, $priority)

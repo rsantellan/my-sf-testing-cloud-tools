@@ -33,4 +33,13 @@ class PluginmyMediaContentTable extends Doctrine_Table
       $r = $conn->fetchOne($sql, array($album_id));
       return $r;
     }
+    
+    public function retrieveByAlbum($album_id, $order = "ASC", $hydrationMode = Doctrine_Core::HYDRATE_RECORD)
+    {
+      $q = $this->createQuery('q')
+           ->addWhere('q.my_album_id = ?', $album_id)
+           ->orderBy("q.priority ". $order);
+      $q->setHydrationMode($hydrationMode);
+      return $q->execute();
+    }
 }

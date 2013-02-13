@@ -16,4 +16,14 @@ class PluginmyAlbumVideoTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('PluginmyAlbumVideo');
     }
+    
+    public function retrieveAlbumContent($albumId, $order = "DESC", $hydrationMode = Doctrine_Core::HYDRATE_RECORD)
+    {
+      $query = $this->createQuery("q")
+              ->addWhere("q.my_album_id = ?", $albumId)
+              ->orderBy("q.priority ". $order);
+      
+      $query->setHydrationMode($hydrationMode);
+      return $query->execute();
+    }
 }
