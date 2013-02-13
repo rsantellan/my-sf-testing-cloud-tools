@@ -32,17 +32,25 @@ class uploadActions extends sfActions {
 	$id = $request->getPostParameter("id", null);
 	if(!is_null($id))
 	{
-	  $file = Doctrine::getTable("myUploaded")->find($id);
-	  $file->delete();
+      myAlbumHandler::deleteAlbumObject($id);
 	}
 	return $this->renderText(myBasicHandler::JsonResponse($is_ok, array("id" => $id)));
   }
   
   public function executeEditarImagen(sfWebRequest $request) 
   {
-    $this->file = Doctrine::getTable("myUploaded")->find($request->getParameter("id"));
-    $this->forward404Unless($this->file);
-    $this->form = new myUploadedForm($this->file);
+    $this->obj = myAlbumHandler::retrieveConcreteObjectWithMyMediaContentId($request->getParameter("id"));
+    $this->forward404Unless($this->obj);
+    if($this->obj->getObjectClass() == "myUploaded")
+    {
+      $this->form = new myUploadedForm($this->obj);
+    }
+    else 
+    {
+      $this->form = new myAlbumVideoForm($this->obj);
+      $this->setTemplate('editOnlineVideos');
+    }
+    
     
     
   }

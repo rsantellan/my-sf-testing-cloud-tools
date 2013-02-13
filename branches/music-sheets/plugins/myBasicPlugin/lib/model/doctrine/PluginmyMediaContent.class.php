@@ -22,4 +22,9 @@ abstract class PluginmyMediaContent extends BasemyMediaContent
       $this->setPriority($next_priority);
     }
   }
+  
+  public function retrieveConcreteObject()
+  {
+    return Doctrine::getTable($this->getObjectClassName())->find($this->getObjectId());
+  }
 }

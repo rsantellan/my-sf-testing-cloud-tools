@@ -35,16 +35,20 @@ abstract class PluginmyAlbumVideo extends BasemyAlbumVideo
         break;
       case self::VIMEO:
         $object = $this->getVimeoData();
-        /*
-        $auxVimeo = new myVimeo();
-        $auxVimeo->setUrl($this->getSrc());
-        $object = $auxVimeo->getEmbedObject();
-        */
         $this->setCode($object->video_id);
         break;
       default:
         break;
     }
+  }
+  
+  public function preDelete($event) {
+    parent::preDelete($event);
+    $cache_key = $this->getObjectClass()."_".$this->getVideoType()."_".$this->getId();
+    $cache = new FileCache();
+    $cache->setCache($this->getObjectClass());
+    $cache->erase($cache_key);
+    
   }
 
   public function getUrl($options = array())
@@ -61,9 +65,7 @@ abstract class PluginmyAlbumVideo extends BasemyAlbumVideo
         break;
       default:
         break;
-    
     }
-    
   }
   
   /**
@@ -171,4 +173,14 @@ abstract class PluginmyAlbumVideo extends BasemyAlbumVideo
       return $matches[1];
   }
   
+  
+  public function retrieveYouTubeEmbeddedCode($options = array())
+    {
+        $width = 480;
+        $height = 390;
+        if(isset($options['width'])) $width = $options['width'];
+        if(isset($options['height'])) $height = $options['height'];
+        $code = '<iframe title="YouTube video player" width="'.$width.'" height="'.$height.'" src="http://www.youtube.com/embed/'.$this->getCode().'" frameborder="0" allowfullscreen></iframe>';
+        return $code;
+    }
 }
