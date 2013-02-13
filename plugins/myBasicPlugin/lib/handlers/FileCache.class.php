@@ -45,7 +45,7 @@ class FileCache {
     }
     if(is_null($this->getCachePath()))
     {
-      $this->setCachePath(sfConfig::get('sf_cache_dir'));
+      $this->setCachePath(sfConfig::get('sf_cache_dir').DIRECTORY_SEPARATOR);
     }
     
   }

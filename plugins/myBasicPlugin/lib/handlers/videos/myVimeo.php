@@ -80,6 +80,7 @@ class myVimeo
    */
   public function getEmbedObject()
   {
+    sfContext::getInstance()->getLogger()->log('>>>> myVideo >>>> ' . $this->url);
     if(is_null($this->url))
     {
       return NULL;

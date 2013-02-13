@@ -34,19 +34,37 @@ abstract class PluginmyAlbumVideo extends BasemyAlbumVideo
         $this->setCode($metadata->code);
         break;
       case self::VIMEO:
+        $object = $this->getVimeoData();
+        /*
         $auxVimeo = new myVimeo();
         $auxVimeo->setUrl($this->getSrc());
-        
         $object = $auxVimeo->getEmbedObject();
+        */
         $this->setCode($object->video_id);
         break;
       default:
         break;
     }
+  }
+
+  public function getUrl($options = array())
+  {
+    $type = $this->getVideoType();
+    switch ($type) {
+      case self::YOUTUBE:
+        //$metadata = $this->getYoutubeData();
+        return "http://img.youtube.com/vi/".$this->getCode()."/0.jpg";
+        break;
+      case self::VIMEO:
+        $object = $this->getVimeoData();
+        return $object->thumbnail_url;
+        break;
+      default:
+        break;
     
+    }
     
   }
-  
   
   /**
     * Return the class of this object
@@ -71,8 +89,44 @@ abstract class PluginmyAlbumVideo extends BasemyAlbumVideo
     }
   }
   
+  
+  public function getVimeoData()
+  {
+    $cache_key = $this->getObjectClass()."_".$this->getVideoType()."_".$this->getId();
+    $cache = new FileCache();
+    $cache->setCache($this->getObjectClass());
+    if(!$this->isNew())
+    {
+      if($cache->isCached($cache_key))
+      {
+        return unserialize($cache->retrieve($cache_key));
+      }
+    }
+    $auxVimeo = new myVimeo();
+    $auxVimeo->setUrl($this->getSrc());
+    $object = $auxVimeo->getEmbedObject();
+    
+    if(!$this->isNew())
+    {
+      //Antes de serializarlo lo convierto en un objecto stdObject con json_decode(json_encode($object))
+      $cache->store($cache_key, serialize(json_decode(json_encode($object))));
+    }
+    return $object;
+  }
+  
   public function getYoutubeData()
   {
+    $cache_key = $this->getObjectClass()."_".$this->getVideoType()."_".$this->getId();
+    $cache = new FileCache();
+    $cache->setCache($this->getObjectClass());
+    if(!$this->isNew())
+    {
+      if($cache->isCached($cache_key))
+      {
+        return unserialize($cache->retrieve($cache_key));
+      }
+    }
+    
     if(is_null($this->_metadata))
       {
         //
@@ -87,7 +141,13 @@ abstract class PluginmyAlbumVideo extends BasemyAlbumVideo
         $stdObject->code = (string) $this->retrieveYoutubeCode();
         $this->_metadata = $stdObject;
         //
+
       }
+      if(!$this->isNew())
+      {
+        $cache->store($cache_key, serialize($stdObject));
+      }
+
       return $this->_metadata;
   }
   
