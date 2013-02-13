@@ -42,4 +42,13 @@ class PluginmyMediaContentTable extends Doctrine_Table
       $q->setHydrationMode($hydrationMode);
       return $q->execute();
     }
+    
+    public function updateOrfinalOfUploaded($uploadedId, $priority)
+    {
+      return Doctrine_Query::create()
+              ->update('myMediaContent myC')
+              ->set('myC.priority', '?', $priority)
+              ->where('myC.id = ?', $uploadedId)
+              ->execute();
+    }
 }

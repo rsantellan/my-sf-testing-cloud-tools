@@ -12,7 +12,7 @@
   <?php foreach($images as $image): ?>
     <li id="listItem_<?php echo $image->getId();?>">
 <!--width="150" height="150"-->
-       <img  src="<?php echo $image->getUrl(array(myImageCodes::CODE => myImageCodes::RESIZECROP, myImageCodes::WIDTH => 125, myImageCodes::HEIGHT => 125));?>" />
+       <img width="125" height="125" src="<?php echo $image->getUrl(array(myImageCodes::CODE => myImageCodes::RESIZECROP, myImageCodes::WIDTH => 125, myImageCodes::HEIGHT => 125));?>" />
     </li>
   <?php endforeach; ?>
 </ul>

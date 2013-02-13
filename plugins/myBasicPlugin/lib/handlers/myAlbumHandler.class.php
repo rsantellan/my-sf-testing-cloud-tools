@@ -87,14 +87,14 @@ class myAlbumHandler {
             $aux = self::retrieveWithIdFromArray($videos_data, $content->getObjectId());
             if(!is_null($aux))
             {
-              $return[$content->getObjectId()] = $aux;
+              $return[$content->getId()] = $aux;
             }
           break;
         case "myUploaded":
             $aux = self::retrieveWithIdFromArray($uploaded_data, $content->getObjectId());
             if(!is_null($aux))
             {
-              $return[$content->getObjectId()] = $aux;
+              $return[$content->getId()] = $aux;
             }
           break;
         default:
@@ -118,7 +118,7 @@ class myAlbumHandler {
   
   public static function updateOrfinalOfUploaded($uploadedId, $priority)
   {
-    return Doctrine::getTable("myUploaded")->updateOrfinalOfUploaded($uploadedId, $priority);
+    return Doctrine::getTable("myMediaContent")->updateOrfinalOfUploaded($uploadedId, $priority);
   }
   
   public static function deleteAllAlbumsOfObject($objectId, $objectClass)
@@ -128,6 +128,21 @@ class myAlbumHandler {
     {
       $album->delete();
     }
+  }
+  
+  public static function deleteAlbumObject($id)
+  {
+    //
+    $mediaContent = Doctrine::getTable("myMediaContent")->find($id);
+    $obj = $mediaContent->retrieveConcreteObject();
+    $obj->delete();
+  }
+  
+  public static function retrieveConcreteObjectWithMyMediaContentId($id)
+  {
+    $mediaContent = Doctrine::getTable("myMediaContent")->find($id);
+    $obj = $mediaContent->retrieveConcreteObject();
+    return $obj;
   }
 }
 
