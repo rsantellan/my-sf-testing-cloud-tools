@@ -1,0 +1,30 @@
+myNew:
+  actAs:
+    Timestampable: ~
+  columns:
+    id:
+      type: integer
+      primary: true
+      unsigned: true
+      autoincrement: true
+    title:
+      type: string(128)
+      notnull: true
+    copete:
+      type: text
+      notnull: false
+    body:
+      type: text
+      notnull: true
+    source:
+      type: string(128)
+      notnull: false
+    publish:
+      type: timestamp
+      notnull: true
+    is_active:
+      type: boolean
+      default: 0
+    views_count:
+      type: integer
+      default: 0    

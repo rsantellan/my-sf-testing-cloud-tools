@@ -35,7 +35,7 @@ all:
     use_database:           true
 
     # Helpers
-    standard_helpers: [Partial, Cache, I18N, Date, myAsset]
+    standard_helpers: [Partial, Cache, I18N, Date, myAsset, Text]
     
     #Culture
     i18n:                   on

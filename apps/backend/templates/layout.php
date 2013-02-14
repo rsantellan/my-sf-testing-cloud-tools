@@ -8,11 +8,14 @@
 	<?php
     
     if(!$sf_user->isAnonymous()):
-    
-    use_plugin_javascript("myBasicPlugin", "jquery-1.7.1.min.js", "first");  
+
+    use_plugin_javascript("myBasicPlugin", "jquery-1.9.0.js", "first");  
+    use_plugin_javascript("myBasicPlugin", "jquery-migrate-1.0.0.js", "first");  
+    use_plugin_javascript("myBasicPlugin", "jquery-ui-1.10.0.custom.min.js", "last");  
     use_plugin_javascript("myBasicPlugin", "fancybox/jquery.fancybox-1.3.1.pack.js");
     use_plugin_javascript("myBasicPlugin", "fancybox/jquery.mousewheel-3.0.2.pack.js");
     use_plugin_stylesheet("myBasicPlugin", "../js/fancybox/jquery.fancybox-1.3.1.css");  
+    use_plugin_stylesheet("myBasicPlugin", "jqueryui1-10/humanity/jquery-ui-1.10.0.custom.min.css");  
     
     //Esto agrega las funcionalidades del layout
     use_plugin_javascript("myBasicPlugin", "layoutOptions.js");
@@ -23,6 +26,7 @@
     
     endif;
 	?>
+    
 	<?php include_stylesheets() ?>
 	<?php include_javascripts() ?>
   </head>
