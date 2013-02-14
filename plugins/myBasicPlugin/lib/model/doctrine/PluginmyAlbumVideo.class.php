@@ -175,12 +175,30 @@ abstract class PluginmyAlbumVideo extends BasemyAlbumVideo
   
   
   public function retrieveYouTubeEmbeddedCode($options = array())
-    {
-        $width = 480;
-        $height = 390;
-        if(isset($options['width'])) $width = $options['width'];
-        if(isset($options['height'])) $height = $options['height'];
-        $code = '<iframe title="YouTube video player" width="'.$width.'" height="'.$height.'" src="http://www.youtube.com/embed/'.$this->getCode().'" frameborder="0" allowfullscreen></iframe>';
-        return $code;
+  {
+      $width = 480;
+      $height = 390;
+      if(isset($options['width'])) $width = $options['width'];
+      if(isset($options['height'])) $height = $options['height'];
+      $code = '<iframe title="YouTube video player" width="'.$width.'" height="'.$height.'" src="http://www.youtube.com/embed/'.$this->getCode().'" frameborder="0" allowfullscreen></iframe>';
+      return $code;
+  }
+  
+  public function retrieveEmbeddedCode($options = array())
+  {
+    $type = $this->getVideoType();
+    switch ($type) {
+      case self::YOUTUBE:
+        //$metadata = $this->getYoutubeData();
+        return $this->retrieveYouTubeEmbeddedCode($options);
+        break;
+      case self::VIMEO:
+        $object = $this->getVimeoData();
+        return $object->html;
+        break;
+      default:
+        break;
     }
+  }
+    
 }
