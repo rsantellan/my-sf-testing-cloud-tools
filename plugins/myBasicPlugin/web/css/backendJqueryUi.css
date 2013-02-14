@@ -1,0 +1,42 @@
+select.autocompleteComboBox{
+    border: 1px solid #000000;
+    float: left;
+    height: 35px;
+    margin-left: 30px;
+    position: relative;
+    top: 1px;
+    width: 250px;
+}
+
+.ui-menu .ui-menu-item a {
+    display: block;
+    line-height: 1.5;
+    padding: 0.2em 0.4em;
+    text-decoration: none;
+}
+
+.ui-menu {
+    list-style: none outside none;
+    width: 300px !important;
+}
+
+.ui-autocomplete-input{
+    width: 300px !important;
+}
+
+.ui-autocomplete {
+    cursor: default;
+}
+
+button.ui-button {
+    height: 39px;
+    margin-top: 1px;
+}
+
+button.ui-button-icon-only {
+    width: 2.4em;
+}
+
+.ui-button {
+    margin-left: -1px;
+}

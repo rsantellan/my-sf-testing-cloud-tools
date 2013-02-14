@@ -10,11 +10,7 @@
  */
 class myCategoryFormFilter extends PluginmyCategoryFormFilter
 {
-  /**
-   * @see PluginmyCategoryFormFilter
-   */
   public function configure()
   {
-    parent::configure();
   }
 }

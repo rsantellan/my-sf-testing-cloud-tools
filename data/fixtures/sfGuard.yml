@@ -1,8 +1,8 @@
 sfGuardUser:
   User_admin:
-    first_name:     Rodrigo
-    last_name:      Santellan
-    email_address:  rsantellan@gmail.com
+    first_name:     Administrador
+    last_name:      Administrador
+    email_address:  rswibmer@hotmail.com
     username:       admin
     password:       admin
     is_super_admin: true

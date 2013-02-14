@@ -10,11 +10,7 @@
  */
 class myCategoryForm extends PluginmyCategoryForm
 {
-  /**
-   * @see PluginmyCategoryForm
-   */
   public function configure()
   {
-    parent::configure();
   }
 }

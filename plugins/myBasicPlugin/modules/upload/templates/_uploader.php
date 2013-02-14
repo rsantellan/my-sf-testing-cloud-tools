@@ -31,7 +31,7 @@
     <div id="content">
 
         <div id="uploadarea">
-          <?php include_partial('upload/swf_single_gallery', array('album_id' => $album_id)); ?>
+          <?php include_partial('upload/swf_single_gallery', array('album_id' => $album_id, 'category' => '')); ?>
 
           <?php include_partial('upload/swf_multiple_gallery', array('form' => $form, 'album_id' => $album_id)); ?>
         </div>
