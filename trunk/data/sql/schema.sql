@@ -1,7 +1,3 @@
-CREATE TABLE musicgroup (id INT AUTO_INCREMENT, name VARCHAR(255) NOT NULL, description TEXT NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE musicinstrument (id INT AUTO_INCREMENT, name VARCHAR(255) NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE musicsheet (id INT AUTO_INCREMENT, m_instrument_id INT NOT NULL, m_song_id INT NOT NULL, INDEX m_instrument_id_idx (m_instrument_id), INDEX m_song_id_idx (m_song_id), PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE musicsong (id INT AUTO_INCREMENT, name VARCHAR(255) NOT NULL, fecha_publicacion DATE, remix VARCHAR(7) DEFAULT 'no' NOT NULL, m_group_id INT NOT NULL, m_group_original_id INT, user_id BIGINT, INDEX m_group_id_idx (m_group_id), INDEX m_group_original_id_idx (m_group_original_id), INDEX user_id_idx (user_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE my_album (id INT AUTO_INCREMENT, title VARCHAR(64) NOT NULL, description VARCHAR(255), type VARCHAR(255) DEFAULT 'Mixed', deleteallowed bool NOT NULL, my_file_id INT, object_class_name VARCHAR(128) NOT NULL, object_id INT NOT NULL, allowed_types VARCHAR(128), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE my_album_video (id INT AUTO_INCREMENT, my_album_id INT NOT NULL, user_id BIGINT NOT NULL, priority INT DEFAULT 0, description VARCHAR(255), src VARCHAR(255) NOT NULL, code VARCHAR(64) NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX my_album_id_idx (my_album_id), INDEX user_id_idx (user_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE my_category_translation (id INT, name VARCHAR(100) NOT NULL, description VARCHAR(255), lang CHAR(2), slug VARCHAR(255), UNIQUE INDEX my_category_translation_sluggable_idx (slug, lang, name, id), PRIMARY KEY(id, lang)) ENGINE = INNODB;
@@ -19,11 +15,6 @@ CREATE TABLE sf_guard_remember_key (id BIGINT AUTO_INCREMENT, user_id BIGINT, re
 CREATE TABLE sf_guard_user (id BIGINT AUTO_INCREMENT, first_name VARCHAR(255), last_name VARCHAR(255), email_address VARCHAR(255) NOT NULL UNIQUE, username VARCHAR(128) NOT NULL UNIQUE, algorithm VARCHAR(128) DEFAULT 'sha1' NOT NULL, salt VARCHAR(128), password VARCHAR(128), is_active TINYINT(1) DEFAULT '1', is_super_admin TINYINT(1) DEFAULT '0', last_login DATETIME, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX is_active_idx_idx (is_active), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_user_group (user_id BIGINT, group_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(user_id, group_id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_user_permission (user_id BIGINT, permission_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(user_id, permission_id)) ENGINE = INNODB;
-ALTER TABLE musicsheet ADD CONSTRAINT musicsheet_m_song_id_musicsong_id FOREIGN KEY (m_song_id) REFERENCES musicsong(id) ON DELETE CASCADE;
-ALTER TABLE musicsheet ADD CONSTRAINT musicsheet_m_instrument_id_musicinstrument_id FOREIGN KEY (m_instrument_id) REFERENCES musicinstrument(id);
-ALTER TABLE musicsong ADD CONSTRAINT musicsong_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id) ON DELETE CASCADE;
-ALTER TABLE musicsong ADD CONSTRAINT musicsong_m_group_original_id_musicgroup_id FOREIGN KEY (m_group_original_id) REFERENCES musicgroup(id);
-ALTER TABLE musicsong ADD CONSTRAINT musicsong_m_group_id_musicgroup_id FOREIGN KEY (m_group_id) REFERENCES musicgroup(id);
 ALTER TABLE my_album_video ADD CONSTRAINT my_album_video_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id);
 ALTER TABLE my_album_video ADD CONSTRAINT my_album_video_my_album_id_my_album_id FOREIGN KEY (my_album_id) REFERENCES my_album(id);
 ALTER TABLE my_category_translation ADD CONSTRAINT my_category_translation_id_my_category_id FOREIGN KEY (id) REFERENCES my_category(id) ON UPDATE CASCADE ON DELETE CASCADE;
