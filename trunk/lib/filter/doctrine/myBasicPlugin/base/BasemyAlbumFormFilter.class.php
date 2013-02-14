@@ -20,6 +20,7 @@ abstract class BasemyAlbumFormFilter extends BaseFormFilterDoctrine
       'my_file_id'        => new sfWidgetFormFilterInput(),
       'object_class_name' => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'object_id'         => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'allowed_types'     => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -30,6 +31,7 @@ abstract class BasemyAlbumFormFilter extends BaseFormFilterDoctrine
       'my_file_id'        => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'object_class_name' => new sfValidatorPass(array('required' => false)),
       'object_id'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'allowed_types'     => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('my_album_filters[%s]');
@@ -57,6 +59,7 @@ abstract class BasemyAlbumFormFilter extends BaseFormFilterDoctrine
       'my_file_id'        => 'Number',
       'object_class_name' => 'Text',
       'object_id'         => 'Number',
+      'allowed_types'     => 'Text',
     );
   }
 }

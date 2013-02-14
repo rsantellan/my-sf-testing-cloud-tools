@@ -11,6 +11,8 @@
 class myAlbumHandler {
   
   const VIDEOS    = 'Video';
+  
+  const ONLINEVIDEOS     = "onlinevideos";
 
   const IMAGES    = 'Image';
 
@@ -27,7 +29,7 @@ class myAlbumHandler {
     return Doctrine::getTable("myAlbum")->retrieveAllAlbumsOfObject($objectId, $objectClass, $hydrationMode);
   }
   
-  public static function createAlbum($objectId, $objectClass, $title = "default", $description = "default", $type = self::MIXED)
+  public static function createAlbum($objectId, $objectClass, $title = "default", $description = "default", $type = self::MIXED, $allowed_types = null)
   {
     $album = self::retrieveAlbum($objectId, $objectClass, $title);
     if(!$album)
@@ -39,6 +41,7 @@ class myAlbumHandler {
       $album->setType($type);
       $album->setDeleteAllowed(true);
       $album->setDescription($description);
+	  $album->setAllowedTypes($allowed_types);
       $album->save();
     }
     return $album;
@@ -49,7 +52,7 @@ class myAlbumHandler {
     return Doctrine::getTable("myAlbum")->retrieveAlbumOfObject($objectId, $objectClass, $title, $hydrationMode);
   }
   
-  public static function saveUploadedFileToAlbum($albumId, $options = array())
+  public static function saveUploadedFileToAlbum($albumId, $options = array(), $user_id = null)
   {
     
     $uploader = new myUploaded();
@@ -60,6 +63,7 @@ class myAlbumHandler {
     $uploader->setPath($options["path"]);
     $uploader->setFiletype($options["type"]);
     $uploader->setPriority(self::retrieveLastAlbumPriority($albumId));
+    $uploader->setUserId($user_id);
     $uploader->save();
     return $uploader;
   }
@@ -71,12 +75,74 @@ class myAlbumHandler {
   
   public static function retrieveAlbumContent($albumId, $order = "DESC", $hydrationMode = Doctrine_Core::HYDRATE_RECORD)
   {
-    return Doctrine::getTable("myUploaded")->retrieveAlbumContent($albumId, $order, $hydrationMode);
+    $contents_meta = Doctrine::getTable("myMediaContent")->retrieveByAlbum($albumId, $order, $hydrationMode);
+    $uploaded_data = Doctrine::getTable("myUploaded")->retrieveAlbumContent($albumId, $order, $hydrationMode);
+    $videos_data = Doctrine::getTable("myAlbumVideo")->retrieveAlbumContent($albumId, $order, $hydrationMode);
+    
+    $return = array();
+    foreach($contents_meta as $content)
+    {
+      switch ($content->getObjectClassName()) {
+        case "myAlbumVideo":
+            $aux = self::retrieveWithIdFromArray($videos_data, $content->getObjectId());
+            if(!is_null($aux))
+            {
+              $return[$content->getId()] = $aux;
+            }
+          break;
+        case "myUploaded":
+            $aux = self::retrieveWithIdFromArray($uploaded_data, $content->getObjectId());
+            if(!is_null($aux))
+            {
+              $return[$content->getId()] = $aux;
+            }
+          break;
+        default:
+          break;
+      }
+    }
+    return $return;
+  }
+  
+  private static function retrieveWithIdFromArray($data, $id)
+  {
+    foreach($data as $obj)
+    {
+      if($obj->getId() == $id)
+      {
+        return $obj;
+      }
+    }
+    return null;
   }
   
   public static function updateOrfinalOfUploaded($uploadedId, $priority)
   {
-    return Doctrine::getTable("myUploaded")->updateOrfinalOfUploaded($uploadedId, $priority);
+    return Doctrine::getTable("myMediaContent")->updateOrfinalOfUploaded($uploadedId, $priority);
+  }
+  
+  public static function deleteAllAlbumsOfObject($objectId, $objectClass)
+  {
+    $albums = self::retrieveAlbumsOfObject($objectId, $objectClass);
+    foreach($albums as $album)
+    {
+      $album->delete();
+    }
+  }
+  
+  public static function deleteAlbumObject($id)
+  {
+    //
+    $mediaContent = Doctrine::getTable("myMediaContent")->find($id);
+    $obj = $mediaContent->retrieveConcreteObject();
+    $obj->delete();
+  }
+  
+  public static function retrieveConcreteObjectWithMyMediaContentId($id)
+  {
+    $mediaContent = Doctrine::getTable("myMediaContent")->find($id);
+    $obj = $mediaContent->retrieveConcreteObject();
+    return $obj;
   }
 }
 

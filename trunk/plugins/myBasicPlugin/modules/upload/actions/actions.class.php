@@ -32,17 +32,25 @@ class uploadActions extends sfActions {
 	$id = $request->getPostParameter("id", null);
 	if(!is_null($id))
 	{
-	  $file = Doctrine::getTable("myUploaded")->find($id);
-	  $file->delete();
+      myAlbumHandler::deleteAlbumObject($id);
 	}
 	return $this->renderText(myBasicHandler::JsonResponse($is_ok, array("id" => $id)));
   }
   
   public function executeEditarImagen(sfWebRequest $request) 
   {
-    $this->file = Doctrine::getTable("myUploaded")->find($request->getParameter("id"));
-    $this->forward404Unless($this->file);
-    $this->form = new myUploadedForm($this->file);
+    $this->obj = myAlbumHandler::retrieveConcreteObjectWithMyMediaContentId($request->getParameter("id"));
+    $this->forward404Unless($this->obj);
+    if($this->obj->getObjectClass() == "myUploaded")
+    {
+      $this->form = new myUploadedForm($this->obj);
+    }
+    else 
+    {
+      $this->form = new myAlbumVideoForm($this->obj);
+      $this->setTemplate('editOnlineVideos');
+    }
+    
     
     
   }
@@ -223,11 +231,42 @@ class uploadActions extends sfActions {
     //$this->objectId = $request->getParameter('a', 0);
     $this->objectClass = $request->getParameter('c', '');
     $this->album_id = $request->getParameter('i', '');
+    $album = Doctrine::getTable("myAlbum")->find($this->album_id);
+    $types = sfConfig::get( 'sf_plugins_upload_content_type_' . $this->objectClass, '*.jpg;*.jpeg;*.gif;*.png;*.JPG;*.JPEG;*.GIF;*.PNG' );
+    if($album)
+    {
+      if($album->getType() == myAlbumHandler::ONLINEVIDEOS)
+      {
+        $this->setTemplate('onlineVideos');
+        $aux = new MyAlbumVideo();
+        $aux->setMyAlbum($album);
+        $aux->setUserId($this->getUser()->getUserId());
+        $this->form = new myAlbumVideoForm($aux);
+      }
+      if($album->getAllowedTypes() != "" || !is_null($album->getAllowedTypes()))
+      {
+        $types = $album->getAllowedTypes();
+      }
+    }
+    $this->allowed_types = $types;
+    
+    
     $this->setLayout(ProjectConfiguration::getActive()->getTemplateDir('upload', 'clean.php') . DIRECTORY_SEPARATOR . "clean");
     //$this->setLayout(ProjectConfiguration::getActive()->getTemplateDir('mdMediaContentAdmin', 'clean.php').'/clean');
   }
 
 
+  public function executeSaveOnlineVideo(sfWebRequest $request) 
+  {
+    $this->form = new myAlbumVideoForm();
+    $this->form->bind($request->getParameter($this->form->getName()));
+    if ($this->form->isValid())
+    {
+      $this->form->save();
+    }
+    $this->setTemplate('onlineVideos');
+    $this->setLayout(ProjectConfiguration::getActive()->getTemplateDir('upload', 'clean.php') . DIRECTORY_SEPARATOR . "clean");
+  }
   
   public function executeUploadContent(sfWebRequest $request) {
     
@@ -272,7 +311,7 @@ class uploadActions extends sfActions {
 
       $options = array('name' => $name, 'filename' => $file_name, 'type' => $file_extension, 'album' => $album_id, 'object_class'=>$object_class, 'path' => $path, 'description' => "");
 
-      $uploaded = myAlbumHandler::saveUploadedFileToAlbum($album_id, $options);
+      $uploaded = myAlbumHandler::saveUploadedFileToAlbum($album_id, $options, $this->getUser()->getUserId());
       //Damos de alta las imagenes del usuario $mdUser al contenido $mdObject salvado anteriormente
       //$mdMedia = $mdObject->retrieveMdMedia();
       //$mdMediaContentConcrete = $mdMedia->upload($mdUser, $mdObject, $options);

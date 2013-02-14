@@ -388,4 +388,9 @@ class sfGuardSecurityUser extends sfBasicSecurityUser
   {
     return $this->getGuardUser()->addPermissionByName($name, $con);
   }
+  
+  public function getUserId()
+  {
+	return $this->getGuardUser()->getId();
+  }
 }

@@ -23,6 +23,7 @@ abstract class BasemyAlbumForm extends BaseFormDoctrine
       'my_file_id'        => new sfWidgetFormInputText(),
       'object_class_name' => new sfWidgetFormInputText(),
       'object_id'         => new sfWidgetFormInputText(),
+      'allowed_types'     => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -34,6 +35,7 @@ abstract class BasemyAlbumForm extends BaseFormDoctrine
       'my_file_id'        => new sfValidatorInteger(array('required' => false)),
       'object_class_name' => new sfValidatorString(array('max_length' => 128)),
       'object_id'         => new sfValidatorInteger(),
+      'allowed_types'     => new sfValidatorString(array('max_length' => 128, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('my_album[%s]');

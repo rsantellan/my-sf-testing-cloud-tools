@@ -25,11 +25,43 @@ myAlbum:
     object_id:
        type: integer(4)
        notnull: true
+    allowed_types:
+       type: string(128)
 
-       
+myMediaContent:
+  actAs:
+    Timestampable: ~
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    object_class_name:
+       type: string(128)
+       notnull: true
+    object_id:
+       type: integer(4)
+       notnull: true
+    priority:
+      type: integer(4)
+      default: 0
+    my_album_id:
+      type: integer(4)      
+  indexes:
+    md_media_content_index:
+      fields: [object_class_name, object_id]
+      type: unique
+  relations:
+    myAlbum:
+      local: my_album_id
+      foreign: id
+      type: one
+      
+      
 myUploaded:
   actAs:
     Timestampable: ~
+    myMediaContentBehavior: ~
   columns:
     id:
       type: integer(4)
@@ -53,8 +85,48 @@ myUploaded:
     priority:
       type: integer(4)
       default: 0
+    user_id:
+      type: integer
   relations:
     myAlbum:
       local: my_album_id
       foreign: id
       type: one
+    User:
+      class: sfGuardUser
+      local: user_id
+
+myAlbumVideo:
+  actAs:
+    Timestampable: ~
+    myMediaContentBehavior: ~
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true  
+    my_album_id:
+      type: integer(4)  
+      notnull: true
+    user_id:
+      type: integer
+      notnull: true
+    priority:
+      type: integer(4)
+      default: 0
+    description:
+      type:	string(255)
+    src:
+      type: string(255)
+      notnull: true
+    code:
+      type: string(64)
+      notnull: true      
+  relations:
+    myAlbum:
+      local: my_album_id
+      foreign: id
+      type: one
+    User:
+      class: sfGuardUser
+      local: user_id      
