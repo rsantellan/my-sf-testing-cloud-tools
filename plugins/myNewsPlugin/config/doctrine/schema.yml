@@ -7,6 +7,9 @@ myNew:
       primary: true
       unsigned: true
       autoincrement: true
+    slug:
+      type: string(128)
+      notnull: true
     title:
       type: string(128)
       notnull: true

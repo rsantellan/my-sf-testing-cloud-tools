@@ -13,6 +13,7 @@ abstract class BasemyNewFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
+      'slug'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'title'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'copete'      => new sfWidgetFormFilterInput(),
       'body'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
@@ -25,6 +26,7 @@ abstract class BasemyNewFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
+      'slug'        => new sfValidatorPass(array('required' => false)),
       'title'       => new sfValidatorPass(array('required' => false)),
       'copete'      => new sfValidatorPass(array('required' => false)),
       'body'        => new sfValidatorPass(array('required' => false)),
@@ -54,6 +56,7 @@ abstract class BasemyNewFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'          => 'Number',
+      'slug'        => 'Text',
       'title'       => 'Text',
       'copete'      => 'Text',
       'body'        => 'Text',

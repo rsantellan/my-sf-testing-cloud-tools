@@ -13,4 +13,30 @@
 abstract class PluginmyNew extends BasemyNew
 {
 
+  public function preSave($event) {
+    parent::preSave($event);
+    $this->setSlug(myBasicHandler::slugify($this->getTitle()));
+  }
+  
+  public function postSave($event) {
+    parent::postSave($event);
+    myAlbumHandler::createAlbum($this->getId(), $this->getObjectClass(), "Default", "Este es el album default");
+  }
+
+  public function postDelete($event) {
+      parent::postDelete($event);
+      myAlbumHandler::deleteAllAlbumsOfObject($this->getId(), $this->getObjectClass());
+  }
+  
+  /**
+    * Return the class of this object
+    *
+    * @return String
+    * @author Rodrigo Santellan
+    */
+  public function getObjectClass() 
+  {
+      return get_class($this);
+  }
+  
 }

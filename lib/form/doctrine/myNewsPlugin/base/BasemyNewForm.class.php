@@ -16,6 +16,7 @@ abstract class BasemyNewForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
+      'slug'        => new sfWidgetFormInputText(),
       'title'       => new sfWidgetFormInputText(),
       'copete'      => new sfWidgetFormInputText(),
       'body'        => new sfWidgetFormInputText(),
@@ -29,6 +30,7 @@ abstract class BasemyNewForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'slug'        => new sfValidatorString(array('max_length' => 128)),
       'title'       => new sfValidatorString(array('max_length' => 128)),
       'copete'      => new sfValidatorPass(array('required' => false)),
       'body'        => new sfValidatorPass(),

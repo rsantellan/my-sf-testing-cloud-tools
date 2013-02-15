@@ -23,6 +23,8 @@ class myAlbumHandler {
   const YOUTUBEVIDEOS = "youtube";
 
   const VIMEO     = "vimeo";
+
+  const CACHEKEY = "albumManager";
   
   public static function retrieveAlbumsOfObject($objectId, $objectClass, $hydrationMode = Doctrine_Core::HYDRATE_RECORD)
   {
@@ -143,6 +145,27 @@ class myAlbumHandler {
     $mediaContent = Doctrine::getTable("myMediaContent")->find($id);
     $obj = $mediaContent->retrieveConcreteObject();
     return $obj;
+  }
+  
+  public static function retrieveAlbumAvatar($album_title, $objectId, $objectClass)
+  {
+    $cache_key = $album_title."_".$objectClass."_".$objectId;
+    $cache = new FileCache();
+    $cache->setCache(self::CACHEKEY);
+    $album = null;
+    if($cache->isCached($cache_key))
+    {
+      $album  = unserialize($cache->retrieve($cache_key));
+    }
+    else
+    {
+      $album = Doctrine::getTable('myAlbum')->retrieveAlbumOfObject($objectId, $objectClass, $album_title);
+      $cache->store($cache_key, serialize($album));
+    }
+    
+    $concreteObject = Doctrine::getTable("myMediaContent")->retrieveAvatarOfAlbum($album->getId());
+    $concrete = Doctrine::getTable($concreteObject[0])->find($concreteObject[1]);
+    return $concrete;
   }
 }
 

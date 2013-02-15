@@ -12,7 +12,7 @@ abstract class PluginmyNewForm extends BasemyNewForm
 {
   public function setup() {
     parent::setup();
-    unset($this['created_at'], $this['updated_at'], $this['views_count']);
+    unset($this['created_at'], $this['updated_at'], $this['views_count'], $this['slug']);
     
     $this->widgetSchema["copete"] = new myWidgetFormTextareaCleditor();
     $this->widgetSchema["body"] = new myWidgetFormTextareaCleditor();
