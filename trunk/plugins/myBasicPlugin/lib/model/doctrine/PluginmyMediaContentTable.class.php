@@ -34,6 +34,14 @@ class PluginmyMediaContentTable extends Doctrine_Table
       return $r;
     }
     
+    public function retrieveAvatarOfAlbum($album_id)
+    {
+      $conn = Doctrine_Manager::getInstance()->getCurrentConnection(); 
+      $sql = "select object_class_name, object_id from my_media_content where my_album_id = ? order by priority asc limit 1";
+      $r = $conn->fetchArray($sql, array($album_id));
+      return $r;
+    }
+    
     public function retrieveByAlbum($album_id, $order = "ASC", $hydrationMode = Doctrine_Core::HYDRATE_RECORD)
     {
       $q = $this->createQuery('q')

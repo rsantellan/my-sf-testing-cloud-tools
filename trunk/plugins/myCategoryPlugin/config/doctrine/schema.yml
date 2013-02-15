@@ -28,6 +28,9 @@ myCategory:
     priority:
       type: integer(2)
       default: 0
+    can_edit_or_delete:
+      type: boolean
+      default: true
   relations:
     myCategory:
       local: my_category_parent_id

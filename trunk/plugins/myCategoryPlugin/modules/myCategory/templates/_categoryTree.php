@@ -9,6 +9,9 @@ if(!isset($class))
         <span class="label_name_category">
           <?php echo $category['category']->getName(); ?>
         </span>
+        <?php if($category['category']->getCanEditOrDelete()): ?>
+          
+        
         <?php if(!is_null($category['category']->getMyCategoryParentId())): ?> 
             <a href="javascript:void(0)" onclick="return myCategoryManager.getInstance().moveUpCategory('<?php echo url_for("@moveUpCategory?id=".$category['category']->getId());?>');">
               <?php echo plugin_image_tag("myCategoryPlugin", "double_up.png", array("title" => __("categorias_subir"))); ?>
@@ -33,9 +36,11 @@ if(!isset($class))
         <a href="javascript:void(0)" onclick="myCategoryManager.getInstance().deleteCategory('<?php echo url_for("@deleteCategory?id=".$category['category']->getId());?>', '<?php echo __("categorias_eliminar_confirmacion")?>');">
           <?php echo plugin_image_tag("myCategoryPlugin", "delete.png", array("title" => __("categorias_eliminar"))); ?>
         </a>
+        <?php endif; ?>
         <a href="javascript:void(0)" onclick="return myCategoryManager.getInstance().addCategory('<?php echo url_for("@addCategory");?>', <?php echo $category['category']->getId();?>);">
           <?php echo plugin_image_tag("myCategoryPlugin", "add.png", array("title" => __("categorias_agregar hijo"))); ?>
         </a>
+        
     </div>
     <?php
       if(count($category['childs']) > 0):

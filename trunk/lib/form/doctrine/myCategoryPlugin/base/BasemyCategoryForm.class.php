@@ -20,6 +20,7 @@ abstract class BasemyCategoryForm extends BaseFormDoctrine
       'object_class_name'     => new sfWidgetFormInputText(),
       'my_category_parent_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('myCategory'), 'add_empty' => true)),
       'priority'              => new sfWidgetFormInputText(),
+      'can_edit_or_delete'    => new sfWidgetFormInputCheckbox(),
       'created_at'            => new sfWidgetFormDateTime(),
       'updated_at'            => new sfWidgetFormDateTime(),
     ));
@@ -30,6 +31,7 @@ abstract class BasemyCategoryForm extends BaseFormDoctrine
       'object_class_name'     => new sfValidatorString(array('max_length' => 100)),
       'my_category_parent_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('myCategory'), 'required' => false)),
       'priority'              => new sfValidatorInteger(array('required' => false)),
+      'can_edit_or_delete'    => new sfValidatorBoolean(array('required' => false)),
       'created_at'            => new sfValidatorDateTime(),
       'updated_at'            => new sfValidatorDateTime(),
     ));

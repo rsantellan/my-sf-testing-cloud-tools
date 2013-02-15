@@ -12,6 +12,7 @@
  * @property string $object_class_name
  * @property integer $my_category_parent_id
  * @property integer $priority
+ * @property boolean $can_edit_or_delete
  * @property myCategory $myCategory
  * @property Doctrine_Collection $myCategoryObject
  * 
@@ -22,6 +23,7 @@
  * @method string              getObjectClassName()       Returns the current record's "object_class_name" value
  * @method integer             getMyCategoryParentId()    Returns the current record's "my_category_parent_id" value
  * @method integer             getPriority()              Returns the current record's "priority" value
+ * @method boolean             getCanEditOrDelete()       Returns the current record's "can_edit_or_delete" value
  * @method myCategory          getMyCategory()            Returns the current record's "myCategory" value
  * @method Doctrine_Collection getMyCategoryObject()      Returns the current record's "myCategoryObject" collection
  * @method myCategory          setId()                    Sets the current record's "id" value
@@ -31,6 +33,7 @@
  * @method myCategory          setObjectClassName()       Sets the current record's "object_class_name" value
  * @method myCategory          setMyCategoryParentId()    Sets the current record's "my_category_parent_id" value
  * @method myCategory          setPriority()              Sets the current record's "priority" value
+ * @method myCategory          setCanEditOrDelete()       Sets the current record's "can_edit_or_delete" value
  * @method myCategory          setMyCategory()            Sets the current record's "myCategory" value
  * @method myCategory          setMyCategoryObject()      Sets the current record's "myCategoryObject" collection
  * 
@@ -79,6 +82,10 @@ abstract class BasemyCategory extends sfDoctrineRecord
              'type' => 'integer',
              'default' => 0,
              'length' => 2,
+             ));
+        $this->hasColumn('can_edit_or_delete', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => true,
              ));
     }
 

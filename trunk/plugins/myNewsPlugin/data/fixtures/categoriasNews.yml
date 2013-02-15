@@ -1,0 +1,11 @@
+myCategory:
+  noticiasPadre:
+    description: "Esto es para las noticias"
+    object_class_name: "myNew"
+    can_edit_or_delete: false
+    Translation:
+      es:
+        name: "Noticias"
+      en:
+        name : "News"
+    
