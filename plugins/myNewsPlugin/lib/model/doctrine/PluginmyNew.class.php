@@ -39,4 +39,8 @@ abstract class PluginmyNew extends BasemyNew
       return get_class($this);
   }
   
+  public function retrieveDefaultImage()
+  {
+    return "/myBasicPlugin/images/no_image.png";
+  }
 }

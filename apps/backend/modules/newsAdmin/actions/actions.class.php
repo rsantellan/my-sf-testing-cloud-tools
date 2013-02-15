@@ -32,6 +32,12 @@ class newsAdminActions extends sfActions
 
     $this->setTemplate('new');
   }
+  
+  public function executeShowDetail(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->my_new = Doctrine_Core::getTable('myNew')->find(array($request->getParameter('id'))), sprintf('Object my_new does not exist (%s).', $request->getParameter('id')));
+    
+  }
 
   public function executeEdit(sfWebRequest $request)
   {

@@ -164,8 +164,27 @@ class myAlbumHandler {
     }
     
     $concreteObject = Doctrine::getTable("myMediaContent")->retrieveAvatarOfAlbum($album->getId());
+    
+    if($concreteObject == false || $concreteObject[0] == null)
+    {
+      return null;
+    }
     $concrete = Doctrine::getTable($concreteObject[0])->find($concreteObject[1]);
     return $concrete;
+  }
+  
+  public static function retrieveAlbumAvatarUrl($album_title, $objectId, $objectClass, $parameters = array())
+  {
+    $obj = self::retrieveAlbumAvatar($album_title, $objectId, $objectClass);
+    if(!is_null($obj))
+    {
+      return $obj->getUrl($parameters);
+    }
+    else
+    {
+      $obj = new $objectClass;
+      return $obj->retrieveDefaultImage();
+    }
   }
 }
 
