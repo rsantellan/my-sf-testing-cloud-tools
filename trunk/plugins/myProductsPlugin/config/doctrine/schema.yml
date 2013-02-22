@@ -1,0 +1,83 @@
+myCurrency:
+  actAs:
+    Timestampable: ~
+    I18n:
+      fields: [name]
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    name:
+      type: string(255)
+      notnull: true
+    code:
+      type: string(16)
+      unique: true
+    symbol:
+      type: string(100)
+      notnull: true
+
+myCurrencyConvertion:
+  columns:
+    currency_from:
+      primary: true
+      type: integer(4)
+      notnull: true
+    currency_to:
+      primary: true
+      type: integer(4)
+      notnull: true
+    ratio:
+      type: double(18,8)
+      notnull: true
+  relations:
+    myCurrencyFrom:
+      class: myCurrency
+      local: currency_from
+      foreign: id
+      type: one
+    myCurrencyTo:
+      class: myCurrency
+      local: currency_to
+      foreign: id
+      type: one
+
+myProduct:
+  actAs:
+    I18n:
+        fields: [name]
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    name: { type: string(255), notnull: true}
+    description: { type: string(1000), notnull: true}
+    price: { type: double, notnull: true }
+    quantity:
+      type: integer(4)
+      default: '1'
+      notnull: true
+    tax:
+      type: float()
+      notnull: true
+      default: 0
+    is_public:
+      type: boolean
+      default: 1
+      notnull: true
+    my_currency_id:
+      type: integer(4)
+      notnull: true
+    weight:
+      type: float(6,2)
+      default: 0
+    priority:
+      type: integer(2)
+      default: 0
+  relations:
+    myCurrency:
+      local: my_currency_id
+      foreign: id
+      type: one
